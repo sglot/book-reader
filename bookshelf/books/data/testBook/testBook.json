@@ -1,0 +1,32 @@
+{
+    "id":    1,
+    "name":   "Отладочный сборник",
+    "author": "Николай Глот",
+    "dir": "testBook/",
+    "compositions": [
+        {
+            "id": -1000000,
+            "name": "testName",
+            "annotation": "",
+            "date": "",
+            "type": "prose",
+            "src": "testCompositionText.html"
+        },
+        {
+            "id": 1,
+            "name": "Введение",
+            "annotation": "",
+            "date": "",
+            "type": "prose",
+            "src": "intro.html"
+        },
+        {
+            "id": 2,
+            "name": "Летний будень",
+            "annotation": "",
+            "date": "",
+            "type": "poem",
+            "src": "letniy_buden.html"
+        }
+    ]
+}

@@ -1,24 +1,27 @@
-type bookList = [...
-    {
+type bookList = bookShortForm[]
+
+type bookShortForm = {
         id:     number,
         name:   string
-        scr:    string
+        src:    string
     }
-]
 
 type book = {
-    id:     number,
-    name:   string,
-    author: string,
-    compositions: [...composition]
+    id:             number,
+    name:           string,
+    author:         string,
+    dir:            string,
+    compositions:   composition[]
 }
 
 type composition = {
-    id: number,
-    name: string,
+    id:         number,
+    name:       string,
     annotation: string,
-    date: string,
-    type: compositionType
+    date:       string,
+    type:       compositionType,
+    src:        string,
+    text:       string
 }
 
 type compositionType = "poem" | "prose" | "annotation" 

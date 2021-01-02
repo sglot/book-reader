@@ -6,8 +6,8 @@ describe('Hand', () => {
     let configurator = new Configurator();
     let hand = new Hand(configurator.getBookRepository());
 
-    it('Get first book', () => {
-        let SUT = hand.getBook(1);
+    it('Get test book', () => {
+        let SUT = hand.getBook(2);
 
         assert.equal(true, typeof SUT === 'object');
     });
