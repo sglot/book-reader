@@ -5,6 +5,9 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
     private readonly PATH = this.ROOT + "/bookshelf/books/data/";
 
+    private readonly fs = require('fs');
+    private readonly path = require('path');
+
     getBookList() {
         return bookList;
     }
@@ -43,26 +46,38 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     
     getCompositionById(id: number, book: book) {
         let composition = this.findCompositionById(id, book.compositions);
-        composition.src = book.dir + composition.src;
-        console.log(composition.src);
-        composition.text = this.extractTextFromSrc(composition);
+        composition = this.buildComposition(composition, book);
 
-        return composition;
+        return { ...composition };
+    }
+
+    buildComposition(composition: composition, book: book) {
+        let comp = this.actualizeSrc(book.dir, composition);
+        comp = this.importTextInsideComposition(comp);
+
+        return comp;
+    }
+
+    actualizeSrc(dir: string, composition: composition) {
+        // console.log("composition = ", composition);
+        let comp = { ...composition };
+        comp.src = dir + composition.src;
+        return comp;
+    }
+
+    importTextInsideComposition(composition: composition) {
+        // console.log(composition.src);
+        let comp = { ...composition };
+        comp.text = this.extractTextFromSrc(composition);
+
+        return comp;
     }
 
     extractTextFromSrc(composition: composition) {
         let json = "";
-        // try {
-        //     json = require(this.PATH + composition.src);
-        // } catch (e) {
-        //     console.log(e);
-        // }
 
-        var fs = require('fs');
-        let path = require('path');
         try {
-            // var filename = require.resolve(this.PATH + composition.src);
-            json = fs.readFileSync(path.resolve(this.PATH + composition.src), 'utf8');
+            json = this.fs.readFileSync(this.path.resolve(this.PATH + composition.src), 'utf8');
         } catch (e) {
             // console.log(e);
         }
@@ -71,11 +86,21 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     }
 
     getCompositions(book: book) {
-        let compositions = [];
+        if (book.compositions == []) {
+            return [this.nullComposition];
+        }
 
+        let index, len;
+        let list = [ ...book.compositions ];
+        for (index = 0, len = list.length; index < len; ++index) {
+            list[index] = this.buildComposition(list[index], book);
+        }
 
-        return [this.nullComposition];
+        return list;
     }
 
+    buildCompositions(book: book) {
+        
+    }
     
 }

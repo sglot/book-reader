@@ -40,17 +40,51 @@ describe('Book repository', () => {
     });
 
     it('Extract text from src', () => {
-        let composition = repository.getCompositionById(TEST_COMPOSITION_ID, testBook);
-        let text = repository.extractTextFromSrc(composition);
-        assert.equal(true, typeof text === 'string');
-        assert.equal("<p><strong>", text);
+        let composition = repository.nullComposition;
+        composition.src = "testBook/testCompositionText.html";
+        let SUT = repository.extractTextFromSrc(composition);
+
+        assert.equal(true, typeof SUT === 'string');
+        assert.equal("<p><strong>", SUT);
+    });
+
+    it('Build Composition', () => {
+        let SUT = repository.getCompositionById(TEST_COMPOSITION_ID, testBook);
+
+        assert.equal("<p><strong>", SUT.text);
+    });
+
+    it('Actualize Src', () => {
+        let composition = repository.nullComposition;
+        composition.src = "testCompositionText.html";
+        
+        composition = repository.actualizeSrc("testBook/", composition);
+        let SUT = composition.src;
+        
+        assert.equal("testBook/testCompositionText.html", SUT);
     });
     
-    it('Get compositions from test book', () => {
+    it('Types fields of compositions from test book', () => {
         let compositions = repository.getCompositions(testBook);
 
         assert.equal('number', typeof compositions[0].id);
+        assert.equal('string', typeof compositions[0].name);
+        assert.equal('string', typeof compositions[0].annotation);
+        assert.equal('string', typeof compositions[0].date);
+        assert.equal('string', typeof compositions[0].src);
+        assert.equal('string', typeof compositions[0].type);
+        assert.equal('string', typeof compositions[0].text);
         assert.equal(true, compositions.length > 0);
+    });
+
+    it('Get compositions from test book', () => {
+        let compositions = repository.getCompositions(testBook);
+
+        let SUT = compositions[0];
+        assert.equal("<p><strong>", SUT.text);
+
+        SUT = compositions[1];
+        assert.equal("<p>text1</p>", SUT.text);
     });
 
     

@@ -13,6 +13,14 @@
             "src": "testCompositionText.html"
         },
         {
+            "id": -1000001,
+            "name": "testName1",
+            "annotation": "",
+            "date": "",
+            "type": "prose",
+            "src": "testCompositionText1.html"
+        },
+        {
             "id": 1,
             "name": "Введение",
             "annotation": "",
