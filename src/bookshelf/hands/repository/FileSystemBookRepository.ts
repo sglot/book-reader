@@ -3,7 +3,7 @@ import { bookList } from "../../books/bookList";
 
 export class FileSystemBookRepository extends BookRepositoryBase {
     private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
-    private readonly PATH = this.ROOT + "/bookshelf/books/data/";
+    private readonly PATH = this.ROOT + "/src/bookshelf/books/data/";
 
     private readonly fs = require('fs');
     private readonly path = require('path');

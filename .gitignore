@@ -1,7 +1,9 @@
 /node_modules/
-/ui/public/build/
-
 .DS_Store
 .idea/
 
 /bookshelf/books/data/texts/
+
+/src/node_modules/@sapper/
+yarn-error.log
+/__sapper__/

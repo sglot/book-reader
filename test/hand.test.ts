@@ -1,5 +1,5 @@
-import { Configurator } from "../bookshelf/hands/configurator";
-import { Hand } from "../bookshelf/hands/hand";
+import { Configurator } from "../src/bookshelf/hands/configurator";
+import { Hand } from "../src/bookshelf/hands/hand";
 var assert = require('assert');
 
 describe('Hand', () => {

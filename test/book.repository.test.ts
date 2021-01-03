@@ -1,5 +1,5 @@
-import { Configurator } from "../bookshelf/hands/configurator";
-import { FileSystemBookRepository } from "../bookshelf/hands/repository/FileSystemBookRepository";
+import { Configurator } from "../src/bookshelf/hands/configurator";
+import { FileSystemBookRepository } from "../src/bookshelf/hands/repository/FileSystemBookRepository";
 var assert = require('assert');
 
 describe('Book repository', () => {
