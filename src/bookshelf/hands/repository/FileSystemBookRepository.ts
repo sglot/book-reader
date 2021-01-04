@@ -1,12 +1,14 @@
 import { BookRepositoryBase } from "./BookRepositoryBase";
 import { bookList } from "../../books/bookList";
+import fs from 'fs';
+import path from 'path';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
     private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
     private readonly PATH = this.ROOT + "/src/bookshelf/books/data/";
 
-    private readonly fs = require('fs');
-    private readonly path = require('path');
+    // private readonly fs = require('fs');
+    // private readonly path = require('path');
 
     getBookList() {
         return bookList;
@@ -17,9 +19,10 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let bookPath = this.PATH + this.getSrcById(id, list);
         
         console.log(bookPath);
-        let json = require(bookPath); 
+        // let json = require(bookPath); 
+        let json = fs.readFileSync(path.resolve(bookPath), 'utf8')
         console.log(json);
-        return json as book;
+        return JSON.parse(json) as book;
     }
 
     getSrcById(id: number, list: bookList) {
@@ -77,7 +80,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let json = "";
 
         try {
-            json = this.fs.readFileSync(this.path.resolve(this.PATH + composition.src), 'utf8');
+            json = fs.readFileSync(path.resolve(this.PATH + composition.src), 'utf8');
         } catch (e) {
             // console.log(e);
         }

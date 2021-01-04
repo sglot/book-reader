@@ -1,17 +1,17 @@
 import { FileSystemBookRepository } from "./repository/FileSystemBookRepository";
 
 export class Configurator {
-    private config;
+    // private config;
 
-    constructor() {
-        this.config = require("../../../config.json");
-    }
+    // constructor() {
+    //     this.config = require("../../../config.json");
+    // }
     
     getBookRepository() {
         return new FileSystemBookRepository();
     }
 
-    getConfig() { 
-        return this.config;
-    }
+    // getConfig() { 
+    //     return this.config;
+    // }
 }
