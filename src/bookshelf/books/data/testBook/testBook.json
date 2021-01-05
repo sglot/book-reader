@@ -1,12 +1,12 @@
 {
-    "id":    1,
-    "name":   "Отладочный сборник",
+    "id":    2,
+    "title":   "Отладочный сборник",
     "author": "Николай Глот",
     "dir": "testBook/",
     "compositions": [
         {
             "id": -1000000,
-            "name": "testName",
+            "title": "testName",
             "annotation": "",
             "date": "",
             "type": "prose",
@@ -14,7 +14,7 @@
         },
         {
             "id": -1000001,
-            "name": "testName1",
+            "title": "testName1",
             "annotation": "",
             "date": "",
             "type": "prose",
@@ -22,7 +22,7 @@
         },
         {
             "id": 1,
-            "name": "Введение",
+            "title": "Введение",
             "annotation": "",
             "date": "",
             "type": "prose",
@@ -30,11 +30,11 @@
         },
         {
             "id": 2,
-            "name": "Летний будень",
-            "annotation": "",
+            "title": "Летний будень",
+            "annotation": "Светлой памяти поэта Н.А. Клюева",
             "date": "",
             "type": "poem",
-            "src": "letniy_buden.html"
+            "src": "Летний_будень.html"
         }
     ]
 }

@@ -7,28 +7,55 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
     private readonly PATH = this.ROOT + "/src/bookshelf/books/data/";
 
-    // private readonly fs = require('fs');
-    // private readonly path = require('path');
-
     getBookList() {
         return bookList;
     }
 
-    getBook(id: number) {
+    getBookById(id: number) {
         let list = this.getBookList();
         let bookPath = this.PATH + this.getSrcById(id, list);
         
         console.log(bookPath);
-        // let json = require(bookPath); 
-        let json = fs.readFileSync(path.resolve(bookPath), 'utf8')
-        console.log(json);
-        return JSON.parse(json) as book;
+        try {
+            let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
+            return JSON.parse(json) as book;
+        } catch (e) {
+            console.log(e);
+            return BookRepositoryBase.nullBook;
+        }
+    }
+
+    getBookBySlug(slug: string) {
+        let list = this.getBookList();
+        let bookPath = this.PATH + this.getSrcBySlug(slug, list);
+        
+        console.log(bookPath);
+        try {
+            let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
+            return JSON.parse(json) as book;
+        } catch (e) {
+            console.log(e);
+            return BookRepositoryBase.nullBook;
+        }
+        
+        
     }
 
     getSrcById(id: number, list: bookList) {
         let index, len;
         for (index = 0, len = list.length; index < len; ++index) {
             if (list[index].id === id) {
+                return list[index].src;
+            }
+        }
+
+        return "";
+    }
+
+    getSrcBySlug(slug: string, list: bookList) {
+        let index, len;
+        for (index = 0, len = list.length; index < len; ++index) {
+            if (list[index].slug === slug) {
                 return list[index].src;
             }
         }
@@ -44,7 +71,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
             }
         }
 
-        return this.nullComposition;
+        return BookRepositoryBase.nullComposition;
     }
     
     getCompositionById(id: number, book: book) {
@@ -82,7 +109,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         try {
             json = fs.readFileSync(path.resolve(this.PATH + composition.src), 'utf8');
         } catch (e) {
-            // console.log(e);
+            console.log(e);
         }
         // console.log("text =" + json + "end of text");
         return json;
@@ -90,7 +117,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
 
     getCompositions(book: book) {
         if (book.compositions == []) {
-            return [this.nullComposition];
+            return [BookRepositoryBase.nullComposition];
         }
 
         let index, len;

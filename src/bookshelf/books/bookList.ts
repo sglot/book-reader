@@ -1,12 +1,14 @@
 export let bookList: bookList = [
     {
         id: 1,
-        name: "Возвращение к Sолнцу",
+        title: "Возвращение к Sолнцу",
+        slug: "Возвращение_к_Sолнцу",
         src: "Возвращение_к_Sолнцу/Возвращение_к_Sолнцу.json"
     },
     {
         id: 2,
-        name: "Книга 2",
+        title: "Отладочный сборник",
+        slug: "Отладочный_сборник",
         src: "testBook/testBook.json"
     }
 ];

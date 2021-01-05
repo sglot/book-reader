@@ -1,17 +1,22 @@
+import { Configurator } from "./configurator";
 import type { BookRepositoryBase } from "./repository/BookRepositoryBase";
 
-export class Hand {
+export default class Hand {
     constructor(
-        private repository: BookRepositoryBase
+        private books: BookRepositoryBase
     ) {
 
     }
     
-    getBook(id: number) {
-        return this.repository.getBook(id);
+    getBookById(id: number) {
+        return this.books.getBookById(id);
+    }
+
+    getBook(slug: string) {
+        return this.books.getBookBySlug(slug);
     }
 
     getBookList() {
-        return this.repository.getBookList();
+        return this.books.getBookList();
     }
 }

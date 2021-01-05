@@ -1,18 +1,14 @@
 <script context="module">
 	export function preload() {
-		return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
-			return  { posts };
+		return this.fetch(`books.json`).then(r => r.json()).then(bookList => {
+			return  { bookList };
 		});
 	}
 </script>
 
 <script>
-	import { Configurator } from '../../bookshelf/hands/configurator';
 
-	let configurator = new Configurator();
-	let bookRepository = configurator.getBookRepository();
-	let bookList = bookRepository.getBookList();
-
+export let bookList;
 </script>
 
 <style>
@@ -34,8 +30,8 @@
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<li><a rel="prefetch" href="books/{book.name}">{book.name}</a></li>
-		<!-- <li><p>{book.name}</p></li> -->
+		<li><a rel="prefetch" href="books/{book.slug}">{book.title}</a></li>
+		<!-- <li><p>{book.title}</p></li> -->
 	{/each}
 </ul>
 

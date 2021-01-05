@@ -2,13 +2,14 @@ type bookList = bookShortForm[]
 
 type bookShortForm = {
         id:     number,
-        name:   string
+        title:  string,
+        slug:   string,
         src:    string
     }
 
 type book = {
     id:             number,
-    name:           string,
+    title:          string,
     author:         string,
     dir:            string,
     compositions:   composition[]
@@ -16,7 +17,7 @@ type book = {
 
 type composition = {
     id:         number,
-    name:       string,
+    title:       string,
     annotation: string,
     date:       string,
     type:       compositionType,

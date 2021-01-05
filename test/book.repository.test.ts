@@ -1,4 +1,5 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
+import { BookRepositoryBase } from "../src/bookshelf/hands/repository/BookRepositoryBase";
 import { FileSystemBookRepository } from "../src/bookshelf/hands/repository/FileSystemBookRepository";
 var assert = require('assert');
 
@@ -7,8 +8,9 @@ describe('Book repository', () => {
     let repository = configurator.getBookRepository();
     let bookList = repository.getBookList();
     const TEST_BOOK_ID = 2;
+    const TEST_BOOK_SLUG = "Отладочный_сборник";
     const TEST_COMPOSITION_ID = -1000000;
-    let testBook = repository.getBook(TEST_BOOK_ID);
+    let testBook = repository.getBookById(TEST_BOOK_ID);
 
     it('Get file system book repository', () => {
         let SUT = repository;
@@ -17,6 +19,12 @@ describe('Book repository', () => {
     });
 
 
+
+    it('Get book by slug', () => {
+        // console.log('****by slug = ', repository.getBookBySlug(TEST_BOOK_SLUG));
+        // console.log('****by testBook = ', testBook);
+        assert.equal(JSON.stringify(testBook), JSON.stringify(repository.getBookBySlug(TEST_BOOK_SLUG)));
+    });
 
 
     it('Get book src by id', () => {
@@ -36,11 +44,11 @@ describe('Book repository', () => {
     });
 
     it('Get unexist composition from test book', () => {
-        assert.equal(repository.nullComposition.id, repository.getCompositionById(-1, testBook).id);
+        assert.equal(BookRepositoryBase.nullComposition.id, repository.getCompositionById(-1, testBook).id);
     });
 
     it('Extract text from src', () => {
-        let composition = repository.nullComposition;
+        let composition = BookRepositoryBase.nullComposition;
         composition.src = "testBook/testCompositionText.html";
         let SUT = repository.extractTextFromSrc(composition);
 
@@ -55,7 +63,7 @@ describe('Book repository', () => {
     });
 
     it('Actualize Src', () => {
-        let composition = repository.nullComposition;
+        let composition = BookRepositoryBase.nullComposition;
         composition.src = "testCompositionText.html";
         
         composition = repository.actualizeSrc("testBook/", composition);
@@ -68,7 +76,7 @@ describe('Book repository', () => {
         let compositions = repository.getCompositions(testBook);
 
         assert.equal('number', typeof compositions[0].id);
-        assert.equal('string', typeof compositions[0].name);
+        assert.equal('string', typeof compositions[0].title);
         assert.equal('string', typeof compositions[0].annotation);
         assert.equal('string', typeof compositions[0].date);
         assert.equal('string', typeof compositions[0].src);

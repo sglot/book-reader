@@ -1,16 +1,13 @@
-import posts from './_posts.js';
+import { Configurator } from '../../bookshelf/hands/configurator';
 
-const contents = JSON.stringify(posts.map(post => {
-	return {
-		title: post.title,
-		slug: post.slug
-	};
-}));
+let configurator = new Configurator();
+let bookRepository = configurator.getBookRepository();
+let bookList = bookRepository.getBookList();
 
 export function get(req, res) {
 	res.writeHead(200, {
 		'Content-Type': 'application/json'
 	});
 
-	res.end(contents);
+	res.end(JSON.stringify(bookList));
 }

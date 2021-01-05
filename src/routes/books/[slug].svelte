@@ -1,23 +1,25 @@
 <script lang="ts" context="module">
-	import { Configurator } from '../../bookshelf/hands/configurator';
-	let configurator = new Configurator();
-	let bookRepository = configurator.getBookRepository();
-	let bookList = bookRepository.getBookList();
+	// import Hand from '../../bookshelf/hands/hand';
+	// import { Configurator } from '../../bookshelf/hands/configurator';
+
+	// let configurator = new Configurator();
+	// let hand = new Hand(configurator.getBookRepository());
+	// let bookList = hand.getBookList();
 
 	export async function preload({ params }) {
 
-		return {book: bookRepository.getBook(2)};
+		// return {book: hand.getBookById(2)};
 	
 		// the `slug` parameter is available because
 		// this file is called [slug].svelte
-		// const res = await this.fetch(`books/${params.slug}.json`);
-		// const data = await res.json();
+		const res = await this.fetch(`books/${params.slug}.json`);
+		const data = await res.json();
 
-		// if (res.status === 200) {
-		// 	return { post: data };
-		// } else {
-		// 	this.error(res.status, data.message);
-		// }
+		if (res.status === 200) {
+			return { book: data };
+		} else {
+			this.error(res.status, data.message);
+		}
 	}
 
 
@@ -65,10 +67,10 @@
 </style>
 
 <svelte:head>
-	<title>{book.name}</title>
+	<title>{book.title}</title>
 </svelte:head>
 
-<h1>{book.name}</h1>
+<h1>{book.title}</h1>
 
 <div class="content">
 	{@html book.dir}
