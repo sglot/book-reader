@@ -1,18 +1,6 @@
 <script lang="ts" context="module">
-	// import Hand from '../../bookshelf/hands/hand';
-	// import { Configurator } from '../../bookshelf/hands/configurator';
-
-	// let configurator = new Configurator();
-	// let hand = new Hand(configurator.getBookRepository());
-	// let bookList = hand.getBookList();
-
 	export async function preload({ params }) {
-
-		// return {book: hand.getBookById(2)};
-	
-		// the `slug` parameter is available because
-		// this file is called [slug].svelte
-		const res = await this.fetch(`books/${params.slug}.json`);
+		const res = await this.fetch(`books/reader/${params.slug}.json`);
 		const data = await res.json();
 
 		if (res.status === 200) {
@@ -22,12 +10,19 @@
 		}
 	}
 
-
+	// let active_section;
+	// let container;
+	let aside;
+	let show_contents = true;
 </script>
 
 <script>
+import Docs from "../../../components/Docs.svelte";
+import TableOfContents from "../../../components/TableOfContents.svelte";
+
 
 	export let book;
+	// console.log(book.compositions);
 </script>
 
 <style>
@@ -39,7 +34,7 @@
 		so we have to use the :global(...) modifier to target
 		all elements inside .content
 	*/
-	.content :global(h2) {
+	/* .content :global(h2) {
 		font-size: 1.4em;
 		font-weight: 500;
 	}
@@ -63,15 +58,24 @@
 
 	.content :global(li) {
 		margin: 0 0 0.5em 0;
-	}
+	} */
+
+
+
+	
+	
 </style>
 
 <svelte:head>
 	<title>{book.title}</title>
 </svelte:head>
 
-<h1>{book.title}</h1>
 
-<div class="content">
-	{@html book.dir}
-</div>
+
+<!-- <div class="content">
+	<h1>{book.title}</h1>
+	{@html book.compositions[3].text}
+</div> -->
+
+<Docs sections={book.compositions} /> 
+

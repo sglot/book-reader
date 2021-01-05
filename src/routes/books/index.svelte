@@ -30,7 +30,7 @@ export let bookList;
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<li><a rel="prefetch" href="books/{book.slug}">{book.title}</a></li>
+		<li><a rel="prefetch" href="books/reader/{book.slug}">{book.title}</a></li>
 		<!-- <li><p>{book.title}</p></li> -->
 	{/each}
 </ul>

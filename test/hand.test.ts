@@ -6,7 +6,7 @@ var assert = require('assert');
 describe('Hand', () => {
     let configurator = new Configurator();
     let hand = new Hand(configurator.getBookRepository());
-    const TEST_BOOK_SLUG = "Отладочный_сборник";
+    const TEST_BOOK_SLUG = "Отладочный-сборник";
 
     it('Get test book', () => {
         let SUT = hand.getBook(TEST_BOOK_SLUG);

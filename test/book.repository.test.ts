@@ -8,7 +8,7 @@ describe('Book repository', () => {
     let repository = configurator.getBookRepository();
     let bookList = repository.getBookList();
     const TEST_BOOK_ID = 2;
-    const TEST_BOOK_SLUG = "Отладочный_сборник";
+    const TEST_BOOK_SLUG = "Отладочный-сборник";
     const TEST_COMPOSITION_ID = -1000000;
     let testBook = repository.getBookById(TEST_BOOK_ID);
 

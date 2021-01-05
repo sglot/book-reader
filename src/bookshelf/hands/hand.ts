@@ -13,7 +13,9 @@ export default class Hand {
     }
 
     getBook(slug: string) {
-        return this.books.getBookBySlug(slug);
+        let book = this.books.getBookBySlug(slug);
+        book.compositions = this.books.getCompositions(book);
+        return book;
     }
 
     getBookList() {

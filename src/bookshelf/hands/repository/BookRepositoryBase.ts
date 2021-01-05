@@ -2,6 +2,7 @@ export abstract class BookRepositoryBase {
     abstract getBookById(id: number): book;
     abstract getBookBySlug(slug: string): book;
     abstract getBookList(): bookList;
+    abstract getCompositions(book: book): composition[];
 
     public static readonly nullComposition: composition = {
         "id":               0,

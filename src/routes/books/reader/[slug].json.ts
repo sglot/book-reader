@@ -1,5 +1,5 @@
-	import Hand from '../../bookshelf/hands/hand';
-	import { Configurator } from '../../bookshelf/hands/configurator';
+	import Hand from '../../../bookshelf/hands/hand';
+	import { Configurator } from '../../../bookshelf/hands/configurator';
 
 	let configurator = new Configurator();
 	let hand = new Hand(configurator.getBookRepository());
