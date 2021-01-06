@@ -13,7 +13,13 @@
 	let container;
 	let aside;
 	let show_contents = false;
+	export const getFragment = () => window.location.hash.slice(1);
+
 	onMount(() => {
+
+		let footerMain = document.getElementById("footer-main");
+		footerMain.style.display = "none";
+
 		// don't update `active_section` for headings above level 4, see _sections.js
 		const anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
 		let positions;
@@ -23,7 +29,7 @@
 				return anchor.getBoundingClientRect().top - top;
 			});
 		}
-		let last_id = '';
+		let last_id = getFragment();
 		const onscroll = () => {
 			const { top } = container.getBoundingClientRect();
 			let i = anchors.length;
@@ -304,16 +310,16 @@
 	section :global(p) {
 		margin: 1em 0;
 	}
-	/* small {
+	small {
 		font-size: var(--h5);
 		float: right;
 		pointer-events: all;
 		color: var(--prime);
 		cursor: pointer;
-	} */
+	}
 	/* no linkify on these */
-	/* small a        { all: unset }
-	small a:before { all: unset } */
+	small a        { all: unset }
+	small a:before { all: unset }
 	section :global(blockquote) {
 		color: hsl(204, 100%, 50%);
 		border: 2px solid var(--flash);
@@ -326,19 +332,17 @@
 
 <div bind:this={container} class="content listify">
 	{#each sections as section}
-		<section data-id={section.slug}>
+		<section data-id={section.id}>
 			<h2>
-				<span class="offset-anchor" id={section.slug}></span>
-
+				<span class="offset-anchor" id={section.id}></span>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="{dir}#{section.slug}" class="anchor" aria-hidden></a>
-++++
-				<!-- {@html section.metadata.title}
+				<a href="{dir}#{section.id}" class="anchor" aria-hidden></a>
+				{@html section.title}
 				<small>
-					<a href="https://github.com/{owner}/{project}/edit/master{path}/{dir}/{section.file}" title="{edit_title}">
+					<a href="#a" title="title_edit">
 						<Icon name='edit' />
 					</a>
-				</small> -->
+				</small>
 			</h2>
 
 			{@html section.text}

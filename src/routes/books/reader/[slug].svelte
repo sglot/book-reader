@@ -4,7 +4,7 @@
 		const data = await res.json();
 
 		if (res.status === 200) {
-			return { book: data };
+			return { book: data, params: params };
 		} else {
 			this.error(res.status, data.message);
 		}
@@ -22,7 +22,7 @@ import TableOfContents from "../../../components/TableOfContents.svelte";
 
 
 	export let book;
-	// console.log(book.compositions);
+	export let params;
 </script>
 
 <style>
@@ -70,12 +70,5 @@ import TableOfContents from "../../../components/TableOfContents.svelte";
 	<title>{book.title}</title>
 </svelte:head>
 
-
-
-<!-- <div class="content">
-	<h1>{book.title}</h1>
-	{@html book.compositions[3].text}
-</div> -->
-
-<Docs sections={book.compositions} /> 
+<Docs sections={book.compositions} dir={`books/reader/${params.slug}`} /> 
 
