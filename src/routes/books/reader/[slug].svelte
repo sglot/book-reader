@@ -17,9 +17,7 @@
 </script>
 
 <script>
-import Docs from "../../../components/Docs.svelte";
-import TableOfContents from "../../../components/TableOfContents.svelte";
-
+	import Docs from "../../../components/Docs.svelte";
 
 	export let book;
 	export let params;
@@ -70,5 +68,5 @@ import TableOfContents from "../../../components/TableOfContents.svelte";
 	<title>{book.title}</title>
 </svelte:head>
 
-<Docs sections={book.compositions} dir={`books/reader/${params.slug}`} /> 
+<Docs book={book} dir={`books/reader/${params.slug}`} /> 
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import TableOfContents from './TableOfContents.svelte'; // TODO rename
 	import Icon from './Icon.svelte';
@@ -8,7 +8,8 @@
 	// export let path = '/site/content';
 	export let dir = 'docs';
 	// export let edit_title = 'edit this section';
-	export let sections;
+	export let book: book;
+	let sections = book.compositions;
 	let active_section;
 	let container;
 	let aside;
@@ -331,7 +332,7 @@
 </style>
 
 <div bind:this={container} class="content listify">
-	{#each sections as section}
+	{#each book.compositions as section}
 		<section data-id={section.id}>
 			<h2>
 				<span class="offset-anchor" id={section.id}></span>
