@@ -1,0 +1,55 @@
+{
+    "id"        :   1,
+    "title"     :   "Возвращение к Sолнцу",
+    "author"    :   "Николай Глот",
+    "dir"       :   "Возвращение-к-Sолнцу/",
+    "sections"  : [
+        {
+            "id": 1,
+            "title": "",
+            "annotation": "",
+            "date": "",
+            "type": "prose",
+            "src": "Титульный-лист.html",
+            "compositions": []
+        },
+        {
+            "id": 2,
+            "title": "Чуткое сердце",
+            "annotation": "",
+            "date": "",
+            "type": "prose",
+            "src": "Чуткое-сердце.html",
+            "compositions": []
+        },
+        {
+            "id": 3,
+            "title": "Читателям",
+            "annotation": "",
+            "date": "",
+            "type": "prose",
+            "src": "Читателям.html",
+            "compositions": []
+        },
+        {
+            "id": 4,
+            "title": "Читателям",
+            "annotation": "",
+            "date": "",
+            "type": "prose",
+            "src": "Читателям.html",
+            "compositions": [
+                {
+                    "id": 4,
+                    "title": "Одиночество",
+                    "annotation": "",
+                    "date": "",
+                    "type": "poem",
+                    "src": "Одиночество.html"
+                }
+            ]
+        }
+        
+    ]
+    
+}

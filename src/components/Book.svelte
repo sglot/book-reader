@@ -9,7 +9,6 @@
 	export let dir = 'docs';
 	// export let edit_title = 'edit this section';
 	export let book: book;
-	let sections = book.compositions;
 	let active_section;
 	let container;
 	let aside;
@@ -332,12 +331,12 @@
 </style>
 
 <div bind:this={container} class="content listify">
-	{#each book.compositions as section}
-		<section data-id={section.id}>
+	{#each book.sections as section}
+		<section data-id={section.slug}>
 			<h2>
-				<span class="offset-anchor" id={section.id}></span>
+				<span class="offset-anchor" id={section.slug}></span>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="{dir}#{section.id}" class="anchor" aria-hidden></a>
+				<a href="{dir}#{section.slug}" class="anchor" aria-hidden></a>
 				{@html section.title}
 				<small>
 					<a href="#a" title="title_edit">
@@ -346,14 +345,14 @@
 				</small>
 			</h2>
 
-			{@html section.text}
+			{@html section.html}
 		</section>
 	{/each}
 </div>
 
 <aside bind:this={aside} class="sidebar-container" class:open={show_contents}>
 	<div class="sidebar" on:click="{() => show_contents = false}"> <!-- scroll container -->
-		<TableOfContents {sections} {active_section} {show_contents} {dir} />
+		<TableOfContents sections={sections} active_section="4" {show_contents} {dir} />
 	</div>
 
 	<button on:click="{() => show_contents = !show_contents}">

@@ -63,74 +63,77 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         return "";
     }
 
-    findCompositionById(id: number, list: composition[]) {
-        let index, len;
-        for (index = 0, len = list.length; index < len; ++index) {
-            if (list[index].id === id) {
-                return list[index];
-            }
-        }
-
-        return BookRepositoryBase.nullComposition;
-    }
-    
-    getCompositionById(id: number, book: book) {
-        let composition = this.findCompositionById(id, book.compositions);
-        composition = this.buildComposition(composition, book);
-
-        return { ...composition };
-    }
-
-    buildComposition(composition: composition, book: book) {
-        let comp = this.actualizeSrc(book.dir, composition);
+    buildComposition(composition: composition, dir: string) {
+        let comp = { ...composition };
+        comp.src = this.actualizeSrc(dir, comp.src);
         comp = this.importTextInsideComposition(comp);
 
         return comp;
     }
 
-    actualizeSrc(dir: string, composition: composition) {
-        // console.log("composition = ", composition);
-        let comp = { ...composition };
-        comp.src = dir + composition.src;
-        return comp;
+    actualizeSrc(dir: string, src: string) {
+        return dir + src;
     }
 
     importTextInsideComposition(composition: composition) {
         // console.log(composition.src);
         let comp = { ...composition };
-        comp.text = this.extractTextFromSrc(composition);
+        comp.html = this.extractHtmlFromSrc(composition.src);
 
         return comp;
     }
 
-    extractTextFromSrc(composition: composition) {
+    extractHtmlFromSrc(src: string) {
         let json = "";
 
         try {
-            json = fs.readFileSync(path.resolve(this.PATH + composition.src), 'utf8');
+            json = fs.readFileSync(path.resolve(this.PATH + src), 'utf8');
         } catch (e) {
-            console.log(e);
+            // console.log(e);
         }
         // console.log("text =" + json + "end of text");
         return json;
     }
 
-    getCompositions(book: book) {
-        if (book.compositions == []) {
+    getSections(book: book) {
+        if (!book.sections || book.sections == [] || book.sections == undefined) {
+            return [BookRepositoryBase.nullSection];
+        }
+
+        let sectionIndex, sectionsLen;
+        for (sectionIndex = 0, sectionsLen = book.sections.length; sectionIndex < sectionsLen; ++sectionIndex) {
+            book.sections[sectionIndex] = this.buildSection(sectionIndex, book);
+        }
+
+        return [...book.sections];
+    }
+
+    buildSection(sectionIndex: number, book: book) {
+        book.sections[sectionIndex].html = this.extractHtmlFromSrc(
+            this.actualizeSrc(
+                book.dir,
+                book.sections[sectionIndex].slug + "/" + book.sections[sectionIndex].slug + ".html"
+            )
+        );
+        book.sections[sectionIndex].compositions = this.getCompositions(book.sections[sectionIndex], book);
+        return book.sections[sectionIndex];
+    }
+
+    getCompositions(section: section, book: book) {
+        if (section.compositions == []) {
             return [BookRepositoryBase.nullComposition];
         }
 
         let index, len;
-        let list = [ ...book.compositions ];
+        let list = [...section.compositions];
+        let sectionSrc = this.actualizeSrc(book.dir, section.slug + "/" );
         for (index = 0, len = list.length; index < len; ++index) {
-            list[index] = this.buildComposition(list[index], book);
+            list[index] = this.buildComposition(list[index], sectionSrc);
         }
 
         return list;
     }
 
-    buildCompositions(book: book) {
-        
-    }
+    
     
 }

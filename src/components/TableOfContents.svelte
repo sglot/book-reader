@@ -37,6 +37,7 @@
 			}
 		}
 	});
+	console.log(active_section);
 </script>
 
 <style>
@@ -115,13 +116,13 @@
 				<!-- see <script> below: on:click='scrollTo(event, subsection.slug)' -->
 				<a
 					class="subsection"
-					class:active="{subsection.slug === active_section}"
+					class:active="{subsection.slug == active_section}"
 					href="{dir}#{subsection.slug}"
 					data-level="{subsection.level}"
 				>
 					{@html subsection.title}
 
-					{#if subsection.slug === active_section}
+					{#if subsection.slug == active_section}
 						<div class="icon-container">
 							<Icon name="arrow-right" />
 						</div>
