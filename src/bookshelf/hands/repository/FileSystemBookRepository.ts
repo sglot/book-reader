@@ -2,10 +2,13 @@ import { BookRepositoryBase } from "./BookRepositoryBase";
 import { bookList } from "../../books/bookList";
 import fs from 'fs';
 import path from 'path';
+const { PORT, NODE_ENV } = process.env;
+const dev = NODE_ENV === 'development';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
     private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
     private readonly PATH = this.ROOT + "/src/bookshelf/books/data/";
+    
 
     getBookList() {
         return bookList;
@@ -66,7 +69,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     buildComposition(composition: composition, dir: string) {
         let comp = { ...composition };
         comp.src = this.actualizeSrc(dir, comp.src);
-        comp = this.importTextInsideComposition(comp);
+        comp.html = this.extractHtmlFromSrc(comp.src, dev ? true : false);
 
         return comp;
     }
@@ -75,19 +78,24 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         return dir + src;
     }
 
-    importTextInsideComposition(composition: composition) {
-        // console.log(composition.src);
-        let comp = { ...composition };
-        comp.html = this.extractHtmlFromSrc(composition.src);
+    // importTextInsideComposition(composition: composition) {
+    //     // console.log(composition.src);
+    //     let comp = { ...composition };
+    //     comp.html = this.extractHtmlFromSrc(composition.src);
 
-        return comp;
-    }
+    //     return comp;
+    // }
 
-    extractHtmlFromSrc(src: string) {
+    extractHtmlFromSrc(src: string, updateFile = false) {
         let json = "";
 
         try {
             json = fs.readFileSync(path.resolve(this.PATH + src), 'utf8');
+
+            if (updateFile) {
+                json = json.replace(/\r?\n|\r/g, "<br>");
+                const data = fs.writeFileSync(path.resolve(this.PATH + src), json)
+            }
         } catch (e) {
             // console.log(e);
         }
@@ -113,7 +121,8 @@ export class FileSystemBookRepository extends BookRepositoryBase {
             this.actualizeSrc(
                 book.dir,
                 book.sections[sectionIndex].slug + "/" + book.sections[sectionIndex].slug + ".html"
-            )
+            ),
+            false
         );
         book.sections[sectionIndex].compositions = this.getCompositions(book.sections[sectionIndex], book);
         return book.sections[sectionIndex];

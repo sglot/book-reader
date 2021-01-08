@@ -105,6 +105,5 @@ describe('Book repository', () => {
         assert.equal("testHTML", SUT2);
         
     });
-    
   
 });

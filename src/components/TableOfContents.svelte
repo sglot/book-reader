@@ -8,10 +8,10 @@
 	export let dir;
 	let ul;
 
-	sections = [{
-		slug: "slug",
-		subsections: sections
-	}];
+	// sections = [{
+	// 	slug: "slug",
+	// 	subsections: sections
+	// }];
 
 	afterUpdate(() => {
 		// bit of a hack — prevent sidebar scrolling if
@@ -102,8 +102,7 @@
 	{#each sections as section}
 		<li>
 			<a class="section" class:active="{section.slug === active_section}" href="{dir}#{section.slug}">
-				<!-- {@html section.metadata.title} -->
-				mememe
+				{@html section.title}
 
 				{#if section.slug === active_section}
 					<div class="icon-container">
@@ -112,7 +111,7 @@
 				{/if}
 			</a>
 
-			{#each section.subsections as subsection}
+			{#each section.compositions as subsection}
 				<!-- see <script> below: on:click='scrollTo(event, subsection.slug)' -->
 				<a
 					class="subsection"

@@ -5,51 +5,67 @@
     "dir"       :   "Возвращение-к-Sолнцу/",
     "sections"  : [
         {
-            "id": 1,
-            "title": "",
-            "annotation": "",
-            "date": "",
-            "type": "prose",
-            "src": "Титульный-лист.html",
+            "title": "Начало",
+            "slug": "Титульный-лист",
+            "html": "",
+            "format": "no-newline",
             "compositions": []
         },
+
         {
-            "id": 2,
             "title": "Чуткое сердце",
-            "annotation": "",
-            "date": "",
-            "type": "prose",
-            "src": "Чуткое-сердце.html",
+            "slug": "Чуткое-сердце",
+            "html": "",
             "compositions": []
         },
+
         {
-            "id": 3,
             "title": "Читателям",
-            "annotation": "",
-            "date": "",
-            "type": "prose",
-            "src": "Читателям.html",
+            "slug": "Читателям",
+            "html": "",
             "compositions": []
         },
+
         {
-            "id": 4,
-            "title": "Читателям",
-            "annotation": "",
-            "date": "",
-            "type": "prose",
-            "src": "Читателям.html",
+            "title": "Стихотворения",
+            "slug": "Стихотворения",
+            "html": "",
             "compositions": [
                 {
-                    "id": 4,
+                    "id": 1,
                     "title": "Одиночество",
+                    "annotation": "Русскому, народному, замечательному <br> писателю Судиславского края <br> Травкину Василию Васильевичу <br> посвящаю",
+                    "date": "",
+                    "type": "poem",
+                    "src": "Одиночество.html",
+                    "slug": "Одиночество"
+                },
+                {
+                    "id": 2,
+                    "title": "Ландыш на тропке",
                     "annotation": "",
                     "date": "",
                     "type": "poem",
-                    "src": "Одиночество.html"
+                    "src": "Ландыш-на-тропке.html",
+                    "slug": "Ландыш-на-тропке"
+                },
+                {
+                    "id": 3,
+                    "title": "Летний будень",
+                    "annotation": "Светлой памяти поэта Н.А. Клюева, <br> друга и учителя С.А. Есенина",
+                    "date": "",
+                    "type": "poem",
+                    "src": "Летний-будень.html",
+                    "slug": "Летний-будень"
                 }
             ]
+        },
+
+        {
+            "title": "Благодарность",
+            "slug": "Благодарность",
+            "html": "",
+            "compositions": []
         }
-        
     ]
-    
 }

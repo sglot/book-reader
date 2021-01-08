@@ -328,6 +328,12 @@
 		background: hsl(204, 100%, 95%) !important;
 		color: hsl(204, 100%, 50%);
 	}
+
+	.annotation {
+		text-align: right;
+		margin-bottom: 2em;
+		font-style: italic;
+	}
 </style>
 
 <div bind:this={container} class="content listify">
@@ -345,14 +351,40 @@
 				</small>
 			</h2>
 
-			{@html section.html}
+			{#if section.html != ""}
+				{@html section.html}
+			{:else}
+				{#each section.compositions as section}
+					<section data-id={section.slug}>
+						<h2>
+							<span class="offset-anchor" id={section.slug}></span>
+							<!-- svelte-ignore a11y-missing-content -->
+							<a href="{dir}#{section.slug}" class="anchor" aria-hidden></a>
+							{@html section.title}
+							<small>
+								<a href="#a" title="title_edit">
+									<Icon name='edit' />
+								</a>
+							</small>
+						</h2>
+
+						{#if section.annotation != ""}
+							<div class="annotation">
+								{@html section.annotation}
+							</div>
+						{/if}
+
+						{@html section.html}
+					</section>
+				{/each}
+			{/if}
 		</section>
 	{/each}
 </div>
 
 <aside bind:this={aside} class="sidebar-container" class:open={show_contents}>
 	<div class="sidebar" on:click="{() => show_contents = false}"> <!-- scroll container -->
-		<TableOfContents sections={sections} active_section="4" {show_contents} {dir} />
+		<TableOfContents sections={book.sections} active_section="{active_section}" {show_contents} {dir} />
 	</div>
 
 	<button on:click="{() => show_contents = !show_contents}">
