@@ -1,20 +1,23 @@
 <script>
-	import { onMount, setContext } from 'svelte';
+	import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
-	import Icon from './Icon.svelte';
+
 	export let segment;
 	export let page;
 	export let logo;
 	export let home = 'Главная';
 	export let home_title = 'Главная страница';
+	
 	const current = writable(null);
 	setContext('nav', current);
+
 	let open = false;
 	let visible = true;
 	// hide nav whenever we navigate
 	page.subscribe(() => {
 		open = false;
 	});
+
 	function intercept_touchstart(event) {
 		if (!open) {
 			event.preventDefault();
@@ -27,6 +30,7 @@
 	function handle_hashchange() {
 		hash_changed = true;
 	}
+
 	let last_scroll = 0;
 	function handle_scroll() {
 		const scroll = window.pageYOffset;
@@ -36,6 +40,7 @@
 		last_scroll = scroll;
 		hash_changed = false;
 	}
+
 	$: $current = segment;
 
 	// export let segment;

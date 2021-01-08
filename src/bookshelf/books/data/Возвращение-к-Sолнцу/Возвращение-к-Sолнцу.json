@@ -5,10 +5,10 @@
     "dir"       :   "Возвращение-к-Sолнцу/",
     "sections"  : [
         {
-            "title": "Начало",
+            "title": "Возвращение к Sолнцу",
             "slug": "Титульный-лист",
             "html": "",
-            "format": "no-newline",
+            "format": "no-newline no-title",
             "compositions": []
         },
 

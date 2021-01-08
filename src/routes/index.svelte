@@ -1,11 +1,16 @@
+<script context="module" >
+	export function preload() {
+		return this.fetch(`books.json`)
+			.then((r) => r.json())
+			.then((bookList) => {
+				return {bookList} ;
+			});
+	}
+</script>
+
 <script lang="ts">
 	import successkid from 'images/successkid.jpg';
-	import { Configurator } from '../bookshelf/hands/configurator';
-	let a = "dfdfdsfsdf";
-
-	let configurator = new Configurator();
-	let bookRepository = configurator.getBookRepository();
-	let bookList = bookRepository.getBookList();
+	export let bookList: bookList;
 </script>
 
 <style>
@@ -47,7 +52,6 @@
 </svelte:head>
 
 <h1>Great success!</h1>
-<h1>{a}</h1>
 
 <ul>
 	{#each bookList as book}

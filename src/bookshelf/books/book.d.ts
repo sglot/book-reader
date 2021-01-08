@@ -19,7 +19,8 @@ type section = {
     title:          string,
     slug:           string,
     html:           string,
-    compositions:   composition[]
+    compositions:   composition[],
+    format:         ?string
 }
 
 type composition = {

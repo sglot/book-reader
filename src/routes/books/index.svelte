@@ -1,15 +1,15 @@
-<script context="module">
+<script context="module" >
 	export function preload() {
 		return this.fetch(`books.json`)
 			.then((r) => r.json())
 			.then((bookList) => {
-				return { bookList };
+				return {bookList} ;
 			});
 	}
 </script>
 
-<script>
-	export let bookList;
+<script lang="typescript">
+	export let bookList: bookList;
 </script>
 
 <style>
@@ -47,17 +47,23 @@
 	<title>Книги</title>
 </svelte:head>
 
+
+
 <div class="content listify books">
-	<h2 pa>Книги со стихами</h2>
+	<h2>Книги со стихами</h2>
 
 	<p>
 		На сайте представлены две книги, которые Николай Петрович издал в
 		печатном виде.
 	</p>
 	<p>
-		Тексты перенесены на сайт в книжном формате в соответствии с задумкой
+		Тексты перенесены на сайт в соответствии с задумкой
 		автора, его авторским расположением строк и строф, порядком произведений
 		и пунктуацией.
+	</p>
+
+	<p>
+		Приятного чтения.
 	</p>
 
 	<ul style="margin 0 0 0 2em; font-weight: 300;">
@@ -71,7 +77,6 @@
 					rel="prefetch"
 					href="books/reader/{book.slug}">{book.title}</a>
 			</li>
-			<!-- <li><p>{book.title}</p></li> -->
 		{/each}
 	</ul>
 </div>

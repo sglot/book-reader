@@ -17,11 +17,9 @@
 
 	onMount(() => {
 
-		let footerMain = document.getElementById("footer-main");
-		footerMain.style.display = "none";
-
 		// don't update `active_section` for headings above level 4, see _sections.js
 		const anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
+
 		let positions;
 		const onresize = () => {
 			const { top } = container.getBoundingClientRect();
@@ -29,6 +27,7 @@
 				return anchor.getBoundingClientRect().top - top;
 			});
 		}
+
 		let last_id = getFragment();
 		const onscroll = () => {
 			const { top } = container.getBoundingClientRect();
@@ -45,15 +44,19 @@
 				}
 			}
 		};
+
 		window.addEventListener('scroll', onscroll, true);
 		window.addEventListener('resize', onresize, true);
+
 		// wait for fonts to load...
 		const timeouts = [
 			setTimeout(onresize, 1000),
 			setTimeout(onscroll, 5000)
 		];
+
 		onresize();
 		onscroll();
+
 		return () => {
 			window.removeEventListener('scroll', onscroll, true);
 			window.removeEventListener('resize', onresize, true);
@@ -169,6 +172,7 @@
 			padding: 1em 0;
 		}
 	}
+
 	.content h2 {
 		margin-top: 8rem;
 		padding: 2rem 1.6rem 4rem 0.2rem;
@@ -182,6 +186,22 @@
 	.content section:first-of-type > h2 {
 		margin-top: 0;
 	}
+
+	.content h5 {
+		margin-top: 8rem;
+		padding: 2rem 1.6rem 4rem 0.2rem;
+		border-top: var(--border-w) solid #6767785b; /* based on --second */
+		color: var(--text);
+		line-height: 1;
+		font-size: var(--h3);
+		letter-spacing: .05em;
+		text-transform: uppercase;
+	}
+	.content section:first-of-type > h5 {
+		margin-top: 0;
+	}
+
+
 	.content :global(h4) {
 		margin: 2em 0 1em 0;
 	}
@@ -292,6 +312,7 @@
 	.content :global(table) {
 		margin: 0 0 2em 0;
 	}
+
 	section > :global(.code-block) > :global(pre) {
 		display: inline-block;
 		background: var(--back-api);
@@ -310,6 +331,7 @@
 	section :global(p) {
 		margin: 1em 0;
 	}
+
 	small {
 		font-size: var(--h5);
 		float: right;
@@ -343,12 +365,17 @@
 				<span class="offset-anchor" id={section.slug}></span>
 				<!-- svelte-ignore a11y-missing-content -->
 				<a href="{dir}#{section.slug}" class="anchor" aria-hidden></a>
-				{@html section.title}
-				<small>
+
+				{#if !section.format || !section.format.includes('no-title') }
+					
+					{@html section.title}
+				{/if}
+
+				<!-- <small>
 					<a href="#a" title="title_edit">
 						<Icon name='edit' />
 					</a>
-				</small>
+				</small> -->
 			</h2>
 
 			{#if section.html != ""}
@@ -356,17 +383,19 @@
 			{:else}
 				{#each section.compositions as section}
 					<section data-id={section.slug}>
-						<h2>
+						<h5>
 							<span class="offset-anchor" id={section.slug}></span>
 							<!-- svelte-ignore a11y-missing-content -->
 							<a href="{dir}#{section.slug}" class="anchor" aria-hidden></a>
+
 							{@html section.title}
+							
 							<small>
 								<a href="#a" title="title_edit">
 									<Icon name='edit' />
 								</a>
 							</small>
-						</h2>
+						</h5>
 
 						{#if section.annotation != ""}
 							<div class="annotation">

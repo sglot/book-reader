@@ -1,12 +1,34 @@
-<script>
+<script context="module" >
+	export function preload(page) {
+		return this.fetch(`books.json`)
+			.then((r) => r.json())
+			.then((bookList) => {
+				return {bookList: bookList, current: page} ;
+			});
+	}
+</script>
+
+<script lang="ts">
 	import { stores } from '@sapper/app';
 	import Nav from '../components/Nav.svelte';
 	import NavItem from '../components/NavItem.svelte';
 	import Icons from '../components/Icons.svelte';
 	import Icon from '../components/Icon.svelte';
+	import { afterUpdate, onMount } from 'svelte';
 
 	export let segment;
 	const { page } = stores();
+
+	export let bookList: bookList;
+	
+	afterUpdate(()=>{
+		showFooter();
+	})
+
+	function showFooter() {
+		let footerMain = document.getElementById("footer-main");
+		footerMain.style.display = ($page.path.includes('books/reader')) ? "none" : "flex";
+	}
 </script>
 
 <style>
@@ -41,8 +63,6 @@
 
 <Icons />
 
-<!-- <Nav {segment}/> -->
-
 <Nav {segment} {page} logo="sapper-logo-horizontal.svg">
 	<NavItem segment="books">Книги</NavItem>
 	<NavItem segment="about">Об авторе</NavItem>
@@ -56,10 +76,17 @@
 	<div class="footer-col">
 		<div>&copy; Н.П. Глот</div>
 	</div>
+
+	
 	<div class="footer-col">
-		<div>Возвращение к Sолнцу</div>
-		<div>Отладочный сборник</div>
+		{#each bookList as book}
+			<div><a 
+				rel="prefetch"
+				href="books/reader/{book.slug}">{book.title}</a></div>
+		{/each}
 	</div>
+
+
 	<div class="footer-col">
 		<div>
 			Кострома
@@ -68,6 +95,4 @@
 			Судиславль
 		</div>
 	</div>
-	
-	
 </footer>

@@ -2,8 +2,8 @@ import { BookRepositoryBase } from "./BookRepositoryBase";
 import { bookList } from "../../books/bookList";
 import fs from 'fs';
 import path from 'path';
-const { PORT, NODE_ENV } = process.env;
-const dev = NODE_ENV === 'development';
+
+const dev = process.env.NODE_ENV === 'development';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
     private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
