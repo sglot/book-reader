@@ -92,7 +92,7 @@ code {
 	--h3:      2.6rem;
 	--h2:        3rem;
 	--h1:      3.2rem;
-	--linemax:   42em; /* max line-length */
+	--linemax:   48em; /* max line-length */
 	--lh:  		 	  1.5; /* base line-height */
 }
 

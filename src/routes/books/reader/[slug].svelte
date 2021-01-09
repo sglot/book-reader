@@ -13,7 +13,7 @@
 </script>
 
 <script lang="ts">
-	import Book from "../../../components/Book.svelte";
+	import Book from "../../../components/book/Book.svelte";
 
 	export let book: book;
 	export let params;

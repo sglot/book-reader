@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import TableOfContents from './TableOfContents.svelte'; // TODO rename
-	import Icon from './Icon.svelte';
+	import Composition from './Composition.svelte'; // TODO rename
+	import Icon from '../Icon.svelte';
 	// import { getFragment } from '../utils/navigation';
 	// export let owner = 'sveltejs';
 	// export let project = 'svelte';
@@ -187,19 +188,7 @@
 		margin-top: 0;
 	}
 
-	.content h5 {
-		margin-top: 8rem;
-		padding: 2rem 1.6rem 4rem 0.2rem;
-		border-top: var(--border-w) solid #6767785b; /* based on --second */
-		color: var(--text);
-		line-height: 1;
-		font-size: var(--h3);
-		letter-spacing: .05em;
-		text-transform: uppercase;
-	}
-	.content section:first-of-type > h5 {
-		margin-top: 0;
-	}
+	
 
 
 	.content :global(h4) {
@@ -326,36 +315,35 @@
 		background: var(--back-api);
 	}
 	section > :global(p) {
-		max-width: var(--linemax)
+		max-width: var(--linemax);
+		text-indent: 2em;
 	}
 	section :global(p) {
 		margin: 1em 0;
 	}
 
-	small {
-		font-size: var(--h5);
-		float: right;
-		pointer-events: all;
-		color: var(--prime);
-		cursor: pointer;
+	section:last-of-type {
+		margin-bottom: 50vh;
 	}
+
+	
 	/* no linkify on these */
-	small a        { all: unset }
+	/* small a        { all: unset }
 	small a:before { all: unset }
 	section :global(blockquote) {
-		color: hsl(204, 100%, 50%);
+		color: hsl(204, 47%, 56%);
 		border: 2px solid var(--flash);
-	}
+	} */
 	section :global(blockquote) :global(code) {
 		background: hsl(204, 100%, 95%) !important;
 		color: hsl(204, 100%, 50%);
 	}
 
-	.annotation {
+	/* .annotation {
 		text-align: right;
 		margin-bottom: 2em;
 		font-style: italic;
-	}
+	} */
 </style>
 
 <div bind:this={container} class="content listify">
@@ -370,41 +358,13 @@
 					
 					{@html section.title}
 				{/if}
-
-				<!-- <small>
-					<a href="#a" title="title_edit">
-						<Icon name='edit' />
-					</a>
-				</small> -->
 			</h2>
 
 			{#if section.html != ""}
 				{@html section.html}
 			{:else}
-				{#each section.compositions as section}
-					<section data-id={section.slug}>
-						<h5>
-							<span class="offset-anchor" id={section.slug}></span>
-							<!-- svelte-ignore a11y-missing-content -->
-							<a href="{dir}#{section.slug}" class="anchor" aria-hidden></a>
-
-							{@html section.title}
-							
-							<small>
-								<a href="#a" title="title_edit">
-									<Icon name='edit' />
-								</a>
-							</small>
-						</h5>
-
-						{#if section.annotation != ""}
-							<div class="annotation">
-								{@html section.annotation}
-							</div>
-						{/if}
-
-						{@html section.html}
-					</section>
+				{#each section.compositions as composition}
+					<Composition {dir} {composition} />
 				{/each}
 			{/if}
 		</section>

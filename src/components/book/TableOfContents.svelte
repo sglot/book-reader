@@ -1,6 +1,6 @@
 <script>
 	import { afterUpdate } from 'svelte';
-	import Icon from './Icon.svelte';
+	import Icon from '../Icon.svelte';
 	export let sections = [];
 	export let active_section = null;
 	export let show_contents;
