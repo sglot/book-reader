@@ -1,15 +1,19 @@
 import { Configurator } from "./configurator";
+import { BookmarkRepositoryBase } from "./repository/BookmarkRepositoryBase";
 import type { BookRepositoryBase } from "./repository/BookRepositoryBase";
 
 export default class Hand {
     constructor(
-        private books: BookRepositoryBase
+        private books: BookRepositoryBase,
+        private bookmarks: BookmarkRepositoryBase
     ) {
 
     }
     
     getBookById(id: number) {
-        return this.books.getBookById(id);
+        let book = this.books.getBookById(id);
+        book.sections = this.books.getSections(book);
+        return book;
     }
 
     getBook(slug: string) {
@@ -20,5 +24,17 @@ export default class Hand {
 
     getBookList() {
         return this.books.getBookList();
+    }
+
+    getBookmarksGlobalStorage() {
+        return BookmarkRepositoryBase.nullBookmarkStoreGlobal;
+    }
+
+    addBookmark(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug'], bookmark: bookmark['slug']) {
+
+    }
+
+    deleteBookmark(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug'], bookmark: bookmark['slug']) {
+
     }
 }

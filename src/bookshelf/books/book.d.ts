@@ -20,7 +20,7 @@ type section = {
     slug:           string,
     html:           string,
     compositions:   composition[],
-    format:         ?string
+    format?:        string
 }
 
 type composition = {
@@ -35,3 +35,15 @@ type composition = {
 }
 
 type compositionType = "poem" | "prose" | "annotation" 
+
+type bookmarkStoreGlobal = bookmarkStoreBook[];
+
+type bookmarkStoreBook = {
+    slug: book.slug,
+    bookmarks: bookmark[]
+}
+
+type bookmark = {
+    slug: composition.slug,
+    link: string
+}

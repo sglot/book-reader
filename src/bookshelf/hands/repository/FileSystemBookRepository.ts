@@ -2,15 +2,18 @@ import { BookRepositoryBase } from "./BookRepositoryBase";
 import { bookList } from "../../books/bookList";
 import fs from 'fs';
 import path from 'path';
-
-const dev = process.env.NODE_ENV === 'development';
+import fse from 'fs-extra';
+const mode = process.env.NODE_ENV || 'development';
+const dev = mode === 'development';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
     private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
-    private readonly PATH = this.ROOT + "/src/bookshelf/books/data/";
+    private readonly PATH_PROD = this.ROOT + "/src/bookshelf/books/data/prod/";
+    private readonly PATH_DEV = this.ROOT + "/src/bookshelf/books/data/dev/";
+    private readonly PATH = dev?this.PATH_DEV:this.PATH_PROD;
     
-
     getBookList() {
+        console.log("env====="+process.env.NODE_ENV);
         return bookList;
     }
 
@@ -69,7 +72,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     buildComposition(composition: composition, dir: string) {
         let comp = { ...composition };
         comp.src = this.actualizeSrc(dir, comp.src);
-        comp.html = this.extractHtmlFromSrc(comp.src, dev ? true : false);
+        comp.html = this.extractHtmlFromSrc(comp.src, dev ? true : false, true);
 
         return comp;
     }
@@ -86,15 +89,29 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     //     return comp;
     // }
 
-    extractHtmlFromSrc(src: string, updateFile = false) {
+    extractHtmlFromSrc(src: string, updateFile = false, formatFile = false) {
         let json = "";
 
         try {
+            console.log(this.PATH);
+            console.log(src);
             json = fs.readFileSync(path.resolve(this.PATH + src), 'utf8');
-
+            console.log("pre!!!!!!!!");
             if (updateFile) {
-                json = json.replace(/\r?\n|\r/g, "<br>");
-                const data = fs.writeFileSync(path.resolve(this.PATH + src), json)
+                console.log("update start!!!!!!!");
+                if (formatFile) {
+                    json = json.replace(/\r?\n|\r/g, "<br>");
+                }
+                
+                // const data = fs.writeFileSync(path.resolve(this.PATH_PROD + src), json);
+                fse.outputFile(path.resolve(this.PATH_PROD + src), json, err => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('The file was saved!');
+                    }
+                });
+                console.log("update finish!!!!!!!");
             }
         } catch (e) {
             // console.log(e);
@@ -122,6 +139,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
                 book.dir,
                 book.sections[sectionIndex].slug + "/" + book.sections[sectionIndex].slug + ".html"
             ),
+            dev ? true : false,
             false
         );
         book.sections[sectionIndex].compositions = this.getCompositions(book.sections[sectionIndex], book);
@@ -129,7 +147,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     }
 
     getCompositions(section: section, book: book) {
-        if (section.compositions == []) {
+        if (!section.compositions || section.compositions == [] || section.compositions == undefined) {
             return [BookRepositoryBase.nullComposition];
         }
 
