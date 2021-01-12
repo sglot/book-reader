@@ -3,14 +3,14 @@ import { bookList } from "../../books/bookList";
 import fs from 'fs';
 import path from 'path';
 import fse from 'fs-extra';
-const mode = process.env.NODE_ENV || 'development';
+const mode = process.env.NODE_ENV || 'production';
 const dev = mode === 'development';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
-    private readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
-    private readonly PATH_PROD = this.ROOT + "/src/bookshelf/books/data/prod/";
-    private readonly PATH_DEV = this.ROOT + "/src/bookshelf/books/data/dev/";
-    private readonly PATH = dev?this.PATH_DEV:this.PATH_PROD;
+    protected readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
+    // private readonly PATH_PROD = this.ROOT + "/src/bookshelf/books/data/prod/";
+    protected readonly PATH = this.ROOT + "/src/bookshelf/books/data/finished/";
+    // private readonly PATH = dev ? this.PATH_DEV : this.PATH_PROD;
     
     getBookList() {
         console.log("env====="+process.env.NODE_ENV);
@@ -21,12 +21,14 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let list = this.getBookList();
         let bookPath = this.PATH + this.getSrcById(id, list);
         
-        console.log(bookPath);
+        console.log("(m) getBookById: " + bookPath);
         try {
             let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
+
             return JSON.parse(json) as book;
         } catch (e) {
             console.log(e);
+
             return BookRepositoryBase.nullBook;
         }
     }
@@ -35,12 +37,14 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let list = this.getBookList();
         let bookPath = this.PATH + this.getSrcBySlug(slug, list);
         
-        console.log(bookPath);
+        // console.log(bookPath);
         try {
             let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
+
             return JSON.parse(json) as book;
         } catch (e) {
             console.log(e);
+
             return BookRepositoryBase.nullBook;
         }
         
@@ -72,7 +76,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     buildComposition(composition: composition, dir: string) {
         let comp = { ...composition };
         comp.src = this.actualizeSrc(dir, comp.src);
-        comp.html = this.extractHtmlFromSrc(comp.src, dev ? true : false, true);
+        comp.html = this.extractHtmlFromSrc(comp.src);
 
         return comp;
     }
@@ -81,42 +85,17 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         return dir + src;
     }
 
-    // importTextInsideComposition(composition: composition) {
-    //     // console.log(composition.src);
-    //     let comp = { ...composition };
-    //     comp.html = this.extractHtmlFromSrc(composition.src);
-
-    //     return comp;
-    // }
-
-    extractHtmlFromSrc(src: string, updateFile = false, formatFile = false) {
+    extractHtmlFromSrc(src: string) {
         let json = "";
 
         try {
             console.log(this.PATH);
             console.log(src);
             json = fs.readFileSync(path.resolve(this.PATH + src), 'utf8');
-            console.log("pre!!!!!!!!");
-            if (updateFile) {
-                console.log("update start!!!!!!!");
-                if (formatFile) {
-                    json = json.replace(/\r?\n|\r/g, "<br>");
-                }
-                
-                // const data = fs.writeFileSync(path.resolve(this.PATH_PROD + src), json);
-                fse.outputFile(path.resolve(this.PATH_PROD + src), json, err => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('The file was saved!');
-                    }
-                });
-                console.log("update finish!!!!!!!");
-            }
         } catch (e) {
             // console.log(e);
         }
-        // console.log("text =" + json + "end of text");
+        
         return json;
     }
 
@@ -138,9 +117,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
             this.actualizeSrc(
                 book.dir,
                 book.sections[sectionIndex].slug + "/" + book.sections[sectionIndex].slug + ".html"
-            ),
-            dev ? true : false,
-            false
+            )
         );
         book.sections[sectionIndex].compositions = this.getCompositions(book.sections[sectionIndex], book);
         return book.sections[sectionIndex];
