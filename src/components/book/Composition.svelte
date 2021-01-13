@@ -44,7 +44,7 @@
 	}
 
     section > :global(p) {
-		max-width: var(--linemax)
+		max-width: 100%;
 	}
     section {
         max-width: 30em;

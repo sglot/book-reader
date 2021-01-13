@@ -67,6 +67,11 @@
 </script>
 
 <style>
+
+	.theme--book__first {
+		--secwidth: 95%;
+	}
+
 	aside {
 		position: fixed;
 		background-color: white;
@@ -231,20 +236,20 @@
 		}
 	}
 	.content :global(h3),
-	.content :global(h3 > code) {
+	/* .content :global(h3 > code) {
 		margin: 6.4rem 0 0 0;
 		padding: 2rem 1.6rem 5.6rem .2rem;
 		color: var(--text);
 		border-top: var(--border-w) solid #6767781f; /* based on --second */
-		background: transparent;
+		/* background: transparent;
 		line-height: 1;
-	}
+	}  */
 	.content :global(h3):first-of-type {
 		border: none;
 		margin: 0;
 	}
 	/* avoid doubled border-top */
-	.content :global(h3 > code) {
+	/* .content :global(h3 > code) {
 		border-radius: 0 0 0 0;
 		border: none;
 		font-size: inherit;
@@ -261,7 +266,7 @@
 		line-height: 1;
 		padding: 0;
 		top: 0;
-	}
+	} */
 	.content :global(h4 > em) {
 		opacity: 0.7;
 	}
@@ -272,7 +277,7 @@
 		font-size: 2.4rem;
 		margin: 2em 0 0.5em 0;
 	}
-	.content :global(code) {
+	/* .content :global(code) {
 		padding: .3rem .8rem .3rem;
 		margin: 0 0.2rem;
 		top: -.1rem;
@@ -283,7 +288,7 @@
 		margin: 0;
 		top: 0;
 		background: transparent;
-	}
+	} */
 	.content :global(pre) {
 		margin: 0 0 2em 0;
 		width: 100%;
@@ -302,25 +307,30 @@
 		margin: 0 0 2em 0;
 	}
 
-	section > :global(.code-block) > :global(pre) {
+	/* section > :global(.code-block) > :global(pre) {
 		display: inline-block;
 		background: var(--back-api);
 		color: white;
 		padding: .3rem .8rem;
 		margin: 0;
 		max-width: 100%;
-	}
-	section > :global(.code-block)> :global(pre.language-markup) {
+		width: 95%;
+		margin: 0 auto;
+	} */
+	/* section > :global(.code-block)> :global(pre.language-markup) {
 		padding: .3rem .8rem .2rem;
 		background: var(--back-api);
-	}
+	} */
 	section > :global(p) {
-		max-width: var(--linemax);
+		/* max-width: var(--linemax); */
 		text-indent: 2em;
+		text-align: justify;
+		width: var(--secwidth);
+		margin: 1 auto;
 	}
-	section :global(p) {
+	/* section :global(p) {
 		margin: 1em 0;
-	}
+	} */
 
 	section:last-of-type {
 		margin-bottom: 50vh;
@@ -339,14 +349,15 @@
 		color: hsl(204, 100%, 50%);
 	}
 
-	/* .annotation {
+	.signature {
 		text-align: right;
-		margin-bottom: 2em;
+		margin-bottom: 2em auto;
 		font-style: italic;
-	} */
+		width: var(--secwidth);
+	}
 </style>
 
-<div bind:this={container} class="content listify">
+<div bind:this={container} class="content listify theme--book__first">
 	{#each book.sections as section}
 		<section data-id={section.slug}>
 			<h2>
@@ -362,6 +373,12 @@
 
 			{#if section.html != ""}
 				{@html section.html}
+				
+				{#if section.signature }
+					<div class="signature">
+						{@html section.signature}
+					</div>
+				{/if}
 			{:else}
 				{#each section.compositions as composition}
 					<Composition {dir} {composition} />

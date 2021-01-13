@@ -20,7 +20,8 @@ type section = {
     slug:           string,
     html:           string,
     compositions:   composition[],
-    format?:        string
+    format?:        string,
+    signature?:     string
 }
 
 type composition = {
