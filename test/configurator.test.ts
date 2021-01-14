@@ -2,7 +2,7 @@ import { Configurator } from "../src/bookshelf/hands/configurator";
 import { BookmarkRepositoryBase } from "../src/bookshelf/hands/repository/BookmarkRepositoryBase";
 import { BookRepositoryBase } from "../src/bookshelf/hands/repository/BookRepositoryBase";
 import { FormatFileSystemBookRepository } from "../src/bookshelf/hands/repository/FormatFileSystemBookRepository";
-import { Format } from "../src/bookshelf/hands/format";
+import { FormatBase } from "../src/bookshelf/hands/format/FormatBase";
 var assert = require('assert');
 
 describe('Configurator', () => {
@@ -30,7 +30,7 @@ describe('Configurator', () => {
     it('Get Format', () => {
         let SUT = configurator.getFormat();
 
-        assert.equal(true, SUT instanceof Format);
+        assert.equal(true, SUT instanceof FormatBase);
     });
     
 });

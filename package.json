@@ -8,7 +8,7 @@
     "start": "cross-env NODE_ENV=development node __sapper__/build",
     "validate": "svelte-check --ignore src/node_modules/@sapper",
     "test": "cross-env NODE_ENV=development TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/**/*.ts",
-    "format": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/run.format.html.test.ts",
+    "format": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors run/run.format.html.test.ts",
     "format1": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/format.html.test.ts",
     "coverage": "nyc npm run test"
   },

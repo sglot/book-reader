@@ -100,13 +100,10 @@ export class FormatFileSystemBookRepository extends FileSystemBookRepository {
     }
 
     formatData(data: string, format: string) {
-        // console.log("format start!");
         data = data.replace(/\r?\n|\r/g, "<br>");
-        // data = data.replace(/ ,/g, ",");
-        data = data.replace(/\s+/g, " ");
-     
-        // console.log(data);
-        // console.log("format finish!");
+        data = data.replace(/\s,\s/g, ", ");
+        data = data.replace(/\s{2,}/g, " ");
+        data = data.replace(/--/g, "–");
 
         return data;
     }
