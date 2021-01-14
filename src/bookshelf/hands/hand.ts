@@ -26,15 +26,19 @@ export default class Hand {
         return this.books.getBookList();
     }
 
-    getBookmarksGlobalStorage() {
+    getAllBookmarks() {
         return BookmarkRepositoryBase.nullBookmarkStoreGlobal;
     }
 
-    addBookmark(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug'], bookmark: bookmark['slug']) {
-
+    addBookmark(book: bookmarkStoreBook['slug'], slug: bookmark['slug'], link: string) {
+        let bookmark = {
+            "slug": slug,
+            "link": link
+        };
+        this.bookmarks.addBookmark(this.bookmarks.getBookmarksGlobalStorage(), book, bookmark);
     }
 
-    deleteBookmark(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug'], bookmark: bookmark['slug']) {
+    deleteBookmark(book: bookmarkStoreBook['slug'], bookmark: bookmark['slug']) {
 
     }
 }

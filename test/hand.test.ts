@@ -37,7 +37,7 @@ describe('Hand', () => {
     });
 
     it('Get all bookmarks storage GLOBAL. Types', () => {
-        let SUT = hand.getBookmarksGlobalStorage();
+        let SUT = hand.getAllBookmarks();
 
         // console.log(SUT);
         assert.equal('object', typeof SUT);
@@ -48,7 +48,7 @@ describe('Hand', () => {
     });
 
     it('Get empty STORAGE. Null object', () => {
-        let SUT = hand.getBookmarksGlobalStorage();
+        let SUT = hand.getAllBookmarks();
 
         // console.log(SUT);
         assert.equal(JSON.stringify(BookmarkRepositoryBase.nullBookmarkStoreGlobal), JSON.stringify(SUT));

@@ -3,6 +3,7 @@ import Hand from "./hand";
 import { FileSystemBookRepository } from "./repository/FileSystemBookRepository";
 import { FormatFileSystemBookRepository } from "./repository/FormatFileSystemBookRepository";
 import { LocalStorageBookmarkRepository } from "./repository/LocalStorageBookmarkRepository";
+import { TestLocalStorageBookmarkRepository } from "./repository/TestLocalStorageBookmarkRepository";
 
 export class Configurator {
     // private config;
@@ -30,6 +31,10 @@ export class Configurator {
 
     getBookmarkRepository() {
         return new LocalStorageBookmarkRepository();
+    }
+
+    getTestBookmarkRepository() {
+        return new TestLocalStorageBookmarkRepository();
     }
 
     getFormatRepository() {

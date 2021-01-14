@@ -188,6 +188,7 @@
 		font-size: var(--h3);
 		letter-spacing: .05em;
 		text-transform: uppercase;
+		width: var(--secwidth);
 	}
 	.content section:first-of-type > h2 {
 		margin-top: 0;
@@ -230,10 +231,10 @@
 		.content :global(h6):hover :global(.anchor) {
 			opacity: 1;
 		}
-		.content :global(h5) :global(.anchor),
+		/* .content :global(h5) :global(.anchor),
 		.content :global(h6) :global(.anchor) {
 			top: 0.25em;
-		}
+		} */
 	}
 	.content :global(h3),
 	/* .content :global(h3 > code) {
@@ -355,6 +356,21 @@
 		font-style: italic;
 		width: var(--secwidth);
 	}
+
+	small {
+		font-size: var(--h5);
+		float: right;
+		pointer-events: all;
+		color: var(--prime);
+		cursor: pointer;
+	}
+
+    small a        { all: unset }
+	small a:before { all: unset }
+	section :global(blockquote) {
+		color: hsl(204, 100%, 50%);
+		border: 2px solid var(--flash);
+	}
 </style>
 
 <div bind:this={container} class="content listify theme--book__first">
@@ -369,6 +385,12 @@
 					
 					{@html section.title}
 				{/if}
+
+				<small>
+					<a href="#a" title="Закладка">
+						<Icon name='bookmark' />
+					</a>
+				</small>
 			</h2>
 
 			{#if section.html != ""}

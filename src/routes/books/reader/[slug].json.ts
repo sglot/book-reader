@@ -2,7 +2,7 @@
 	import { Configurator } from '../../../bookshelf/hands/configurator';
 
 	let configurator = new Configurator();
-	let hand = new Hand(configurator.getBookRepository());
+	let hand = configurator.getHand();
 	let bookList = hand.getBookList();
 
 export function get(req, res, next) {

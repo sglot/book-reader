@@ -10,6 +10,7 @@
     "test": "cross-env NODE_ENV=development TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/**/*.ts",
     "format": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors run/run.format.html.test.ts",
     "format1": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/format.html.test.ts",
+    "bookmarks": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/bookmark.repository.test.ts",
     "coverage": "nyc npm run test"
   },
   "devDependencies": {

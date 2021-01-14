@@ -13,7 +13,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     // private readonly PATH = dev ? this.PATH_DEV : this.PATH_PROD;
     
     getBookList() {
-        console.log("env====="+process.env.NODE_ENV);
+        // console.log("env====="+process.env.NODE_ENV);
         return bookList;
     }
 
@@ -21,7 +21,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let list = this.getBookList();
         let bookPath = this.PATH + this.getSrcById(id, list);
         
-        console.log("(m) getBookById: " + bookPath);
+        // console.log("(m) getBookById: " + bookPath);
         try {
             let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
 
@@ -89,8 +89,8 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let json = "";
 
         try {
-            console.log(this.PATH);
-            console.log(src);
+            // console.log(this.PATH);
+            // console.log(src);
             json = fs.readFileSync(path.resolve(this.PATH + src), 'utf8');
         } catch (e) {
             // console.log(e);

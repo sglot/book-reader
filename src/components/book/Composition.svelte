@@ -67,8 +67,8 @@
         {@html composition.title}
         
         <small>
-            <a href="#a" title="title_edit">
-                <Icon name='edit' />
+            <a href="#a" title="Закладка" on:click="">
+                <Icon name='bookmark' />
             </a>
         </small>
     </h5>
