@@ -2,7 +2,7 @@ import { FormatFileSystem } from "./format/FormatFileSystem";
 import Hand from "./hand";
 import { FileSystemBookRepository } from "./repository/FileSystemBookRepository";
 import { FormatFileSystemBookRepository } from "./repository/FormatFileSystemBookRepository";
-import { LocalStorageBookmarkRepository } from "./repository/LocalStorageBookmarkRepository";
+import LocalStorageBookmarkRepository from "./repository/LocalStorageBookmarkRepository";
 import { TestLocalStorageBookmarkRepository } from "./repository/TestLocalStorageBookmarkRepository";
 
 export class Configurator {

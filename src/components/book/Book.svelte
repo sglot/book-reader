@@ -3,6 +3,7 @@
 	import TableOfContents from './TableOfContents.svelte'; // TODO rename
 	import Composition from './Composition.svelte'; // TODO rename
 	import Icon from '../Icon.svelte';
+	import LocalStorageBookmarkRepository from '../../bookshelf/hands/repository/LocalStorageBookmarkRepository';
 	// import { getFragment } from '../utils/navigation';
 	// export let owner = 'sveltejs';
 	// export let project = 'svelte';
@@ -14,12 +15,24 @@
 	let container;
 	let aside;
 	let show_contents = false;
+	let bookmarks = new LocalStorageBookmarkRepository;
+	let bookmarkCurrentPack;
+
 	export const getFragment = () => window.location.hash.slice(1);
 
 	onMount(() => {
 
+		bookmarkCurrentPack = bookmarks.getPackByBookSlug(bookmarks.getBookmarkStorage(), book.slug);
+
 		// don't update `active_section` for headings above level 4, see _sections.js
 		const anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
+		const secBookmarks = container.querySelectorAll('small span');
+		console.log(secBookmarks);
+		[].map.call(secBookmarks, bm => {
+			if (bookmarks.hasBookmark(bookmarkCurrentPack, bm.getAttribute('bookmark-slug'))) {
+				bm.classList.add('active');
+			}
+		})
 
 		let positions;
 		const onresize = () => {
@@ -64,12 +77,14 @@
 			timeouts.forEach(timeout => clearTimeout(timeout));
 		};
 	});
+
 </script>
 
 <style>
 
 	.theme--book__first {
 		--secwidth: 95%;
+		--activebookmark: hsl(204, 100%, 50%);
 	}
 
 	aside {
@@ -361,15 +376,21 @@
 		font-size: var(--h5);
 		float: right;
 		pointer-events: all;
-		color: var(--prime);
+		color: var(--activebookmark);
 		cursor: pointer;
 	}
 
-    small a        { all: unset }
-	small a:before { all: unset }
-	section :global(blockquote) {
+	
+
+    /* small span        { all: unset }
+	small span:before { all: unset } */
+	/* section :global(blockquote) {
 		color: hsl(204, 100%, 50%);
 		border: 2px solid var(--flash);
+	} */
+
+	small :global(.active) {
+		color: var(--prime);
 	}
 </style>
 
@@ -387,9 +408,17 @@
 				{/if}
 
 				<small>
-					<a href="#a" title="Закладка">
+					<span
+						
+						title				=	"Закладка" 
+						book-slug			=	"{book.slug}"
+						bookmark-slug		=	"{section.slug}"
+						bookmark-title		=	"{section.title}"
+						bookmark-link		=	{`/book/reader/${book.slug}/#${section.slug}`}
+						on:click 			=	{event => bookmarks.toggleBookmark(event)}
+					>
 						<Icon name='bookmark' />
-					</a>
+					</span>
 				</small>
 			</h2>
 
@@ -403,7 +432,7 @@
 				{/if}
 			{:else}
 				{#each section.compositions as composition}
-					<Composition {dir} {composition} />
+					<Composition {dir} {composition} {book} {bookmarks}/>
 				{/each}
 			{/if}
 		</section>

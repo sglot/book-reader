@@ -46,7 +46,7 @@ export default {
 				browser: true,
 				dedupe: ['svelte']
 			}),
-			commonjs(),
+			commonjs({}),
 			typescript({ sourceMap: dev }),
 			builtins(),
 
@@ -101,7 +101,7 @@ export default {
 			resolve({
 				dedupe: ['svelte']
 			}),
-			commonjs(),
+			commonjs({}),
 			typescript({ sourceMap: dev }),
 			builtins(),
 		],

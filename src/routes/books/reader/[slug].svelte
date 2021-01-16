@@ -10,11 +10,13 @@
 		}
 	}
 
+	
 </script>
 
 <script lang="ts">
 	import Book from "../../../components/book/Book.svelte";
-
+	
+	
 	export let book: book;
 	export let params;
 </script>
@@ -23,5 +25,5 @@
 	<title>{book.title}</title>
 </svelte:head>
 
-<Book book={book} dir={`books/reader/${params.slug}`} /> 
+<Book book={book}  dir={`books/reader/${params.slug}`} /> 
 

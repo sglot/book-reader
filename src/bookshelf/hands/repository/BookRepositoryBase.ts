@@ -26,6 +26,7 @@ export abstract class BookRepositoryBase {
     public static readonly nullBook: book = {
         "id":               0,
         "title":            "",
+        "slug":             "",
         "author":           "",
         "dir":              "",
         "sections":         [BookRepositoryBase.nullSection],

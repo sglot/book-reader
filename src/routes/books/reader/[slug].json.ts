@@ -1,16 +1,14 @@
-	import Hand from '../../../bookshelf/hands/hand';
-	import { Configurator } from '../../../bookshelf/hands/configurator';
+import { Configurator } from '../../../bookshelf/hands/configurator';
 
-	let configurator = new Configurator();
-	let hand = configurator.getHand();
-	let bookList = hand.getBookList();
+let configurator = new Configurator();
+let hand = configurator.getHand();
 
 export function get(req, res, next) {
 	// the `slug` parameter is available because
 	// this file is called [slug].json.js
 	const { slug } = req.params;
 
-	let book = hand.getBook(slug); 
+	let book = hand.getBook(slug);
 
 	if (book) {
 		res.writeHead(200, {

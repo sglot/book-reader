@@ -16,11 +16,13 @@ export abstract class BookmarkRepositoryBase {
 
     public static readonly nullBookmark: bookmark = {
         "slug": "",
+        "title": "",
         "link": "",
     };
 
     public static readonly nullBookmarkStoreBook: bookmarkStoreBook = {
         "slug": "",
+        "title": "",
         "bookmarks": [BookmarkRepositoryBase.nullBookmark],
     };
 

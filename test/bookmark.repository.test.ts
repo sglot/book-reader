@@ -1,14 +1,11 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
-import { BookRepositoryBase } from "../src/bookshelf/hands/repository/BookRepositoryBase";
 import { BookmarkRepositoryBase } from "../src/bookshelf/hands/repository/BookmarkRepositoryBase";
-import { LocalStorageBookmarkRepository } from "../src/bookshelf/hands/repository/LocalStorageBookmarkRepository";
-import { FileSystemBookRepository } from "../src/bookshelf/hands/repository/FileSystemBookRepository";
+import LocalStorageBookmarkRepository from "../src/bookshelf/hands/repository/LocalStorageBookmarkRepository";
 var assert = require('assert');
 
 describe('Bookmark repository', () => {
     let configurator = new Configurator();
     let repository = configurator.getTestBookmarkRepository();
-    let bookmarkStorage = repository.getBookmarksGlobalStorage();
 
 
 
@@ -22,10 +19,12 @@ describe('Bookmark repository', () => {
     let stubTestBookBookmarks = [
         {
             "slug": "testName",
+            "title": "testName",
             "link": "/books/reader/Отладочный-сборник#testName",
         },
         {
             "slug": "testName1",
+            "title": "testName1",
             "link": "/books/reader/Отладочный-сборник#testName1",
         }
     ];
@@ -33,22 +32,26 @@ describe('Bookmark repository', () => {
     let stubTestBookBookmarksAfterAdding = [
         {
             "slug": "testName",
+            "title": "testName",
             "link": "/books/reader/Отладочный-сборник#testName",
         },
         {
             "slug": "testName1",
+            "title": "testName1",
             "link": "/books/reader/Отладочный-сборник#testName1",
         },
         {
             "slug": "test",
+            "title": "test",
             "link": "#testLink"
         }
     ];
 
-    let stubBookmark = { "slug": "test", "link": "#testLink" };
+    let stubBookmark = { "slug": "test", "title": "test", "link": "#testLink" };
 
     let stubBookmarkStorage = BookmarkRepositoryBase.nullBookmarkStoreGlobal;
     stubBookmarkStorage[0].slug = TEST_BOOK_SLUG;
+    stubBookmarkStorage[0].title = "Отладочный сборник";
     stubBookmarkStorage[0].bookmarks = stubTestBookBookmarks;
 
 

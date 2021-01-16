@@ -1,4 +1,3 @@
-import { Configurator } from "./configurator";
 import { BookmarkRepositoryBase } from "./repository/BookmarkRepositoryBase";
 import type { BookRepositoryBase } from "./repository/BookRepositoryBase";
 
@@ -30,9 +29,10 @@ export default class Hand {
         return BookmarkRepositoryBase.nullBookmarkStoreGlobal;
     }
 
-    addBookmark(book: bookmarkStoreBook['slug'], slug: bookmark['slug'], link: string) {
+    addBookmark(book: bookmarkStoreBook['slug'], slug: bookmark['slug'], link: string, title: string) {
         let bookmark = {
             "slug": slug,
+            "title": title,
             "link": link
         };
         this.bookmarks.addBookmark(this.bookmarks.getBookmarksGlobalStorage(), book, bookmark);

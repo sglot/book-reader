@@ -1,7 +1,14 @@
 <script lang="ts">
-	import Icon from '../Icon.svelte';
+
+import type LocalStorageBookmarkRepository from '../../bookshelf/hands/repository/LocalStorageBookmarkRepository';
+
+
+    import Icon from '../Icon.svelte';
 	export let dir = 'docs';
-	export let composition: composition;
+    export let composition: composition;
+    export let book: book;
+    export let bookmarks: LocalStorageBookmarkRepository;
+    
 </script>
 
 <style>
@@ -26,16 +33,20 @@
 		font-size: var(--h5);
 		float: right;
 		pointer-events: all;
-		color: var(--prime);
+		color: var(--activebookmark);
 		cursor: pointer;
 	}
 
-    small a        { all: unset }
-	small a:before { all: unset }
+    small :global(.active) {
+		color: var(--prime);
+	}
+
+    /* small span        { all: unset }
+	small span:before { all: unset }
 	section :global(blockquote) {
 		color: hsl(204, 100%, 50%);
 		border: 2px solid var(--flash);
-	}
+	} */
 
 	.annotation {
 		text-align: right;
@@ -67,9 +78,17 @@
         {@html composition.title}
         
         <small>
-            <a href="#a" title="Закладка" on:click="">
+            <span
+                
+                title				=	"Закладка" 
+                book-slug			=	"{book.slug}"
+                bookmark-slug		=	"{composition.slug}"
+                bookmark-title		=	"{composition.title}"
+                bookmark-link		=	{`/book/reader/${book.slug}/#${composition.slug}`}
+                on:click 			=	{event => bookmarks.toggleBookmark(event)}
+            >
                 <Icon name='bookmark' />
-            </a>
+            </span>
         </small>
     </h5>
 

@@ -10,6 +10,7 @@ type bookShortForm = {
 type book = {
     id:             number,
     title:          string,
+    slug:           string,
     author:         string,
     dir:            string,
     sections:       section[]
@@ -40,11 +41,13 @@ type compositionType = "poem" | "prose" | "annotation"
 type bookmarkStoreGlobal = bookmarkStoreBook[];
 
 type bookmarkStoreBook = {
-    slug: book.slug,
+    slug: bookShortForm['slug'],
+    title: bookShortForm['title'],
     bookmarks: bookmark[]
 }
 
 type bookmark = {
-    slug: composition.slug,
+    slug: composition['slug'],
+    title: composition['title'],
     link: string
 }
