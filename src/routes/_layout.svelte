@@ -18,7 +18,6 @@
 
 	export let segment;
 	const { page } = stores();
-
 	export let bookList: bookList;
 	
 	afterUpdate(()=>{
@@ -64,9 +63,9 @@
 <Icons />
 
 <Nav {segment} {page} logo="sapper-logo-horizontal.svg">
-	<NavItem segment="books">Книги</NavItem>
-	<NavItem segment="books/bookmarks">Закладки</NavItem>
-	<NavItem segment="about">Об авторе</NavItem>
+	<NavItem segment="/books">Книги</NavItem>
+	<NavItem segment="/books/bookmarks">Закладки</NavItem>
+	<NavItem segment="/about">Об авторе</NavItem>
 </Nav>
 
 <main>

@@ -14,12 +14,17 @@ export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBa
         let index = this.getPackIndex(storage, book);
 
         if (index < 0) {
-            let bookmarks = BookmarkRepositoryBase.nullBookmarkStoreBook;
-            bookmarks.slug = book;
-            bookmarks.title = this.getBookTitleBySlug(book);
-            bookmarks.bookmarks = [];
-            index = 0;
-            storage[index] = bookmarks;
+
+            if (storage === BookmarkRepositoryBase.nullBookmarkStoreGlobal) {
+                storage = [];
+            }
+
+            let pack = BookmarkRepositoryBase.nullBookmarkStoreBook;
+            pack.slug = book;
+            pack.title = this.getBookTitleBySlug(book);
+            pack.bookmarks = [];
+            index = storage.length;
+            storage[index] = pack;
             console.log(storage[index]);
         }
 

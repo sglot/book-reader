@@ -9,8 +9,10 @@
 	export let home_title = 'Главная страница';
 	
 	const current = writable(null);
+	const currentItem = writable(null);
 	setContext('nav', current);
-
+	setContext('navitem', currentItem);
+	
 	let open = false;
 	let visible = true;
 	// hide nav whenever we navigate
@@ -42,8 +44,8 @@
 	}
 
 	$: $current = segment;
+	$: $currentItem = $page.path;
 
-	// export let segment;
 </script>
 
 <!-- <style>
@@ -259,8 +261,8 @@
 
 <svelte:window on:hashchange={handle_hashchange} on:scroll={handle_scroll} />
 
-<!-- 
-<nav>
+
+<!-- <nav>
 	<ul>
 		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Главная</a></li>
 		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">Об авторе</a></li>
@@ -294,7 +296,11 @@
 			on:mouseenter="{() => open = true}"
 			on:mouseleave="{() => open = false}"
 		>
-			<li class="hide-if-desktop" class:active="{!segment}"><a rel="prefetch" href=".">{home}</a></li>
+			<li class="hide-if-desktop" class:active="{!segment}">
+				<a rel="prefetch" href=".">
+					{home}
+				</a>
+			</li>
 			<slot></slot>
 		</ul>
 	</nav>

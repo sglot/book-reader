@@ -1,5 +1,6 @@
 export abstract class BookmarkRepositoryBase {
     abstract getBookmarksGlobalStorage(): bookmarkStoreGlobal;
+    abstract getBookmarkStorage(): bookmarkStoreGlobal;
 
     abstract addBookmark(
         storage: bookmarkStoreGlobal,

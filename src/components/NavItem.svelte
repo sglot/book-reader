@@ -1,13 +1,20 @@
 <script>
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from "svelte";
 	export let segment = null;
 	export let external = null;
 	export let title = null;
-	const current = getContext('nav');
+	const current = getContext("nav");
+	const navitem = getContext("navitem");
+	$: console.log($navitem);
+	$: console.log(segment);
 </script>
 
 {#if external}
-	<li><a href={external} {title}><slot></slot></a></li>
+	<li>
+		<a href={external} {title}><slot /></a>
+	</li>
 {:else}
-	<li class:active="{$current === segment}"><a rel="prefetch" href={segment} {title}><slot></slot></a></li>
+	<li class:active={$navitem === segment}>
+		<a rel="prefetch" href={segment} {title}><slot /> </a>
+	</li>
 {/if}

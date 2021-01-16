@@ -84,7 +84,7 @@ import type LocalStorageBookmarkRepository from '../../bookshelf/hands/repositor
                 book-slug			=	"{book.slug}"
                 bookmark-slug		=	"{composition.slug}"
                 bookmark-title		=	"{composition.title}"
-                bookmark-link		=	{`/book/reader/${book.slug}/#${composition.slug}`}
+                bookmark-link		=	{`/books/reader/${book.slug}#${composition.slug}`}
                 on:click 			=	{event => bookmarks.toggleBookmark(event)}
             >
                 <Icon name='bookmark' />

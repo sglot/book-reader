@@ -414,7 +414,7 @@
 						book-slug			=	"{book.slug}"
 						bookmark-slug		=	"{section.slug}"
 						bookmark-title		=	"{section.title}"
-						bookmark-link		=	{`/book/reader/${book.slug}/#${section.slug}`}
+						bookmark-link		=	{`/books/reader/${book.slug}#${section.slug}`}
 						on:click 			=	{event => bookmarks.toggleBookmark(event)}
 					>
 						<Icon name='bookmark' />

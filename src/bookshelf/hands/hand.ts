@@ -29,6 +29,10 @@ export default class Hand {
         return BookmarkRepositoryBase.nullBookmarkStoreGlobal;
     }
 
+    getBookmarkStorage() {
+        return this.bookmarks.getBookmarkStorage();
+    }
+
     addBookmark(book: bookmarkStoreBook['slug'], slug: bookmark['slug'], link: string, title: string) {
         let bookmark = {
             "slug": slug,
