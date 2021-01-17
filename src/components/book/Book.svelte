@@ -27,7 +27,7 @@
 		// don't update `active_section` for headings above level 4, see _sections.js
 		const anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
 		const secBookmarks = container.querySelectorAll('small span');
-		console.log(secBookmarks);
+		// console.log(secBookmarks);
 		[].map.call(secBookmarks, bm => {
 			if (bookmarks.hasBookmark(bookmarkCurrentPack, bm.getAttribute('bookmark-slug'))) {
 				bm.classList.add('active');

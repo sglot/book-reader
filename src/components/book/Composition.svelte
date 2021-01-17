@@ -1,14 +1,11 @@
 <script lang="ts">
-
-import type LocalStorageBookmarkRepository from '../../bookshelf/hands/repository/LocalStorageBookmarkRepository';
-
-
+    import type LocalStorageBookmarkRepository from '../../bookshelf/hands/repository/LocalStorageBookmarkRepository';
     import Icon from '../Icon.svelte';
+
 	export let dir = 'docs';
     export let composition: composition;
     export let book: book;
     export let bookmarks: LocalStorageBookmarkRepository;
-    
 </script>
 
 <style>

@@ -12,7 +12,7 @@
 		<a href={external} {title}><slot /></a>
 	</li>
 {:else}
-	<li class:active={$navitem === segment}>
+	<li class:active={$navitem === segment || decodeURI($navitem) === segment}>
 		<a rel="prefetch" href={segment} {title}><slot /> </a>
 	</li>
 {/if}

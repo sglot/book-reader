@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-import { BookmarkRepositoryBase } from "../../../bookshelf/hands/repository/BookmarkRepositoryBase";
-
+	import { BookmarkRepositoryBase } from "../../../bookshelf/hands/repository/BookmarkRepositoryBase";
 	import LocalStorageBookmarkRepository from "../../../bookshelf/hands/repository/LocalStorageBookmarkRepository";
+	
 	let bookmarks = new LocalStorageBookmarkRepository();
-
 	let storage: bookmarkStoreGlobal = null;
 	
 	onMount(() => {
@@ -40,11 +39,11 @@ import { BookmarkRepositoryBase } from "../../../bookshelf/hands/repository/Book
 
 	.books {
 		grid-template-columns: 1fr 1fr;
-    grid-gap: 1em;
-    min-height: calc(100vh - var(--nav-h));
-    padding: var(--top-offset) var(--side-nav) 6rem var(--side-nav);
-    max-width: var(--main-width);
-    margin: 0 auto;
+		grid-gap: 1em;
+		min-height: calc(100vh - var(--nav-h));
+		padding: var(--top-offset) var(--side-nav) 6rem var(--side-nav);
+		max-width: var(--main-width);
+		margin: 0 auto;
 	}
 </style>
 
@@ -70,6 +69,7 @@ import { BookmarkRepositoryBase } from "../../../bookshelf/hands/repository/Book
 							<a href={bookmark.link} 
 							class="anchor" 
 							aria-hidden
+							sapper-noscroll
 								>{bookmark.title}</a
 							>
 						</h5>

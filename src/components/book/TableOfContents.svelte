@@ -8,16 +8,13 @@
 	export let dir;
 	let ul;
 
-	// sections = [{
-	// 	slug: "slug",
-	// 	subsections: sections
-	// }];
-
 	afterUpdate(() => {
 		// bit of a hack — prevent sidebar scrolling if
 		// TOC is open on mobile, or scroll came from within sidebar
 		if (prevent_sidebar_scroll || show_contents && window.innerWidth < 832) return;
+
 		const active = ul.querySelector('.active');
+
 		if (active) {
 			const { top, bottom } = active.getBoundingClientRect();
 			const min = 200;
@@ -37,7 +34,6 @@
 			}
 		}
 	});
-	console.log(active_section);
 </script>
 
 <style>

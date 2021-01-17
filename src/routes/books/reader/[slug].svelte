@@ -19,7 +19,10 @@
 	export let params;
 
 	onMount(() => {
-		window.location.href = decodeURI(window.location.href);
+		setTimeout(() => {
+			let el = document.getElementById(decodeURI(window.location.hash.slice(1)));
+			el.scrollIntoView();
+		}, 5);
 	});
 </script>
 

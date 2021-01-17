@@ -1,34 +1,73 @@
-<script context="module" >
+<script context="module">
 	export function preload(page) {
 		return this.fetch(`books.json`)
 			.then((r) => r.json())
 			.then((bookList) => {
-				return {bookList: bookList, current: page} ;
+				return { bookList: bookList, current: page };
 			});
 	}
 </script>
 
 <script lang="ts">
-	import { stores } from '@sapper/app';
-	import Nav from '../components/Nav.svelte';
-	import NavItem from '../components/NavItem.svelte';
-	import Icons from '../components/Icons.svelte';
-	import Icon from '../components/Icon.svelte';
-	import { afterUpdate, onMount } from 'svelte';
+	import { stores } from "@sapper/app";
+	import Nav from "../components/Nav.svelte";
+	import NavItem from "../components/NavItem.svelte";
+	import Icons from "../components/Icons.svelte";
+	import Icon from "../components/Icon.svelte";
+	import { afterUpdate, onMount } from "svelte";
 
 	export let segment;
 	const { page } = stores();
 	export let bookList: bookList;
-	
-	afterUpdate(()=>{
+
+	afterUpdate(() => {
 		showFooter();
-	})
+	});
 
 	function showFooter() {
 		let footerMain = document.getElementById("footer-main");
-		footerMain.style.display = ($page.path.includes('books/reader')) ? "none" : "flex";
+		footerMain.style.display = $page.path.includes("books/reader")
+			? "none"
+			: "flex";
 	}
 </script>
+
+<Icons />
+
+<Nav {segment} {page} logo="sapper-logo-horizontal.svg">
+	<NavItem segment="/books">Книги</NavItem>
+	<NavItem segment="/books/bookmarks">Закладки</NavItem>
+	<NavItem segment="/about">Об авторе</NavItem>
+
+	{#each bookList as book}
+		<NavItem segment="/books/reader/{book.slug}">«{book.title}»</NavItem>
+	{/each}
+</Nav>
+
+<main>
+	<slot />
+</main>
+
+<footer id="footer-main">
+	<div class="footer-col">
+		<div>&copy; Н.П. Глот</div>
+	</div>
+
+	<div class="footer-col">
+		{#each bookList as book}
+			<div>
+				<a rel="prefetch" href="books/reader/{book.slug}"
+					>«{book.title}»</a
+				>
+			</div>
+		{/each}
+	</div>
+
+	<div class="footer-col">
+		<div>Кострома</div>
+		<div>Судиславль</div>
+	</div>
+</footer>
 
 <style>
 	/* main {
@@ -58,41 +97,10 @@
 		flex-flow: column;
 		padding: 1em;
 	}
+
+	@media (max-width: 320px) { 
+		footer {
+			flex-flow: column;
+		}
+	}
 </style>
-
-<Icons />
-
-<Nav {segment} {page} logo="sapper-logo-horizontal.svg">
-	<NavItem segment="/books">Книги</NavItem>
-	<NavItem segment="/books/bookmarks">Закладки</NavItem>
-	<NavItem segment="/about">Об авторе</NavItem>
-</Nav>
-
-<main>
-	<slot></slot>
-</main>
-
-<footer id="footer-main">
-	<div class="footer-col">
-		<div>&copy; Н.П. Глот</div>
-	</div>
-
-	
-	<div class="footer-col">
-		{#each bookList as book}
-			<div><a 
-				rel="prefetch"
-				href="books/reader/{book.slug}">{book.title}</a></div>
-		{/each}
-	</div>
-
-
-	<div class="footer-col">
-		<div>
-			Кострома
-		</div>
-		<div>
-			Судиславль
-		</div>
-	</div>
-</footer>

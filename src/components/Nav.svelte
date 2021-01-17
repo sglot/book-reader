@@ -228,6 +228,9 @@
 		color: var(--flash);
 	}
 	@media (min-width: 840px) {
+		ul :global(li).active :global(a) {
+		color: var(--prime)
+	}
 		ul {
 			padding: 0;
 			background: none;

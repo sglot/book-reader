@@ -44,7 +44,6 @@ export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBa
     }
 
     hasBookmark(pack: bookmark[] | bookmarkStoreBook[], slug: string) {
-        console.log(pack);
         if (typeof pack !== 'object') {
             return false;
         }
