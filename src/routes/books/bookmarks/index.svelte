@@ -67,7 +67,9 @@ import { BookmarkRepositoryBase } from "../../../bookshelf/hands/repository/Book
 					<section data-id={bookmark.slug}>
 						<h5>
 							<span class="offset-anchor" id={bookmark.slug} />
-							<a href={bookmark.link} class="anchor" aria-hidden
+							<a href={bookmark.link} 
+							class="anchor" 
+							aria-hidden
 								>{bookmark.title}</a
 							>
 						</h5>

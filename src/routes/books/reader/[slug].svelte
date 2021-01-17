@@ -9,21 +9,22 @@
 			this.error(res.status, data.message);
 		}
 	}
-
-	
 </script>
 
 <script lang="ts">
+	import { onMount } from "svelte";
 	import Book from "../../../components/book/Book.svelte";
-	
-	
+
 	export let book: book;
 	export let params;
+
+	onMount(() => {
+		window.location.href = decodeURI(window.location.href);
+	});
 </script>
 
 <svelte:head>
 	<title>{book.title}</title>
 </svelte:head>
 
-<Book book={book}  dir={`books/reader/${params.slug}`} /> 
-
+<Book {book} dir={`books/reader/${params.slug}`} />

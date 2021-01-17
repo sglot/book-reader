@@ -1,12 +1,10 @@
 <script>
-	import { getContext, onMount } from "svelte";
+	import { getContext } from "svelte";
 	export let segment = null;
 	export let external = null;
 	export let title = null;
 	const current = getContext("nav");
 	const navitem = getContext("navitem");
-	$: console.log($navitem);
-	$: console.log(segment);
 </script>
 
 {#if external}
