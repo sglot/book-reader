@@ -34,7 +34,7 @@
 
 <Icons />
 
-<Nav {segment} {page} logo="sapper-logo-horizontal.svg">
+<Nav {segment} {page} >
 	<NavItem segment="/books">Книги</NavItem>
 	<NavItem segment="/books/bookmarks">Закладки</NavItem>
 	<NavItem segment="/about">Об авторе</NavItem>
@@ -50,7 +50,8 @@
 
 <footer id="footer-main">
 	<div class="footer-col">
-		<div>&copy; Н.П. Глот</div>
+		<div>&copy; Н.П. Глот 2021</div>
+		<div>nglot@gmail.com</div>
 	</div>
 
 	<div class="footer-col">

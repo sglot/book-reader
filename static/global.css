@@ -62,9 +62,16 @@ code {
 
 @media screen and (min-width: 768px) {
 	:root {
-		--side-page:  14vw;
-		--top-offset: 10rem;
-		--side-nav: 4.8rem;
+		--side-page:  	14vw;
+		--top-offset: 	10rem;
+		--side-nav: 	4.8rem;
+	}
+}
+
+@media (max-width: 340px) {
+	:root {
+		--top-offset: 	5rem;
+		--side-nav: 	2rem;
 	}
 }
 
@@ -81,6 +88,7 @@ code {
 	--sidebar-text: rgba(255, 255, 255, .75);
 	--border-w:  		.3rem; /* border-width  */
 	--border-r:  		.4rem; /* border-radius */
+	--home-border: 		#418ceccf;
 }
 
 /*	typo vars */

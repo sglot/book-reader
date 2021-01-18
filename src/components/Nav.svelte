@@ -206,6 +206,8 @@
 		background-size: auto 100%;
 		text-indent: -9999px; */
 		font-weight: 500;
+		border-left: 0.15em solid var(--home-border);
+		padding-left: 0.5em;
 	}
 
 	ul :global(li).active :global(a) {
@@ -227,10 +229,12 @@
 	ul :global(li):not(.active) :global(a):hover {
 		color: var(--flash);
 	}
+
 	@media (min-width: 840px) {
 		ul :global(li).active :global(a) {
-		color: var(--prime)
-	}
+			color: var(--prime)
+		}
+	
 		ul {
 			padding: 0;
 			background: none;
@@ -258,6 +262,12 @@
 		}
 		.hide-if-desktop {
 			display: none !important;
+		}
+	}
+
+	@media (max-width: 320px) {
+		ul :global(li) :global(a) {
+			font-size: 1em !important;
 		}
 	}
 </style>
