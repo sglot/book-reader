@@ -104,6 +104,8 @@ export class FormatFileSystemBookRepository extends FileSystemBookRepository {
         data = data.replace(/\s,\s/g, ", ");
         data = data.replace(/\s{2,}/g, " ");
         data = data.replace(/--/g, "–");
+        data = data.replace(/\s\?/g, "?");
+        data = data.replace(/\s\!/g, "!");
 
         return data;
     }

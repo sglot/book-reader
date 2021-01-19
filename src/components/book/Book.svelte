@@ -365,7 +365,7 @@
 		color: hsl(204, 100%, 50%);
 	}
 
-	.signature {
+	:global(.signature) {
 		text-align: right;
 		margin-bottom: 2em auto;
 		font-style: italic;

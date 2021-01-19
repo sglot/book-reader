@@ -97,6 +97,12 @@
 
     {@html composition.html}
 
+    {#if composition.signature }
+        <div class="signature">
+            {@html composition.signature}
+        </div>
+    {/if}
+                
     <div class="ending-composition">* * *</div>
 
 </section>

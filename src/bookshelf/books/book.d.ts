@@ -33,7 +33,8 @@ type composition = {
     date:       string,
     type:       compositionType,
     src:        string,
-    html:       string
+    html:       string,
+    signature?: string
 }
 
 type compositionType = "poem" | "prose" | "annotation" 

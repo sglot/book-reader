@@ -12,6 +12,7 @@
 	import nglot2010 from "../../static/images/2010-08-04__1200.jpg";
 	import nglotKostroma from "../../static/images/2010-08-14__1200.jpg";
 	import nglotPaseka from "../../static/images/2014-09-23__1200.jpg";
+	import sun from "../../static/images/sun.jpg";
 </script>
 
 <svelte:head>
@@ -128,14 +129,19 @@
 	</div>
 
 	<section class="blurb" style="margin: 3em 0;">
-		<div class="box" style="background: var(--prime); grid-area: one;">
+		<div class="box" style="
+		background: var(--prime); 
+		grid-area: one; 
+		
+		">
 			<a href="/book/reader/Возвращение-к-Sолнцу"
 				><h2>Возвращение к Sолнцу</h2>
 				<p>
 					Первый сборник изданный в 2012 году. Самый маленький из
 					всех.
 				</p>
-				<span class="learn-more">читать</span></a
+				<span class="learn-more">читать</span>
+			</a
 			>
 		</div>
 
@@ -143,7 +149,7 @@
 			<a href="/book/reader/Возвращение-к-Sолнцу"
 				><h2>Отладочный сборник</h2>
 				<p>
-					Отладочный
+					Отладочный c
 				</p>
 				<span class="learn-more">читать</span></a
 			>
@@ -231,7 +237,7 @@
 	img {
 		width: 100%;
 		max-width: 800px;
-		box-shadow: 0px 0px 2px 1px #aaa;
+		box-shadow: 0px 0px 2px 1px #fff, 0px 0px 20px 3px #b9b1b1a3;
 		border-radius: var(--brad);
 		transition: all var(--trout) ease-in-out;
 	}
@@ -323,7 +329,7 @@
 	}
 
 	.phrase {
-		align-self: end;
+		align-self: center;
 	}
 
 	.phrase1 {
@@ -371,7 +377,14 @@
 		color: white;
 		padding: 0;
 		border: none;
+		/* background-color: rgba(0, 0, 0, 0.5);
+		box-shadow: -10px 0 0 rgba(0, 0, 0, 0.5), 10px 0 0 rgba(0, 0, 0, 0.5); */
+		/* background: linear-gradient(135deg, rgb(37, 219, 237) 0%,rgb(9, 1, 11) 100%); */
+		background: linear-gradient(135deg, rgb(237, 234, 37) 0%,rgb(9, 1, 11) 100%);
+		mix-blend-mode: lighten;
+		padding: 3em;
 	}
+
 	.box :global(h2) {
 		padding: 0;
 		margin: 0 0 0.5em 0;
