@@ -30,7 +30,7 @@
 		font-size: var(--h5);
 		float: right;
 		pointer-events: all;
-		color: var(--activebookmark);
+		color: var(--bookmark-non-active);
 		cursor: pointer;
 	}
 
@@ -57,11 +57,11 @@
     section {
         max-width: 30em;
         margin: 0 auto;
+        width: max-content;
     }
 
     .ending-composition {
-        text-align: left;
-        padding-left: 6.5em;
+        padding-left: 44%;
         padding-top: 1em;
     }
 </style>

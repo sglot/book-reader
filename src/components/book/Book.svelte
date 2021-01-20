@@ -84,7 +84,9 @@
 
 	.theme--book__first {
 		--secwidth: 95%;
-		--activebookmark: hsl(204, 100%, 50%);
+		--bookmark-non-active: hsl(204, 100%, 50%);
+		--border: 10px 0 0px 0px #ffffff, 11px 0 0px 0px #d2b4b4, 14px 0 0px 0px #ffffff, 16px 0 0px 0px #d2b4b4;
+		--a-color: var(--prime); 
 	}
 
 	aside {
@@ -343,6 +345,10 @@
 		text-align: justify;
 		width: var(--secwidth);
 		margin: 1 auto;
+		
+	}
+	section {
+		box-shadow: var(--border);
 	}
 	/* section :global(p) {
 		margin: 1em 0;
@@ -376,7 +382,7 @@
 		font-size: var(--h5);
 		float: right;
 		pointer-events: all;
-		color: var(--activebookmark);
+		color: var(--bookmark-non-active);
 		cursor: pointer;
 	}
 
