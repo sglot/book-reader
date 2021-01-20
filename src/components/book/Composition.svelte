@@ -57,7 +57,7 @@
     section {
         max-width: 30em;
         margin: 0 auto;
-        width: max-content;
+        /* width: max-content; */
     }
 
     .ending-composition {
