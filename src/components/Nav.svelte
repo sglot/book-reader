@@ -4,7 +4,6 @@
 
 	export let segment;
 	export let page;
-	export let logo;
 	export let home = 'Главная';
 	export let home_title = 'Главная страница';
 	
@@ -205,6 +204,7 @@
 		background: 0 50% no-repeat;
 		background-size: auto 100%;
 		text-indent: -9999px; */
+		font-size: var(--h5);
 		font-weight: 500;
 		border-left: 0.15em solid var(--home-border);
 		padding-left: 0.5em;
@@ -295,7 +295,6 @@
 			href="."
 			class="home"
 			title="{home_title}"
-			style="background-image: url({logo})"
 		>Николай Глот</a>
 
 		{#if open}

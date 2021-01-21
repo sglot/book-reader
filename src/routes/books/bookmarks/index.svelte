@@ -52,7 +52,6 @@
 </svelte:head>
 
 <div class="content listify books">
-	<h2>Закладки</h2>
 
 	{#if storage && storage.length > 0}
 		{#each storage as pack}
@@ -78,7 +77,8 @@
 			</section>
 		{/each}
 	{:else}
-			<p>Ни одной</p>
+		<h2>Закладки</h2>
+		<p>Ни одной</p>
 	{/if}
 </div>
 

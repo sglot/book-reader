@@ -11,6 +11,7 @@ import typescript from '@rollup/plugin-typescript';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 import builtins from 'rollup-plugin-node-builtins';
+import image from '@rollup/plugin-image';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -49,6 +50,7 @@ export default {
 			commonjs({}),
 			typescript({ sourceMap: dev }),
 			builtins(),
+			image(),
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -104,6 +106,7 @@ export default {
 			commonjs({}),
 			typescript({ sourceMap: dev }),
 			builtins(),
+			image(),
 		],
 		external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 

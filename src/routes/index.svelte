@@ -9,10 +9,12 @@
 </script>
 
 <script lang="ts">
-	import nglot2010 from "../../static/images/2010-08-04__1200.jpg";
-	import nglotKostroma from "../../static/images/2010-08-14__1200.jpg";
-	import nglotPaseka from "../../static/images/2014-09-23__1200.jpg";
-	import sun from "../../static/images/sun.jpg";
+	import nglot2010 from "../../static/images/2010-08-04__820.jpg";
+	import nglot2010Webp from "../../static/images/2010-08-04__820.webp";
+	import nglotKostroma from "../../static/images/2010-08-14__820.jpg";
+	import nglotKostromaWebp from "../../static/images/2010-08-14__820.webp";
+	import nglotPaseka from "../../static/images/2014-09-23__820.jpg";
+	import nglotPasekaWebp from "../../static/images/2014-09-23__820.webp";
 </script>
 
 <svelte:head>
@@ -44,17 +46,26 @@
 	<div class="about">
 		<div class="col__second">
 			<figure>
-				<img alt="2010 год" src={nglot2010} />
+				<picture>
+					<source type="image/jpg" srcset="{nglot2010Webp}"/>
+					<img alt="2010 год" src={nglot2010} />
+				</picture>
 				<figcaption>2010</figcaption>
 			</figure>
 
 			<figure>
-				<img alt="В Костроме" src={nglotKostroma} />
+				<picture>
+					<source type="image/webp" srcset="{nglotKostromaWebp}">
+					<img alt="В Костроме" src={nglotKostroma} />
+				</picture>
 				<figcaption>в Костроме</figcaption>
 			</figure>
 
 			<figure>
-				<img alt="деревня Зады. На пасеке" src={nglotPaseka} />
+				<picture>
+					<source type="image/webp" srcset="{nglotPasekaWebp}">
+					<img alt="деревня Зады. На пасеке" src={nglotPaseka} />
+				</picture>
 				<figcaption>деревня Зады. На пасеке</figcaption>
 			</figure>
 		</div>
@@ -129,10 +140,10 @@
 	</div>
 
 	<section class="blurb" style="margin: 3em 0;">
-		<div class="box" style="
-		background: var(--prime); 
-		grid-area: one; 
-		
+		<div class="box" 
+		style="
+			background: var(--prime); 
+			grid-area: one; 
 		">
 			<a href="/book/reader/Возвращение-к-Sолнцу"
 				><h2>Возвращение к Sолнцу</h2>
