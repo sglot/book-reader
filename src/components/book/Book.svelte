@@ -27,11 +27,16 @@
 		// don't update `active_section` for headings above level 4, see _sections.js
 		const anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
 		const secBookmarks = container.querySelectorAll('small span');
+		const endings = container.querySelectorAll('div.ending-composition');
 		// console.log(secBookmarks);
 		[].map.call(secBookmarks, bm => {
 			if (bookmarks.hasBookmark(bookmarkCurrentPack, bm.getAttribute('bookmark-slug'))) {
 				bm.classList.add('active');
 			}
+		})
+
+		let temp = [].map.call(endings, ending => {
+			setEndingToCenter(ending);
 		})
 
 		let positions;
@@ -78,6 +83,17 @@
 		};
 	});
 
+    function setEndingToCenter(ending: HTMLElement) {
+        let composition = ending.parentElement;
+		let maxLen = 0;
+		composition.childNodes.forEach( (el, i, arr) => {
+			// избегаем аннотаций и подписей, выбираем середину
+			if (el.textContent.length > maxLen && (i <arr.length - 3 && i > 5)) {
+				maxLen = el.textContent.length;
+			}
+		});
+        ending.style.paddingLeft = maxLen / 2 - ending.textContent.length -2  + "rem";
+    }
 </script>
 
 <style>
@@ -315,6 +331,7 @@
 		text-align: right;
 		margin-bottom: 2em auto;
 		font-style: italic;
+		width: var(--secwidth);
 	}
 
 	small {

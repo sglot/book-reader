@@ -102,10 +102,13 @@ export class FormatFileSystemBookRepository extends FileSystemBookRepository {
     formatData(data: string, format: string) {
         data = data.replace(/\r?\n|\r/g, "<br>");
         data = data.replace(/\s,\s/g, ", ");
+        data = data.replace(/--/g, "– ");
+        data = data.replace(/-\s/g, "-");
+        data = data.replace(/<br>-/g, "<br>- ");
         data = data.replace(/\s{2,}/g, " ");
-        data = data.replace(/--/g, "–");
         data = data.replace(/\s\?/g, "?");
         data = data.replace(/\s\!/g, "!");
+      
 
         return data;
     }
