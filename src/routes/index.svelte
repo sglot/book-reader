@@ -19,6 +19,16 @@
 
 <svelte:head>
 	<title>Николай Глот</title>
+	<meta 
+		name="keywords" 
+		content="Николай Глот стихи поэзия автор Судиславль Кострома Зады Москва Ошурки 
+				возвращение к солнцу фото Травкин статья">
+	<meta 
+		name="description" 
+		content="Николай Глот автор сборников стихотворений «Возвращение к Sолнцу», «Поклонение Роду». 
+				Родом из деревни Ошурки.
+				Издавался в Судиславле, Костроме, Москве">
+
 </svelte:head>
 
 <div class="content listify books">
@@ -254,11 +264,11 @@
 	}
 
 	img:hover {
-		-webkit-filter: grayscale(0) saturate(2);
-		-moz-filter: grayscale(0) saturate(2);
-		-ms-filter: grayscale(0) saturate(2);
-		-o-filter: grayscale(0) saturate(2);
-		filter: grayscale(0) saturate(2);
+		-webkit-filter: grayscale(0) saturate(1.5);
+		-moz-filter: grayscale(0) saturate(1.5);
+		-ms-filter: grayscale(0) saturate(1.5);
+		-o-filter: grayscale(0) saturate(1.5);
+		filter: grayscale(0) saturate(1.5);
 
 		transition: all var(--trin) ease-in-out;
 	}
@@ -277,7 +287,7 @@
 
 		--bigtext: 2em;
 		--gray: grayscale(100%) saturate(1);
-		--saturate: saturate(2);
+		--saturate: saturate(1.5);
 
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 1em;

@@ -1,19 +1,13 @@
 import { BookRepositoryBase } from "./BookRepositoryBase";
-import { bookList } from "../../books/bookList";
+import { bookList } from "../../../books/bookList";
 import fs from 'fs';
 import path from 'path';
-import fse from 'fs-extra';
-const mode = process.env.NODE_ENV || 'production';
-const dev = mode === 'development';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
     protected readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
-    // private readonly PATH_PROD = this.ROOT + "/src/bookshelf/books/data/prod/";
     protected readonly PATH = this.ROOT + "/src/bookshelf/books/data/finished/";
-    // private readonly PATH = dev ? this.PATH_DEV : this.PATH_PROD;
     
     getBookList() {
-        // console.log("env====="+process.env.NODE_ENV);
         return bookList;
     }
 

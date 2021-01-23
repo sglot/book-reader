@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { BookmarkRepositoryBase } from "../../../bookshelf/hands/repository/BookmarkRepositoryBase";
-	import LocalStorageBookmarkRepository from "../../../bookshelf/hands/repository/LocalStorageBookmarkRepository";
+	import { BookmarkRepositoryBase } from "../../../bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
+	import LocalStorageBookmarkRepository from "../../../bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository";
 	
 	let bookmarks = new LocalStorageBookmarkRepository();
 	let storage: bookmarkStoreGlobal = null;

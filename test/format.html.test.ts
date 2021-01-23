@@ -1,4 +1,4 @@
-import { FormatFileSystemBookRepository } from "../src/bookshelf/hands/repository/FormatFileSystemBookRepository";
+import { FormatFileSystemBookRepository } from "../src/bookshelf/hands/format/repository/FormatFileSystemBookRepository";
 var assert = require('assert');
 
 describe('format.html', () => {

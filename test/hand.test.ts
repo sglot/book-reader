@@ -1,7 +1,7 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
-import Hand from "../src/bookshelf/hands/hand";
-import { BookmarkRepositoryBase } from "../src/bookshelf/hands/repository/BookmarkRepositoryBase";
-import { BookRepositoryBase } from "../src/bookshelf/hands/repository/BookRepositoryBase";
+import Hand from "../src/bookshelf/hands/book/bookHand";
+import { BookmarkRepositoryBase } from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
+import { BookRepositoryBase } from "../src/bookshelf/hands/book/repository/BookRepositoryBase";
 var assert = require('assert');
 
 describe('Hand', () => {

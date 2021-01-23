@@ -13,7 +13,6 @@
 	import Nav from "../components/Nav.svelte";
 	import NavItem from "../components/NavItem.svelte";
 	import Icons from "../components/Icons.svelte";
-	import Icon from "../components/Icon.svelte";
 	import { afterUpdate, onMount } from "svelte";
 
 	export let segment;
@@ -37,7 +36,6 @@
 <Nav {segment} {page} >
 	<NavItem segment="/books">Книги</NavItem>
 	<NavItem segment="/books/bookmarks">Закладки</NavItem>
-	<NavItem segment="/about">Об авторе</NavItem>
 
 	{#each bookList as book}
 		<NavItem segment="/books/reader/{book.slug}">«{book.title}»</NavItem>
@@ -71,19 +69,7 @@
 </footer>
 
 <style>
-	/* main {
-		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
-		padding-top: calc(var(--nav-h));
-		margin: 0 auto;
-		box-sizing: border-box;
-		min-height: 82vh;
-	}  */
-
 	footer {
-		/* background: linear-gradient(90deg, rgb(255, 252, 252), rgb(222 204 204 / 95%), rgb(255 241 241 / 95%)); */
 		display: flex;
 		justify-content: space-around;
 		align-items: center;

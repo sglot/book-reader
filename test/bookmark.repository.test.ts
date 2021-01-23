@@ -1,6 +1,6 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
-import { BookmarkRepositoryBase } from "../src/bookshelf/hands/repository/BookmarkRepositoryBase";
-import LocalStorageBookmarkRepository from "../src/bookshelf/hands/repository/LocalStorageBookmarkRepository";
+import { BookmarkRepositoryBase } from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
+import LocalStorageBookmarkRepository from "../src/bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository";
 var assert = require('assert');
 
 describe('Bookmark repository', () => {

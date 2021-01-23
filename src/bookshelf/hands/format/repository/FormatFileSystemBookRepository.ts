@@ -1,9 +1,9 @@
-import { BookRepositoryBase } from "./BookRepositoryBase";
-import { bookList } from "../../books/bookList";
+import { BookRepositoryBase } from "../../book/repository/BookRepositoryBase";
+import { bookList } from "../../../books/bookList";
 import fs from 'fs';
 import path from 'path';
 import fse from 'fs-extra';
-import { FileSystemBookRepository } from "./FileSystemBookRepository";
+import { FileSystemBookRepository } from "../../book/repository/FileSystemBookRepository";
 const mode = process.env.NODE_ENV || 'production';
 const dev = mode === 'development';
 
@@ -101,11 +101,19 @@ export class FormatFileSystemBookRepository extends FileSystemBookRepository {
 
     formatData(data: string, format: string) {
         data = data.replace(/\r?\n|\r/g, "<br>");
+        
         data = data.replace(/\s,\s/g, ", ");
+        
+        data = data.replace(/«\s/g, "«");
+        data = data.replace(/\s»/g, "»");
+        data = data.replace(/\s\.\.\./g, "...");
+
         data = data.replace(/--/g, "– ");
         data = data.replace(/-\s/g, "-");
         data = data.replace(/<br>-/g, "<br>- ");
+
         data = data.replace(/\s{2,}/g, " ");
+        
         data = data.replace(/\s\?/g, "?");
         data = data.replace(/\s\!/g, "!");
       

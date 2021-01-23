@@ -30,8 +30,5 @@ export abstract class BookmarkRepositoryBase {
     public static readonly nullBookmarkStoreGlobal: bookmarkStoreGlobal = [
         BookmarkRepositoryBase.nullBookmarkStoreBook
     ];
-
-
-
-
+    
 }

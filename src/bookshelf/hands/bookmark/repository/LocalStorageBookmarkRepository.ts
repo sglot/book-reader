@@ -1,5 +1,5 @@
 import { BookmarkRepositoryBase } from "./BookmarkRepositoryBase";
-import { bookList } from "../../books/bookList";
+import { bookList } from "../../../books/bookList";
 
 export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBase {
     private readonly STORAGE_KEY = "BookmarkStorage";

@@ -1,7 +1,7 @@
-import { BookmarkRepositoryBase } from "./repository/BookmarkRepositoryBase";
+import  { BookmarkRepositoryBase } from "../bookmark/repository/BookmarkRepositoryBase";
 import type { BookRepositoryBase } from "./repository/BookRepositoryBase";
 
-export default class Hand {
+export default class BookHand {
     constructor(
         private books: BookRepositoryBase,
         private bookmarks: BookmarkRepositoryBase

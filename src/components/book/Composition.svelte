@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type LocalStorageBookmarkRepository from '../../bookshelf/hands/repository/LocalStorageBookmarkRepository';
+    import type LocalStorageBookmarkRepository from '../../bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository';
     import Icon from '../Icon.svelte';
 
 	export let dir = 'docs';

@@ -1,5 +1,5 @@
 import { FormatBase } from "./FormatBase";
-import type { FormatFileSystemBookRepository } from "../repository/FormatFileSystemBookRepository";
+import type { FormatFileSystemBookRepository } from "./repository/FormatFileSystemBookRepository";
 import fs from 'fs';
 import fse from 'fs-extra';
 import path from 'path';

@@ -1,9 +1,9 @@
 import { FormatFileSystem } from "./format/FormatFileSystem";
-import Hand from "./hand";
-import { FileSystemBookRepository } from "./repository/FileSystemBookRepository";
-import { FormatFileSystemBookRepository } from "./repository/FormatFileSystemBookRepository";
-import LocalStorageBookmarkRepository from "./repository/LocalStorageBookmarkRepository";
-import { TestLocalStorageBookmarkRepository } from "./repository/TestLocalStorageBookmarkRepository";
+import Hand from "./book/bookHand";
+import { FileSystemBookRepository } from "./book/repository/FileSystemBookRepository";
+import { FormatFileSystemBookRepository } from "./format/repository/FormatFileSystemBookRepository";
+import LocalStorageBookmarkRepository from "./bookmark/repository/LocalStorageBookmarkRepository";
+import { TestLocalStorageBookmarkRepository } from "./test/repository/TestLocalStorageBookmarkRepository";
 
 export class Configurator {
     // private config;

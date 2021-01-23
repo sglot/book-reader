@@ -3,7 +3,7 @@
 	import TableOfContents from './TableOfContents.svelte'; // TODO rename
 	import Composition from './Composition.svelte'; // TODO rename
 	import Icon from '../Icon.svelte';
-	import LocalStorageBookmarkRepository from '../../bookshelf/hands/repository/LocalStorageBookmarkRepository';
+	import LocalStorageBookmarkRepository from '../../bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository';
 	// import { getFragment } from '../utils/navigation';
 	// export let owner = 'sveltejs';
 	// export let project = 'svelte';
@@ -92,7 +92,7 @@
 				maxLen = el.textContent.length;
 			}
 		});
-        ending.style.paddingLeft = maxLen / 2 - ending.textContent.length -2  + "rem";
+        ending.style.paddingLeft = maxLen / 2 - ending.textContent.length - 2  + "rem";
     }
 </script>
 
