@@ -4,6 +4,8 @@
 	import Composition from './Composition.svelte'; // TODO rename
 	import Icon from '../Icon.svelte';
 	import LocalStorageBookmarkRepository from '../../bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository';
+	import BookmarkHand from '../../bookshelf/hands/bookmark/bookmarkHand';
+import type { BookmarkRepositoryBase } from '../../bookshelf/hands/bookmark/repository/BookmarkRepositoryBase';
 	// import { getFragment } from '../utils/navigation';
 	// export let owner = 'sveltejs';
 	// export let project = 'svelte';
@@ -15,7 +17,7 @@
 	let container;
 	let aside;
 	let show_contents = false;
-	let bookmarks = new LocalStorageBookmarkRepository;
+	let bookmarks = new LocalStorageBookmarkRepository as BookmarkRepositoryBase;
 	let bookmarkCurrentPack;
 
 	export const getFragment = () => window.location.hash.slice(1);

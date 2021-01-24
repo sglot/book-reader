@@ -1,10 +1,10 @@
 	import { Configurator } from '../../../bookshelf/hands/configurator';
 
 	let configurator = new Configurator();
-	let hand = configurator.getHand();
+	let bookmarkHand = configurator.getBookmarkHand();
 
 export function get(req, res, next) {
-	let bookmarks = hand.getBookmarkStorage();
+	let bookmarks = bookmarkHand.getBookmarkStorage();
 	console.log(bookmarks);
 	if (bookmarks) {
 		res.writeHead(200, {

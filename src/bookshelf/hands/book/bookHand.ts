@@ -1,10 +1,8 @@
-import  { BookmarkRepositoryBase } from "../bookmark/repository/BookmarkRepositoryBase";
 import type { BookRepositoryBase } from "./repository/BookRepositoryBase";
 
 export default class BookHand {
     constructor(
-        private books: BookRepositoryBase,
-        private bookmarks: BookmarkRepositoryBase
+        private books: BookRepositoryBase
     ) {
 
     }
@@ -23,26 +21,5 @@ export default class BookHand {
 
     getBookList() {
         return this.books.getBookList();
-    }
-
-    getAllBookmarks() {
-        return BookmarkRepositoryBase.nullBookmarkStoreGlobal;
-    }
-
-    getBookmarkStorage() {
-        return this.bookmarks.getBookmarkStorage();
-    }
-
-    addBookmark(book: bookmarkStoreBook['slug'], slug: bookmark['slug'], link: string, title: string) {
-        let bookmark = {
-            "slug": slug,
-            "title": title,
-            "link": link
-        };
-        this.bookmarks.addBookmark(this.bookmarks.getBookmarksGlobalStorage(), book, bookmark);
-    }
-
-    deleteBookmark(book: bookmarkStoreBook['slug'], bookmark: bookmark['slug']) {
-
     }
 }

@@ -1,4 +1,11 @@
 export abstract class BookmarkRepositoryBase {
+
+    abstract getPackByBookSlug(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug']): bookmark[];
+    abstract hasBookmark(pack: bookmark[] | bookmarkStoreBook[], slug: string): boolean;
+    abstract toggleBookmark(event: MouseEvent & {
+        currentTarget: EventTarget & HTMLSpanElement;
+    }): void;
+
     abstract getBookmarksGlobalStorage(): bookmarkStoreGlobal;
     abstract getBookmarkStorage(): bookmarkStoreGlobal;
 

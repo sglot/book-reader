@@ -6,38 +6,39 @@ var assert = require('assert');
 
 describe('Hand', () => {
     let configurator = new Configurator();
-    let hand = configurator.getHand();
+    let bookHand = configurator.getHand();
+    let bookmarkHand = configurator.getBookmarkHand();
     const TEST_BOOK_SLUG = "Отладочный-сборник";
 
     it('Get test book', () => {
-        let SUT = hand.getBook(TEST_BOOK_SLUG);
+        let SUT = bookHand.getBook(TEST_BOOK_SLUG);
 
         assert.equal(true, typeof SUT === 'object');
     });
 
     it('Get unexist book', () => {
-        let SUT = hand.getBook('unexist_book');
+        let SUT = bookHand.getBook('unexist_book');
 
         assert.equal(true, typeof SUT === 'object');
         assert.equal(BookRepositoryBase.nullBook, SUT);
     });
 
     it('Get test book by id', () => {
-        let SUT = hand.getBookById(2);
+        let SUT = bookHand.getBookById(2);
 
         assert.equal(true, typeof SUT === 'object');
         assert.equal(2, SUT.id);
     });
 
     it('Get list of books', () => {
-        let SUT = hand.getBookList();
+        let SUT = bookHand.getBookList();
 
         assert.equal(true, typeof SUT === 'object');
         assert.equal(true, typeof SUT === 'object');
     });
 
     it('Get all bookmarks storage GLOBAL. Types', () => {
-        let SUT = hand.getAllBookmarks();
+        let SUT = bookmarkHand.getAllBookmarks();
 
         // console.log(SUT);
         assert.equal('object', typeof SUT);
@@ -48,7 +49,7 @@ describe('Hand', () => {
     });
 
     it('Get empty STORAGE. Null object', () => {
-        let SUT = hand.getAllBookmarks();
+        let SUT = bookmarkHand.getAllBookmarks();
 
         // console.log(SUT);
         assert.equal(JSON.stringify(BookmarkRepositoryBase.nullBookmarkStoreGlobal), JSON.stringify(SUT));

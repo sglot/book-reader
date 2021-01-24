@@ -3,19 +3,19 @@ var assert = require('assert');
 
 describe('format.html', () => {
     let configurator = new Configurator();
-    let hand = configurator.getHand();
-    let format = configurator.getFormat();
+    let bookHand = configurator.getHand();
+    let formatHand = configurator.getFormat();
 
     it('Format all data from original directory and save to finished', () => {
 
-        let bookList = hand.getBookList();
+        let bookList = bookHand.getBookList();
         let lengthbookList = bookList.length;
         let indexBook = 0;
 
         for (indexBook; indexBook < bookList.length;) {
 
             let bookData = bookList[indexBook];
-            let formattedbook = format.formatBook(bookData.id);
+            let formattedbook = formatHand.formatBook(bookData.id);
             console.log(formattedbook);
             indexBook++;
         }

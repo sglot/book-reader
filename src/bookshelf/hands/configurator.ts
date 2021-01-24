@@ -1,9 +1,10 @@
 import { FormatFileSystem } from "./format/FormatFileSystem";
-import Hand from "./book/bookHand";
+import BookHand from "./book/bookHand";
 import { FileSystemBookRepository } from "./book/repository/FileSystemBookRepository";
 import { FormatFileSystemBookRepository } from "./format/repository/FormatFileSystemBookRepository";
 import LocalStorageBookmarkRepository from "./bookmark/repository/LocalStorageBookmarkRepository";
 import { TestLocalStorageBookmarkRepository } from "./test/repository/TestLocalStorageBookmarkRepository";
+import BookmarkHand from "./bookmark/bookmarkHand";
 
 export class Configurator {
     // private config;
@@ -13,16 +14,15 @@ export class Configurator {
     // }
 
     getHand() {
-        return new Hand(
-            this.getBookRepository(),
-            this.getBookmarkRepository()
-        );
+        return new BookHand(this.getBookRepository());
     }
-    
+
+    getBookmarkHand() {
+        return new BookmarkHand(this.getBookmarkRepository());
+    }
+
     getFormat() {
-        return new FormatFileSystem(
-            this.getFormatRepository(),
-        );
+        return new FormatFileSystem(this.getFormatRepository());
     }
 
     getBookRepository() {
@@ -40,8 +40,4 @@ export class Configurator {
     getFormatRepository() {
         return new FormatFileSystemBookRepository();
     }
-
-    // getConfig() { 
-    //     return this.config;
-    // }
 }
