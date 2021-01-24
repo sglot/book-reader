@@ -1,5 +1,5 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
-import { BookmarkRepositoryBase } from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
+import BookmarkRepositoryBase from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
 import LocalStorageBookmarkRepository from "../src/bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository";
 var assert = require('assert');
 
@@ -101,4 +101,43 @@ describe('Bookmark repository', () => {
 
         assert.equal(0, SUT);
     });
+
+
+
+    it('Get all bookmarks storage GLOBAL. Types', () => {
+        let SUT = repository.getBookmarkStorage();
+
+        // console.log(SUT);
+        assert.equal('object', typeof SUT);
+        assert.equal('string', typeof SUT[0].slug);
+        assert.equal('object', typeof SUT[0].bookmarks);
+        assert.equal('string', typeof SUT[0].bookmarks[0].slug);
+        assert.equal('string', typeof SUT[0].bookmarks[0].link);
+    });
+
+    it('Get empty STORAGE. Null object', () => {
+        let SUT = repository.getBookmarkStorage();
+
+        // console.log(SUT);
+        assert.equal(JSON.stringify(BookmarkRepositoryBase.nullBookmarkStoreGlobal), JSON.stringify(SUT));
+    });
+
+    // it('Get bookmark storage BOOK. Null object', () => {
+    //     let stubBookmarks = [BookmarkRepositoryBase.nullBookmark];
+    //     let storage = {};
+    //     let bookSlug = ""
+    //     let SUT = hand.getBookmarksForBook(storage, bookSlug);
+
+    //     assert.equal(JSON.stringify(stubBookmarks), JSON.stringify(SUT));
+    // });
+    
+    // it('Add bookmark to storage BOOK', () => {
+    //     let stubBookmarks = [BookmarkRepositoryBase.nullBookmark];
+    //     let storage = {};
+    //     let bookSlug = ""
+    //     let SUT = hand.getBookmarksForBook(storage, bookSlug);
+
+
+    //     assert.equal(JSON.stringify(stubBookmarks), JSON.stringify(SUT));
+    // });
 });

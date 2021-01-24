@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
-    protected readonly ROOT = "C:\\Users\\sglot\\book-reader\\";
+    protected readonly ROOT = "./";
     protected readonly PATH = this.ROOT + "/src/bookshelf/books/data/finished/";
     
     getBookList() {
@@ -27,6 +27,17 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         }
     }
 
+    getSrcById(id: number, list: bookList) {
+        let index, len;
+        for (index = 0, len = list.length; index < len; ++index) {
+            if (list[index].id === id) {
+                return list[index].src;
+            }
+        }
+
+        return "";
+    }
+
     getBookBySlug(slug: string) {
         let list = this.getBookList();
         let bookPath = this.PATH + this.getSrcBySlug(slug, list);
@@ -41,19 +52,6 @@ export class FileSystemBookRepository extends BookRepositoryBase {
 
             return BookRepositoryBase.nullBook;
         }
-        
-        
-    }
-
-    getSrcById(id: number, list: bookList) {
-        let index, len;
-        for (index = 0, len = list.length; index < len; ++index) {
-            if (list[index].id === id) {
-                return list[index].src;
-            }
-        }
-
-        return "";
     }
 
     getSrcBySlug(slug: string, list: bookList) {
@@ -65,6 +63,47 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         }
 
         return "";
+    }
+
+    getSections(book: book) {
+        if (!book.sections || book.sections == [] || book.sections == undefined) {
+            return [BookRepositoryBase.nullSection];
+        }
+
+        let sectionIndex, sectionsLen;
+        for (sectionIndex = 0, sectionsLen = book.sections.length; sectionIndex < sectionsLen; ++sectionIndex) {
+            book.sections[sectionIndex] = this.buildSection(sectionIndex, book);
+        }
+
+        return [...book.sections];
+    }
+
+    buildSection(sectionIndex: number, book: book) {
+        book.sections[sectionIndex].html = this.extractHtmlFromSrc(
+            this.actualizeSrc(
+                book.dir,
+                book.sections[sectionIndex].slug + "/" + book.sections[sectionIndex].slug + ".html"
+            )
+        );
+        
+        book.sections[sectionIndex].compositions = this.getCompositions(book.sections[sectionIndex], book);
+        
+        return book.sections[sectionIndex];
+    }
+
+    getCompositions(section: section, book: book) {
+        if (!section.compositions || section.compositions == [] || section.compositions == undefined) {
+            return [BookRepositoryBase.nullComposition];
+        }
+
+        let index, len;
+        let list = [...section.compositions];
+        let sectionSrc = this.actualizeSrc(book.dir, section.slug + "/" );
+        for (index = 0, len = list.length; index < len; ++index) {
+            list[index] = this.buildComposition(list[index], sectionSrc);
+        }
+
+        return list;
     }
 
     buildComposition(composition: composition, dir: string) {
@@ -92,46 +131,5 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         
         return json;
     }
-
-    getSections(book: book) {
-        if (!book.sections || book.sections == [] || book.sections == undefined) {
-            return [BookRepositoryBase.nullSection];
-        }
-
-        let sectionIndex, sectionsLen;
-        for (sectionIndex = 0, sectionsLen = book.sections.length; sectionIndex < sectionsLen; ++sectionIndex) {
-            book.sections[sectionIndex] = this.buildSection(sectionIndex, book);
-        }
-
-        return [...book.sections];
-    }
-
-    buildSection(sectionIndex: number, book: book) {
-        book.sections[sectionIndex].html = this.extractHtmlFromSrc(
-            this.actualizeSrc(
-                book.dir,
-                book.sections[sectionIndex].slug + "/" + book.sections[sectionIndex].slug + ".html"
-            )
-        );
-        book.sections[sectionIndex].compositions = this.getCompositions(book.sections[sectionIndex], book);
-        return book.sections[sectionIndex];
-    }
-
-    getCompositions(section: section, book: book) {
-        if (!section.compositions || section.compositions == [] || section.compositions == undefined) {
-            return [BookRepositoryBase.nullComposition];
-        }
-
-        let index, len;
-        let list = [...section.compositions];
-        let sectionSrc = this.actualizeSrc(book.dir, section.slug + "/" );
-        for (index = 0, len = list.length; index < len; ++index) {
-            list[index] = this.buildComposition(list[index], sectionSrc);
-        }
-
-        return list;
-    }
-
-    
     
 }

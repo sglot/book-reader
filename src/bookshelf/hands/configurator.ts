@@ -4,7 +4,7 @@ import { FileSystemBookRepository } from "./book/repository/FileSystemBookReposi
 import { FormatFileSystemBookRepository } from "./format/repository/FormatFileSystemBookRepository";
 import LocalStorageBookmarkRepository from "./bookmark/repository/LocalStorageBookmarkRepository";
 import { TestLocalStorageBookmarkRepository } from "./test/repository/TestLocalStorageBookmarkRepository";
-import BookmarkHand from "./bookmark/bookmarkHand";
+import LocalStorageBookmarkHand from "./bookmark/LocalStorageBookmarkHand";
 
 export class Configurator {
     // private config;
@@ -18,7 +18,7 @@ export class Configurator {
     }
 
     getBookmarkHand() {
-        return new BookmarkHand(this.getBookmarkRepository());
+        return new LocalStorageBookmarkHand(this.getBookmarkRepository());
     }
 
     getFormat() {

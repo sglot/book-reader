@@ -1,4 +1,4 @@
-import { BookmarkRepositoryBase } from "../../bookmark/repository/BookmarkRepositoryBase";
+import BookmarkRepositoryBase from "../../bookmark/repository/BookmarkRepositoryBase";
 import LocalStorageBookmarkRepository from "../../bookmark/repository/LocalStorageBookmarkRepository";
 
 export class TestLocalStorageBookmarkRepository extends LocalStorageBookmarkRepository {

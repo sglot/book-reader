@@ -1,10 +1,9 @@
-import { BookmarkRepositoryBase } from "./BookmarkRepositoryBase";
+import BookmarkRepositoryBase from "./BookmarkRepositoryBase";
 import { bookList } from "../../../books/bookList";
 
 export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBase {
     private readonly STORAGE_KEY = "BookmarkStorage";
     
-
     addBookmark(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug'], bookmark: bookmark) {
         let store = this.add(storage, book, bookmark);
         this.save(store);
@@ -33,32 +32,21 @@ export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBa
         return storage;
     }
 
-    getPackByBookSlug(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug']) {
-        let index = this.getPackIndex(storage, book);
-
-        if (index < 0) {
-            return [];
-        }
-
-        return storage[index].bookmarks;
-    }
-
-    hasBookmark(pack: bookmark[] | bookmarkStoreBook[], slug: string) {
-        if (typeof pack !== 'object') {
-            return false;
-        }
-
-        for(var i = pack.length - 1; i >= 0; i--) {
-            if(pack[i].slug === slug) {
-                pack.splice(i, 1);
-                return true;
+    getBookTitleBySlug(slug: bookShortForm['slug']) {
+        let index, len;
+        for (index = 0, len = bookList.length; index < len; ++index) {
+            if (bookList[index].slug === slug) {
+                return bookList[index].title;
             }
         }
-
-        return false;
     }
 
-    
+    save(data) {
+        localStorage.setItem(
+            this.STORAGE_KEY,
+            JSON.stringify(data)
+        );
+    }
 
     deleteBookmark(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug'], bookmark: bookmark['slug']) {
         let store = this.delete(storage, book, bookmark);
@@ -78,12 +66,6 @@ export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBa
         return storage;
     }
 
-    
-
-    getBookmarksGlobalStorage(): bookmarkStoreGlobal {
-        return BookmarkRepositoryBase.nullBookmarkStoreGlobal;
-    }
-
     getBookmarkStorage(): bookmarkStoreGlobal {
         let storage = localStorage.getItem(this.STORAGE_KEY);
 
@@ -93,16 +75,6 @@ export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBa
         
         return BookmarkRepositoryBase.nullBookmarkStoreGlobal;
     }
-
-    save(data) {
-        localStorage.setItem(
-            this.STORAGE_KEY,
-            JSON.stringify(data)
-        );
-    }
-
-
-
 
     getPackIndex(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug']) {
         let index, len;
@@ -125,46 +97,4 @@ export default class LocalStorageBookmarkRepository extends BookmarkRepositoryBa
 
         return -1;
     }
-
-    getBookTitleBySlug(slug: bookShortForm['slug']) {
-        let index, len;
-        for (index = 0, len = bookList.length; index < len; ++index) {
-            if (bookList[index].slug === slug) {
-                return bookList[index].title;
-            }
-        }
-    }
-
-    // for svelte
-    toggleBookmark(event) {
-		let bm = event.currentTarget as HTMLElement
-
-		if (bm.classList.contains('active')) {
-            this.deleteBookmark(
-                this.getBookmarkStorage(), 
-                bm.getAttribute('book-slug'), 
-                bm.getAttribute('bookmark-slug')
-            );
-
-            bm.classList.toggle("active");
-            
-			return;
-		}
-
-        let bookmark = {
-            "slug"  : bm.getAttribute('bookmark-slug'),
-            "title" : bm.getAttribute('bookmark-title'),
-            "link"  : bm.getAttribute('bookmark-link')
-        };
-            
-        this.addBookmark(
-            this.getBookmarkStorage(), 
-            bm.getAttribute('book-slug'), 
-            bookmark
-        );
-
-        bm.classList.toggle("active");
-
-	}
-
 }

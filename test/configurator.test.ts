@@ -1,5 +1,5 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
-import { BookmarkRepositoryBase } from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
+import BookmarkRepositoryBase from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
 import { BookRepositoryBase } from "../src/bookshelf/hands/book/repository/BookRepositoryBase";
 import { FormatFileSystemBookRepository } from "../src/bookshelf/hands/format/repository/FormatFileSystemBookRepository";
 import { FormatBase } from "../src/bookshelf/hands/format/FormatBase";
