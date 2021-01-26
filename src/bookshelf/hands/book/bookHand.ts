@@ -15,7 +15,7 @@ export default class BookHand {
 
     getBook(slug: string) {
         let book = this.books.getBookBySlug(slug);
-        book.sections = this.books.getSections(book);
+        // book.sections = this.books.getSections(book);
         return book;
     }
 

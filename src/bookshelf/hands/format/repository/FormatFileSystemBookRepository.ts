@@ -1,11 +1,9 @@
 import { BookRepositoryBase } from "../../book/repository/BookRepositoryBase";
-import { bookList } from "../../../books/bookList";
 import fs from 'fs';
 import path from 'path';
-import fse from 'fs-extra';
 import { FileSystemBookRepository } from "../../book/repository/FileSystemBookRepository";
-const mode = process.env.NODE_ENV || 'production';
-const dev = mode === 'development';
+import { mkdirp } from "../utils/fs_utils";
+
 
 export class FormatFileSystemBookRepository extends FileSystemBookRepository {
     public readonly PATH_finished = this.ROOT + "/src/bookshelf/books/data/finished/";    
@@ -76,28 +74,24 @@ export class FormatFileSystemBookRepository extends FileSystemBookRepository {
 
     buildComposition(composition: composition, dir: string) {
         let comp = { ...composition };
-        // let src = this.actualizeSrc(dir, comp.src);
         comp.html = this.extractHtmlFromSrc(this.actualizeSrc(dir, comp.src));
         this.writeDataToProdDir(this.formatData(comp.html, ""), dir, comp.src);
+
         return comp;
     }
 
     writeDataToProdDir(data: string = "", dir: string, file: string = "") {
-        // console.log("write data to prod start!!");
-        fs.mkdirSync(path.resolve(this.PATH_finished + dir), { recursive: true });
+        mkdirp(this.PATH_finished + dir);
         
         if (file == "") {
             return;
         }
-        // console.log("outputFile to =" + path.resolve(this.PATH_finished + dir + file));
-        fse.outputFile(path.resolve(this.PATH_finished + dir + file), data, err => {
-            if (err) {
-                console.log("writeSrcToProdDir ERROR = " + err);
-                console.log("path to resolve = '" + this.PATH_finished + dir + "'");
-            }
-        });
-        // console.log("write data to prod finish!!");
+
+        let to = this.PATH_finished + dir + file;
+        fs.writeFileSync(to, data);
     }
+
+    
 
     formatData(data: string, format: string) {
         data = data.replace(/\r?\n|\r/g, "<br>");
@@ -125,17 +119,11 @@ export class FormatFileSystemBookRepository extends FileSystemBookRepository {
         let json = "";
 
         try {
-            // console.log(this.PATH_original);
-            // console.log(src);
             json = fs.readFileSync(path.resolve(this.PATH_original + src), 'utf8');
         } catch (e) {
-            // console.log(e);
+            // ignore
         }
         
         return json;
     }
-
-    
-    
-    
 }

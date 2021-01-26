@@ -12,7 +12,6 @@
 		if (storage === BookmarkRepositoryBase.nullBookmarkStoreGlobal) {
                 storage = [];
         }
-		console.log(storage);
 	});
 </script>
 

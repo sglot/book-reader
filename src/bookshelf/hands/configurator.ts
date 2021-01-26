@@ -5,6 +5,7 @@ import { FormatFileSystemBookRepository } from "./format/repository/FormatFileSy
 import LocalStorageBookmarkRepository from "./bookmark/repository/LocalStorageBookmarkRepository";
 import { TestLocalStorageBookmarkRepository } from "./test/repository/TestLocalStorageBookmarkRepository";
 import LocalStorageBookmarkHand from "./bookmark/LocalStorageBookmarkHand";
+import { ExportBookRepository } from "./format/repository/ExportBookRepository";
 
 export class Configurator {
     // private config;
@@ -25,6 +26,10 @@ export class Configurator {
         return new FormatFileSystem(this.getFormatRepository());
     }
 
+    getExport() {
+        return new FormatFileSystem(this.getExportRepository());
+    }
+
     getBookRepository() {
         return new FileSystemBookRepository();
     }
@@ -39,5 +44,9 @@ export class Configurator {
 
     getFormatRepository() {
         return new FormatFileSystemBookRepository();
+    }
+
+    getExportRepository() {
+        return new ExportBookRepository();
     }
 }

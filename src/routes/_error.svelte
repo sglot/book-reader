@@ -6,24 +6,23 @@
 </script>
 
 <style>
-	h1, p {
-		margin: 0 auto;
+	.content {
+		width: 100%;
+		margin: 0;
+		padding: var(--top-offset) var(--side-nav);
+		tab-size: 2;
+		-moz-tab-size: 2;
 	}
 
-	h1 {
-		font-size: 2.8em;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
+	.content h2 {
+		margin-top: 8rem;
+		padding: 2rem 1.6rem 4rem 0.2rem;
+		border-top: var(--border-w) solid #6767785b; /* based on --second */
+		color: var(--text);
+		line-height: 1;
+		font-size: var(--h3);
+		letter-spacing: .05em;
+		text-transform: uppercase;
 	}
 </style>
 
@@ -31,10 +30,15 @@
 	<title>{status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<div class="content listify books">
 
-<p>{error.message}</p>
+	<h2>{status}</h2>
 
-{#if dev && error.stack}
-	<pre>{error.stack}</pre>
-{/if}
+	<p>{error.message}</p>
+
+	{#if dev && error.stack}
+		<pre>{error.stack}</pre>
+	{/if}
+
+</div>
+

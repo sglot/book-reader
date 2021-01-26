@@ -5,7 +5,7 @@ import path from 'path';
 
 export class FileSystemBookRepository extends BookRepositoryBase {
     protected readonly ROOT = "./";
-    protected readonly PATH = this.ROOT + "/src/bookshelf/books/data/finished/";
+    protected readonly PATH = this.ROOT + "src/bookshelf/books/data/finished/";
     
     getBookList() {
         return bookList;
@@ -15,8 +15,8 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let list = this.getBookList();
         let bookPath = this.PATH + this.getSrcById(id, list);
         
-        // console.log("(m) getBookById: " + bookPath);
         try {
+            
             let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
 
             return JSON.parse(json) as book;
@@ -41,12 +41,12 @@ export class FileSystemBookRepository extends BookRepositoryBase {
     getBookBySlug(slug: string) {
         let list = this.getBookList();
         let bookPath = this.PATH + this.getSrcBySlug(slug, list);
-        
-        // console.log(bookPath);
-        try {
-            let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
 
+        try {          
+            let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
+            
             return JSON.parse(json) as book;
+
         } catch (e) {
             console.log(e);
 

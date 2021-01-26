@@ -155,7 +155,7 @@
 			background: var(--prime); 
 			grid-area: one; 
 		">
-			<a href="/book/reader/Возвращение-к-Sолнцу"
+			<a rel="prefetch" href="books/reader/Возвращение-к-Sолнцу"
 				><h2>Возвращение к Sолнцу</h2>
 				<p>
 					Первый сборник изданный в 2012 году. Самый маленький из
@@ -167,7 +167,7 @@
 		</div>
 
 		<div class="box" style="background: var(--flash); grid-area: two;">
-			<a href="/book/reader/Возвращение-к-Sолнцу"
+			<a rel="prefetch" href="books/reader/Возвращение-к-Sолнцу"
 				><h2>Отладочный сборник</h2>
 				<p>
 					Отладочный c
