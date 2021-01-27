@@ -1,6 +1,6 @@
-import { FormatFileSystemBookRepository } from "./FormatFileSystemBookRepository";
+import FormatFileSystemBookBuilder from "./FormatFileSystemBookBuilder";
 
-export class ExportBookRepository extends FormatFileSystemBookRepository {
+export default class ExportBookBuilder extends FormatFileSystemBookBuilder {
 
     buildSection(sectionIndex: number, book: book) {
         let section = book.sections[sectionIndex];

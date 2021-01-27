@@ -1,25 +1,27 @@
-import type { BookRepositoryBase } from "./repository/BookRepositoryBase";
+import type BookBuilderBase from "./builder/BookBuilderBase";
+import type BookRepositoryBase from "./repository/BookRepositoryBase";
 
 export default class BookHand {
     constructor(
-        private books: BookRepositoryBase
+        private repository: BookRepositoryBase,
+        private builder: BookBuilderBase
     ) {
 
     }
     
     getBookById(id: number) {
-        let book = this.books.getBookById(id);
-        book.sections = this.books.getSections(book);
+        let book = this.repository.getBookById(id);
+        book.sections = this.builder.getSections(book);
         return book;
     }
 
     getBook(slug: string) {
-        let book = this.books.getBookBySlug(slug);
-        // book.sections = this.books.getSections(book);
+        let book = this.repository.getBookBySlug(slug);
+        book.sections = this.builder.getSections(book);
         return book;
     }
 
     getBookList() {
-        return this.books.getBookList();
+        return this.repository.getBookList();
     }
 }

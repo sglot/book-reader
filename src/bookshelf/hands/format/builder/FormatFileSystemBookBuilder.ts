@@ -1,11 +1,11 @@
-import { BookRepositoryBase } from "../../book/repository/BookRepositoryBase";
+import BookRepositoryBase from "../../book/repository/BookRepositoryBase";
 import fs from 'fs';
 import path from 'path';
-import { FileSystemBookRepository } from "../../book/repository/FileSystemBookRepository";
 import { mkdirp } from "../utils/fs_utils";
+import { FileSystemBookBuilder } from "../../book/builder/FileSystemBookBuilder";
 
 
-export class FormatFileSystemBookRepository extends FileSystemBookRepository {
+export default class FormatFileSystemBookBuilder extends FileSystemBookBuilder {
     public readonly PATH_finished = this.ROOT + "/src/bookshelf/books/data/finished/";    
     public readonly PATH_original = this.ROOT + "/src/bookshelf/books/data/original/"; 
     protected readonly PATH = this.ROOT + "/src/bookshelf/books/data/original/"; 

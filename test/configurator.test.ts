@@ -1,8 +1,8 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
 import BookmarkRepositoryBase from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
-import { BookRepositoryBase } from "../src/bookshelf/hands/book/repository/BookRepositoryBase";
-import { FormatFileSystemBookRepository } from "../src/bookshelf/hands/format/repository/FormatFileSystemBookRepository";
+import BookRepositoryBase from "../src/bookshelf/hands/book/repository/BookRepositoryBase";
 import { FormatBase } from "../src/bookshelf/hands/format/FormatBase";
+import FormatFileSystemBookBuilder from "../src/bookshelf/hands/format/builder/FormatFileSystemBookBuilder";
 var assert = require('assert');
 
 describe('Configurator', () => {
@@ -20,11 +20,10 @@ describe('Configurator', () => {
         assert.equal(true, SUT instanceof BookmarkRepositoryBase);
     });
 
-    it('Get format repository', () => {
-        let SUT = configurator.getFormatRepository();
+    it('Get format Builder', () => {
+        let SUT = configurator.getFormatBuilder();
 
-        assert.equal(true, SUT instanceof BookRepositoryBase);
-        assert.equal(true, SUT instanceof FormatFileSystemBookRepository);
+        assert.equal(true, SUT instanceof FormatFileSystemBookBuilder);
     });
 
     it('Get Format', () => {
