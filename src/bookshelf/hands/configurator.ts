@@ -3,10 +3,11 @@ import BookHand from "./book/bookHand";
 import { FileSystemBookRepository } from "./book/repository/FileSystemBookRepository";
 import FormatFileSystemBookBuilder from "./format/builder/FormatFileSystemBookBuilder";
 import LocalStorageBookmarkRepository from "./bookmark/repository/LocalStorageBookmarkRepository";
-import { TestLocalStorageBookmarkRepository } from "./test/repository/TestLocalStorageBookmarkRepository";
+import TestLocalStorageBookmarkRepository from "./test/bookmark/repository/LSBookmarkRepositoryTest";
 import LocalStorageBookmarkHand from "./bookmark/LocalStorageBookmarkHand";
 import ExportBookBuilder from "./format/builder/ExportBookBuilder";
 import { FileSystemBookBuilder } from "./book/builder/FileSystemBookBuilder";
+import { FormatFileSystemBookRepository } from "./format/repository/FormatFileSystemBookRepository";
 
 export class Configurator {
     // private config;
@@ -16,7 +17,7 @@ export class Configurator {
     // }
 
     getHand() {
-        return new BookHand(this.getBookRepository(), this.getBookBuilder());
+        return new BookHand(this.getBookRepository());
     }
 
     getBookRepository() {
@@ -35,7 +36,7 @@ export class Configurator {
 
 
     getFormat() {
-        return new FormatFileSystem(this.getBookRepository(), this.getFormatBuilder());
+        return new FormatFileSystem(new FormatFileSystemBookRepository(), this.getFormatBuilder());
     }
 
     getFormatBuilder() {
@@ -45,7 +46,7 @@ export class Configurator {
     
     ////////
     getExport() {
-        return new FormatFileSystem(this.getBookRepository(), this.getExportBuilder());
+        return new FormatFileSystem(new FormatFileSystemBookRepository(), this.getExportBuilder());
     }
 
     getExportBuilder() {

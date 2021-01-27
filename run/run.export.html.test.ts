@@ -15,8 +15,9 @@ describe('export.book.json', () => {
         for (indexBook; indexBook < bookList.length;) {
 
             let bookData = bookList[indexBook];
-            let formattedbook = formatHand.formatBook(bookData.id);
-            console.log(formattedbook);
+            let exportedBook = formatHand.exportBook(bookData.id);
+            console.log(exportedBook);
+            
             indexBook++;
         }
 

@@ -1,10 +1,9 @@
-import { Configurator } from "../src/bookshelf/hands/configurator";
 import BookRepositoryBase from "../src/bookshelf/hands/book/repository/BookRepositoryBase";
+import BookHandTest from "../src/bookshelf/hands/test/book/BookHandTest";
 var assert = require('assert');
 
 describe('Hand', () => {
-    let configurator = new Configurator();
-    let bookHand = configurator.getHand();
+    let bookHand = BookHandTest.getHand();
     const TEST_BOOK_SLUG = "Отладочный-сборник";
 
     it('Get test book', () => {

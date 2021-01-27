@@ -1,7 +1,7 @@
-import { Configurator } from '../../../bookshelf/hands/configurator';
+import BookmarkHandBase from "../../../bookshelf/hands/bookmark/bookmarkHandBase";
+import LocalStorageBookmarkHand from "../../../bookshelf/hands/bookmark/LocalStorageBookmarkHand";
 
-let configurator = new Configurator();
-let bookmarkHand = configurator.getBookmarkHand();
+let bookmarkHand = LocalStorageBookmarkHand.getHand();
 
 export function get(req, res, next) {
 	let bookmarks = bookmarkHand.getBookmarkStorage();

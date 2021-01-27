@@ -1,5 +1,6 @@
 import BookmarkHandBase from "./bookmarkHandBase";
 import type BookmarkRepositoryBase from "./repository/BookmarkRepositoryBase";
+import LocalStorageBookmarkRepository from "./repository/LocalStorageBookmarkRepository";
 
 export default class LocalStorageBookmarkHand extends BookmarkHandBase {
 
@@ -9,6 +10,10 @@ export default class LocalStorageBookmarkHand extends BookmarkHandBase {
         super();
     }
 
+    static getHand() {
+        return new LocalStorageBookmarkHand(new LocalStorageBookmarkRepository());
+    }
+    
     getPackByBookSlug(storage: bookmarkStoreGlobal, book: bookmarkStoreBook['slug']) {
         let index = this.bookmarks.getPackIndex(storage, book);
 

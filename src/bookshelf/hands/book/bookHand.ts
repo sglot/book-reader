@@ -1,24 +1,23 @@
-import type BookBuilderBase from "./builder/BookBuilderBase";
 import type BookRepositoryBase from "./repository/BookRepositoryBase";
+import { FileSystemBookRepository } from "./repository/FileSystemBookRepository";
 
 export default class BookHand {
     constructor(
-        private repository: BookRepositoryBase,
-        private builder: BookBuilderBase
+        protected repository: BookRepositoryBase
     ) {
 
     }
     
+    static getHand() {
+        return new BookHand(new FileSystemBookRepository());
+    }
+    
     getBookById(id: number) {
-        let book = this.repository.getBookById(id);
-        book.sections = this.builder.getSections(book);
-        return book;
+        return this.repository.getBookById(id);
     }
 
     getBook(slug: string) {
-        let book = this.repository.getBookBySlug(slug);
-        book.sections = this.builder.getSections(book);
-        return book;
+        return this.repository.getBookBySlug(slug);
     }
 
     getBookList() {

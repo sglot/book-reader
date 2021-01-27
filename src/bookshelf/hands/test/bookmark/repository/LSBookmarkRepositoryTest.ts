@@ -1,7 +1,7 @@
-import BookmarkRepositoryBase from "../../bookmark/repository/BookmarkRepositoryBase";
-import LocalStorageBookmarkRepository from "../../bookmark/repository/LocalStorageBookmarkRepository";
+import BookmarkRepositoryBase from "../../../bookmark/repository/BookmarkRepositoryBase";
+import LocalStorageBookmarkRepository from "../../../bookmark/repository/LocalStorageBookmarkRepository";
 
-export class TestLocalStorageBookmarkRepository extends LocalStorageBookmarkRepository {
+export default class LSBookmarkRepositoryTest extends LocalStorageBookmarkRepository {
 
     getBookmarksGlobalStorage(): bookmarkStoreGlobal {
         return BookmarkRepositoryBase.nullBookmarkStoreGlobal;

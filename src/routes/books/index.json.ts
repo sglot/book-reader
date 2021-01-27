@@ -1,13 +1,23 @@
-import { Configurator } from '../../bookshelf/hands/configurator';
+import BookHand from '../../bookshelf/hands/book/bookHand';
 
-let configurator = new Configurator();
-let bookRepository = configurator.getBookRepository();
-let bookList = bookRepository.getBookList();
+let hand = BookHand.getHand();
+let bookList = hand.getBookList();
 
 export function get(req, res) {
-	res.writeHead(200, {
-		'Content-Type': 'application/json'
-	});
 
-	res.end(JSON.stringify(bookList));
+	if (bookList) {
+		res.writeHead(200, {
+			'Content-Type': 'application/json'
+		});
+
+		res.end(JSON.stringify(bookList));
+	} else {
+		res.writeHead(404, {
+			'Content-Type': 'application/json'
+		});
+
+		res.end(JSON.stringify({
+			message: `Not found`
+		}));
+	}
 }

@@ -1,9 +1,10 @@
 import { Configurator } from "../src/bookshelf/hands/configurator";
+import BookHandTest from "../src/bookshelf/hands/test/book/BookHandTest";
 var assert = require('assert');
 
 describe('format.html', () => {
     let configurator = new Configurator();
-    let bookHand = configurator.getHand();
+    let bookHand = BookHandTest.getHand();
     let formatHand = configurator.getFormat();
 
     it('Format all data from original directory and save to finished', () => {

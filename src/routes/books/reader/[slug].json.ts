@@ -1,7 +1,6 @@
-import { Configurator } from '../../../bookshelf/hands/configurator';
+import BookHand from '../../../bookshelf/hands/book/bookHand';
 
-let configurator = new Configurator();
-let hand = configurator.getHand();
+let hand = BookHand.getHand();
 
 export function get(req, res, next) {
 	// the `slug` parameter is available because
