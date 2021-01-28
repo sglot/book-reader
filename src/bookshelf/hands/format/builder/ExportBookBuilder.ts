@@ -12,11 +12,8 @@ export default class ExportBookBuilder extends FormatFileSystemBookBuilder {
             )
         );
 
-        let data = section.html;
-
-        if (!section.format || !section.format.includes('no-newline')) {
-            data = this.formatData(data, "");
-            section.html = data;
+        if (section.format) {
+            section.html = this.formatData(section.html, section.format);
         }
 
         section.compositions = this.getCompositions(section, book);

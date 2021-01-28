@@ -356,10 +356,20 @@
 		color: var(--prime);
 	}
 
+	@media(max-width: 780px) {
+		.content h2, section > :global(p), :global(.signature) {
+			width: 100%;
+		}
+	}
+
 	@media(max-width: 590px) {
 
 		.content :global(h5) {
 			font-size: 1.8rem;
+		}
+		
+		.content h2 {
+			font-size: 2rem;
 		}
 		
 		section {
@@ -378,9 +388,9 @@
 			max-width: 20em;
 		} */
 
-		section :global(.signature) {
+		/* section :global(.signature) {
 			max-width: 25em;
-		}
+		} */
 	}
 
 	@media(max-width: 440px) {
@@ -388,26 +398,34 @@
 		.content :global(h5) {
 			font-size: 1.4rem;
 		}
-		
-		section {
-			font-size: 12px;
-			max-width: 20em;
+
+		.content h2 {
+			font-size: 1.6rem;
 		}
 
-		section :global(.signature) {
-			max-width: 20em;
+		section {
+			font-size: 12px;
+			/* max-width: 20em; */
 		}
+
+		/* section :global(.signature) {
+			max-width: 20em;
+		} */
 	}
 
 	@media(max-width: 320px) {
 		.content :global(h5) {
 			font-size: 1.2rem;
-			max-width: 20em;
+			/* max-width: 20em; */
+		}
+
+		.content h2 {
+			font-size: 1.4rem;
 		}
 
 		section {
 			font-size: 11px;
-			max-width: 20em;
+			/* max-width: 20em; */
 		}
 	}
 </style>

@@ -7,8 +7,8 @@ export let bookList: bookList = [
     },
     {
         id: 2,
-        title: "Отладочный сборник",
-        slug: "Отладочный-сборник",
-        src: "testBook/testBook.json"
+        title: "Поклонение Роду",
+        slug: "Поклонение-Роду",
+        src: "Поклонение-Роду/Поклонение-Роду.json"
     }
 ];

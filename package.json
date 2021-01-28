@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "sapper dev",
+    "run-export": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --timeout 10000 --exit --require ts-node/register --colors run/run.export.html.test.ts",
+    "test": "cross-env NODE_ENV=development TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/**/*.ts",
+    "run-format": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --timeout 10000 --exit --require ts-node/register --colors run/run.format.html.test.ts",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
     "start": "cross-env NODE_ENV=development node __sapper__/build",
     "validate": "svelte-check --ignore src/node_modules/@sapper",
-    "test": "cross-env NODE_ENV=development TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/**/*.ts",
-    "run-format": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors run/run.format.html.test.ts",
-    "run-export": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors run/run.export.html.test.ts",
     "format-isolate": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/format.html.test.ts",
     "bookmarks": "cross-env NODE_ENV=format TS_NODE_FILES=true mocha --exit --require ts-node/register --colors test/bookmark.repository.test.ts",
     "coverage": "nyc npm run test"

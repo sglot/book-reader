@@ -44,9 +44,8 @@ export default class FormatFileSystemBookBuilder extends FileSystemBookBuilder {
 
         } 
 
-        if (!section.format || !section.format.includes('no-newline')) {
-            data = this.formatData(data, "");
-            section.html = data;
+        if (section.format) {
+            section.html = this.formatData(section.html, section.format);
         }
 
         this.writeDataToProdDir(data, dir, file);
@@ -93,9 +92,15 @@ export default class FormatFileSystemBookBuilder extends FileSystemBookBuilder {
 
     
 
-    formatData(data: string, format: string) {
-        data = data.replace(/\r?\n|\r/g, "<br>");
-        
+    formatData(data: string, format: string = "") {
+        if (format.includes('no-change')) {
+            return data
+        }
+
+        if (!format.includes('no-br')) {
+            data = data.replace(/\r?\n|\r/g, "<br>");
+        }
+
         data = data.replace(/\s,\s/g, ", ");
         
         data = data.replace(/«\s/g, "«");

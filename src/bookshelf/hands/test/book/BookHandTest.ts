@@ -27,4 +27,15 @@ export default class BookHandTest extends BookHand {
         book.sections = this.builder.getSections(book);
         return book;
     }
+
+    getBookList() {
+        return [
+            {
+                id: 2,
+                title: "Отладочный сборник",
+                slug: "Отладочный-сборник",
+                src: "testBook/testBook.json"
+            }
+        ];
+    }
 }
