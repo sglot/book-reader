@@ -1,11 +1,15 @@
-import { Configurator } from "../src/bookshelf/hands/configurator";
-import BookHandTest from "../src/bookshelf/hands/test/book/BookHandTest";
+import BookHand from "../src/bookshelf/hands/book/bookHand";
+import { FormatFileSystem } from "../src/bookshelf/hands/format/FormatFileSystem";
+import { FormatFileSystemBookRepository } from "../src/bookshelf/hands/format/repository/FormatFileSystemBookRepository";
+import FormatFileSystemBookBuilder from "../src/bookshelf/hands/format/builder/FormatFileSystemBookBuilder";
 var assert = require('assert');
 
 describe('format.html', () => {
-    let configurator = new Configurator();
-    let bookHand = BookHandTest.getHand();
-    let formatHand = configurator.getFormat();
+    let bookHand = BookHand.getHand();
+    let formatHand = new FormatFileSystem(
+        new FormatFileSystemBookRepository(),
+        new FormatFileSystemBookBuilder()
+    );
 
     it('Format all data from original directory and save to finished', () => {
 

@@ -1,10 +1,8 @@
-import { Configurator } from "../src/bookshelf/hands/configurator";
 import { FileSystemBookRepository } from "../src/bookshelf/hands/book/repository/FileSystemBookRepository";
 var assert = require('assert');
 
 describe('Book repository', () => {
-    let configurator = new Configurator();
-    let repository = configurator.getBookRepository();
+    let repository = new FileSystemBookRepository();
     let bookList = repository.getBookList();
     const TEST_BOOK_ID = 2;
     const TEST_BOOK_SLUG = "Отладочный-сборник";

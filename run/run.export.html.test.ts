@@ -1,10 +1,15 @@
-import { Configurator } from "../src/bookshelf/hands/configurator";
+import BookHand from "../src/bookshelf/hands/book/bookHand";
+import { FormatFileSystem } from "../src/bookshelf/hands/format/FormatFileSystem";
+import { FormatFileSystemBookRepository } from "../src/bookshelf/hands/format/repository/FormatFileSystemBookRepository";
+import ExportBookBuilder from "../src/bookshelf/hands/format/builder/ExportBookBuilder";
 var assert = require('assert');
 
 describe('export.book.json', () => {
-    let configurator = new Configurator();
-    let bookHand = configurator.getHand();
-    let formatHand = configurator.getExport();
+    let bookHand = BookHand.getHand();
+    let formatHand = new FormatFileSystem(
+        new FormatFileSystemBookRepository(),
+        new ExportBookBuilder()
+    );
 
     it('Make one file and format all data from original directory and save to finished', () => {
 
@@ -17,7 +22,7 @@ describe('export.book.json', () => {
             let bookData = bookList[indexBook];
             let exportedBook = formatHand.exportBook(bookData.id);
             console.log(exportedBook);
-            
+
             indexBook++;
         }
 

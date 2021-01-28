@@ -1,18 +1,12 @@
-import { Configurator } from "../src/bookshelf/hands/configurator";
 import BookRepositoryBase from "../src/bookshelf/hands/book/repository/BookRepositoryBase";
 import { FileSystemBookRepository } from "../src/bookshelf/hands/book/repository/FileSystemBookRepository";
 import { FSBookBuilderTest } from "../src/bookshelf/hands/test/book/builder/FSBookBuilderTest";
 var assert = require('assert');
 
 describe('Book builder', () => {
-    let configurator = new Configurator();
-    let repository = configurator.getBookRepository();
+    let repository = new FileSystemBookRepository();
     let builder = new FSBookBuilderTest();
-    let bookList = repository.getBookList();
     const TEST_BOOK_ID = 2;
-    const TEST_BOOK_SLUG = "Отладочный-сборник";
-    const TEST_COMPOSITION_ID = -1000000;
-    const TEST_NATIVE_SECTION_INDEX = 0;
     const TEST_COMPOSITE_SECTION_INDEX = 1;
     let testBook = repository.getBookById(TEST_BOOK_ID);
 

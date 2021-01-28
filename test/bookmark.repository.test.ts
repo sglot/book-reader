@@ -1,20 +1,13 @@
-import { Configurator } from "../src/bookshelf/hands/configurator";
 import BookmarkRepositoryBase from "../src/bookshelf/hands/bookmark/repository/BookmarkRepositoryBase";
 import LocalStorageBookmarkRepository from "../src/bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository";
+import LSBookmarkRepositoryTest from "../src/bookshelf/hands/test/bookmark/repository/LSBookmarkRepositoryTest";
+
 var assert = require('assert');
 
 describe('Bookmark repository', () => {
-    let configurator = new Configurator();
-    let repository = configurator.getTestBookmarkRepository();
-
-
-
-    const TEST_BOOK_ID = 2;
     const TEST_BOOK_SLUG = "Отладочный-сборник";
-    const TEST_COMPOSITION_ID = -1000000;
-    const TEST_NATIVE_SECTION_INDEX = 0;
-    const TEST_COMPOSITE_SECTION_INDEX = 1;
-    // let testBookmarkStorage = repository.getBookById(TEST_BOOK_ID);
+    
+    let repository = new LSBookmarkRepositoryTest();
 
     let stubTestBookBookmarks = [
         {

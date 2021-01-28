@@ -16,12 +16,10 @@ export class FileSystemBookRepository extends BookRepositoryBase {
         let bookPath = this.PATH + this.getSrcById(id, list);
         
         try {
-            
             let json = fs.readFileSync(path.resolve(bookPath), 'utf8');
-
             return JSON.parse(json) as book;
         } catch (e) {
-            console.log(e);
+            // console.log(e);
 
             return BookRepositoryBase.nullBook;
         }
@@ -48,7 +46,7 @@ export class FileSystemBookRepository extends BookRepositoryBase {
             return JSON.parse(json) as book;
 
         } catch (e) {
-            console.log(e);
+            // console.log(e);
 
             return BookRepositoryBase.nullBook;
         }

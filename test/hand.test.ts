@@ -8,8 +8,9 @@ describe('Hand', () => {
 
     it('Get test book', () => {
         let SUT = bookHand.getBook(TEST_BOOK_SLUG);
-
+        console.log(JSON.stringify(SUT));
         assert.equal(true, typeof SUT === 'object');
+        assert.equal(2, SUT.id);
     });
 
     it('Get unexist book', () => {
@@ -30,8 +31,6 @@ describe('Hand', () => {
         let SUT = bookHand.getBookList();
 
         assert.equal(true, typeof SUT === 'object');
-        assert.equal(true, typeof SUT === 'object');
     });
 
-    
 });
