@@ -41,7 +41,6 @@ export default class FormatFileSystemBookBuilder extends FileSystemBookBuilder {
             if (section.format.includes('no-index-file')) {
                 file = "";
             }
-
         } 
 
         if (section.format) {

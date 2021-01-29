@@ -46,8 +46,10 @@
 				<h2 class="pl5 top__city">Судиславль</h2>
 			</div>
 			<div class="phrase">
-				<h2 class="phrase1 top__city">«Глаголом жги</h2>
-				<h2 class="phrase2  top__city" style="margin-left:2em;">сердца людей»</h2>
+				<a rel="prefetch" href="books/reader/Поклонение-Роду#Стихотворения">
+					<h2 class="phrase1 top__city">«Глаголом жги</h2>
+					<h2 class="phrase2  top__city" style="margin-left:2em;">сердца людей»</h2>
+				</a>
 			</div>
 			
 		</div>
@@ -58,7 +60,7 @@
 			<figure>
 				<picture>
 					<source type="image/jpg" srcset="{nglot2010Webp}"/>
-					<img alt="2010 год" src={nglot2010} />
+					<img alt="2010 год" src="{nglot2010}" />
 				</picture>
 				<figcaption>2010</figcaption>
 			</figure>
@@ -66,7 +68,7 @@
 			<figure>
 				<picture>
 					<source type="image/webp" srcset="{nglotKostromaWebp}">
-					<img alt="В Костроме" src={nglotKostroma} />
+					<img alt="В Костроме" src="{nglotKostroma}" />
 				</picture>
 				<figcaption>в Костроме</figcaption>
 			</figure>
@@ -74,7 +76,7 @@
 			<figure>
 				<picture>
 					<source type="image/webp" srcset="{nglotPasekaWebp}">
-					<img alt="деревня Зады. На пасеке" src={nglotPaseka} />
+					<img alt="деревня Зады. На пасеке" src="{nglotPaseka}" />
 				</picture>
 				<figcaption>деревня Зады. На пасеке</figcaption>
 			</figure>
@@ -167,10 +169,10 @@
 		</div>
 
 		<div class="box" style="background: var(--flash); grid-area: two;">
-			<a rel="prefetch" href="books/reader/Возвращение-к-Sолнцу"
-				><h2>Отладочный сборник</h2>
+			<a rel="prefetch" href="books/reader/Поклонение-Роду"
+				><h2>Поклонение Роду</h2>
 				<p>
-					Отладочный c
+					Второй сборник
 				</p>
 				<span class="learn-more">читать</span></a
 			>
