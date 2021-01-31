@@ -15,7 +15,7 @@ describe('export.book.json', () => {
 
         let bookList = bookHand.getBookList();
         let lengthbookList = bookList.length;
-        let indexBook = 1;
+        let indexBook = 0;
 
         for (indexBook; indexBook < bookList.length;) {
 

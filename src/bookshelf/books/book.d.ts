@@ -13,6 +13,7 @@ type book = {
     slug:           string,
     author:         string,
     dir:            string,
+    theme:          string,
     sections:       section[]
 }
 

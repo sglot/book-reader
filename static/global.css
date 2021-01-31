@@ -330,6 +330,10 @@ button > svg,
 	background-image: var(--btn-hover);
 }
 
+button:focus  {
+	outline: none;
+}
+
 /*  optional */
 .btn[outline] {
 	line-height: var(--btn-calc-h);

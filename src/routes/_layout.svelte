@@ -3,7 +3,7 @@
 		return this.fetch(`books.json`)
 			.then((r) => r.json())
 			.then((bookList) => {
-				return { bookList: bookList, current: page };
+				return { bookList: bookList };
 			});
 	}
 </script>
@@ -13,13 +13,13 @@
 	import Nav from "../components/Nav.svelte";
 	import NavItem from "../components/NavItem.svelte";
 	import Icons from "../components/Icons.svelte";
-	import { afterUpdate, onMount } from "svelte";
+	import { afterUpdate } from "svelte";
 
 	export let segment;
 	const { page } = stores();
 	export let bookList: bookList;
 
-	afterUpdate(() => {
+	afterUpdate(async () => {
 		showFooter();
 	});
 

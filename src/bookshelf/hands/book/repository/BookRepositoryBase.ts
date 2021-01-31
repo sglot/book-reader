@@ -27,6 +27,7 @@ export default abstract class BookRepositoryBase {
         "slug":             "",
         "author":           "",
         "dir":              "",
+        "theme":            "",
         "sections":         [BookRepositoryBase.nullSection],
     };
 

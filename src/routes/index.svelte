@@ -1,13 +1,3 @@
-<script context="module">
-	export function preload() {
-		return this.fetch(`books.json`)
-			.then((r) => r.json())
-			.then((bookList) => {
-				return { bookList };
-			});
-	}
-</script>
-
 <script lang="ts">
 	import nglot2010 from "../../static/images/2010-08-04__820.jpg";
 	import nglot2010Webp from "../../static/images/2010-08-04__820.webp";
@@ -19,16 +9,17 @@
 
 <svelte:head>
 	<title>Николай Глот</title>
-	<meta 
-		name="keywords" 
+	<meta
+		name="keywords"
 		content="Николай Глот стихи поэзия автор Судиславль Кострома Зады Москва Ошурки 
-				возвращение к солнцу фото Травкин статья">
-	<meta 
-		name="description" 
+				возвращение к солнцу фото Травкин статья"
+	/>
+	<meta
+		name="description"
 		content="Николай Глот автор сборников стихотворений «Возвращение к Sолнцу», «Поклонение Роду». 
 				Родом из деревни Ошурки.
-				Издавался в Судиславле, Костроме, Москве">
-
+				Издавался в Судиславле, Костроме, Москве"
+	/>
 </svelte:head>
 
 <div class="content listify books">
@@ -36,8 +27,8 @@
 		<div class="col__first">
 			<h1>Николай Петрович Глот</h1>
 		</div>
-		<div class="col__second" >
-			<div >
+		<div class="col__second">
+			<div>
 				<h2 class="poesy top__city">Поэзия на русской равнине</h2>
 				<h2 class="pl1 top__city">Зады</h2>
 				<h2 class="pl2 top__city">Москва</h2>
@@ -46,12 +37,16 @@
 				<h2 class="pl5 top__city">Судиславль</h2>
 			</div>
 			<div class="phrase">
-				<a rel="prefetch" href="books/reader/Поклонение-Роду#Стихотворения">
+				<a
+					rel="prefetch"
+					href="books/reader/Поклонение-Роду#Стихотворения"
+				>
 					<h2 class="phrase1 top__city">«Глаголом жги</h2>
-					<h2 class="phrase2  top__city" style="margin-left:2em;">сердца людей»</h2>
+					<h2 class="phrase2  top__city" style="margin-left:2em;">
+						сердца людей»
+					</h2>
 				</a>
 			</div>
-			
 		</div>
 	</div>
 
@@ -59,24 +54,24 @@
 		<div class="col__second">
 			<figure>
 				<picture>
-					<source type="image/jpg" srcset="{nglot2010Webp}"/>
-					<img alt="2010 год" src="{nglot2010}" />
+					<source type="image/jpg" srcset={nglot2010Webp} />
+					<img alt="2010 год" src={nglot2010} />
 				</picture>
 				<figcaption>2010</figcaption>
 			</figure>
 
 			<figure>
 				<picture>
-					<source type="image/webp" srcset="{nglotKostromaWebp}">
-					<img alt="В Костроме" src="{nglotKostroma}" />
+					<source type="image/webp" srcset={nglotKostromaWebp} />
+					<img alt="В Костроме" src={nglotKostroma} />
 				</picture>
 				<figcaption>в Костроме</figcaption>
 			</figure>
 
 			<figure>
 				<picture>
-					<source type="image/webp" srcset="{nglotPasekaWebp}">
-					<img alt="деревня Зады. На пасеке" src="{nglotPaseka}" />
+					<source type="image/webp" srcset={nglotPasekaWebp} />
+					<img alt="деревня Зады. На пасеке" src={nglotPaseka} />
 				</picture>
 				<figcaption>деревня Зады. На пасеке</figcaption>
 			</figure>
@@ -85,8 +80,10 @@
 		<div class="col__first">
 			<h3>
 				Предисловие из сборника
-				<a href="/books/reader/Возвращение-к-Sолнцу#Чуткое-сердце"
-					style="text-decoration: underline;">
+				<a
+					href="/books/reader/Возвращение-к-Sолнцу#Чуткое-сердце"
+					style="text-decoration: underline;"
+				>
 					«Возвращение к Sолнцу»
 				</a>
 			</h3>
@@ -147,13 +144,14 @@
 				соответствующих собственному разумению, ориентиров.
 			</p>
 
-			<p class="signature">Василий Травкин, <br> член Союза писателей РФ</p>
+			<p class="signature">
+				Василий Травкин, <br /> член Союза писателей РФ
+			</p>
 		</div>
 	</div>
 
 	<section class="blurb" style="margin: 3em 0;">
-		<div class="box" 
-		style="
+		<div class="box" style="
 			background: var(--prime); 
 			grid-area: one; 
 		">
@@ -164,16 +162,13 @@
 					всех.
 				</p>
 				<span class="learn-more">читать</span>
-			</a
-			>
+			</a>
 		</div>
 
 		<div class="box" style="background: var(--flash); grid-area: two;">
 			<a rel="prefetch" href="books/reader/Поклонение-Роду"
 				><h2>Поклонение Роду</h2>
-				<p>
-					Второй сборник
-				</p>
+				<p>Второй сборник</p>
 				<span class="learn-more">читать</span></a
 			>
 		</div>
@@ -205,7 +200,7 @@
 	.top .col__first {
 		margin-right: 1em;
 	}
-	
+
 	.about {
 		display: flex;
 		flex-direction: row;
@@ -213,7 +208,6 @@
 		--trin: 0.2s;
 		--trout: 0.5s;
 		--brad: 0.4em;
-		
 	}
 
 	.col__first {
@@ -234,7 +228,7 @@
 	.top__city {
 		font-size: 1.3em;
 		overflow: hidden;
-		border-right: 0.15em solid transparent; 
+		border-right: 0.15em solid transparent;
 		white-space: nowrap;
 		width: 0;
 	}
@@ -308,7 +302,7 @@
 		font-style: italic;
 		width: var(--secwidth);
 	}
-	
+
 	.poesy {
 		color: #726a86;
 		animation: typing 2s steps(30, end), blink-caret 0.5s step-end 4;
@@ -372,15 +366,23 @@
 
 	/* The typing effect */
 	@keyframes typing {
-		from { width: 0; }
-		to { width: 100%; }
+		from {
+			width: 0;
+		}
+		to {
+			width: 100%;
+		}
 	}
 
 	/* The cursor effect */
 	@keyframes blink-caret {
 		from,
-		to { border-color: transparent; }
-		50% { border-color: var(--home-border) }
+		to {
+			border-color: transparent;
+		}
+		50% {
+			border-color: var(--home-border);
+		}
 	}
 
 	.blurb {
@@ -403,7 +405,11 @@
 		/* background-color: rgba(0, 0, 0, 0.5);
 		box-shadow: -10px 0 0 rgba(0, 0, 0, 0.5), 10px 0 0 rgba(0, 0, 0, 0.5); */
 		/* background: linear-gradient(135deg, rgb(37, 219, 237) 0%,rgb(9, 1, 11) 100%); */
-		background: linear-gradient(135deg, rgb(237, 234, 37) 0%,rgb(9, 1, 11) 100%);
+		background: linear-gradient(
+			135deg,
+			rgb(237, 234, 37) 0%,
+			rgb(9, 1, 11) 100%
+		);
 		mix-blend-mode: lighten;
 		padding: 3em;
 	}
@@ -430,8 +436,9 @@
 		color: white;
 		text-decoration: underline;
 	}
-	.box :global(.learn-more)::after, .box :global(.cta) :global(a)::after {
-		content: '';
+	.box :global(.learn-more)::after,
+	.box :global(.cta) :global(a)::after {
+		content: "";
 		position: absolute;
 		display: block;
 		right: 0;
@@ -447,8 +454,7 @@
 			grid-column-gap: 1em;
 			grid-row-gap: 1em;
 			grid-template-columns: repeat(2, 1fr);
-			grid-template-areas:
-				"one two";
+			grid-template-areas: "one two";
 		}
 		.box {
 			padding: 2em;
@@ -459,12 +465,11 @@
 	}
 
 	@media (min-width: 1200px) {
-		.blurb{
+		.blurb {
 			grid-column-gap: 5em;
 			grid-row-gap: 5em;
 			grid-template-columns: repeat(2, 1fr);
-			grid-template-areas:
-				"one two";
+			grid-template-areas: "one two";
 		}
 
 		.box :global(.cta) {
@@ -507,7 +512,6 @@
 
 		.top__city {
 			font-size: 1.2em;
-
 		}
 	}
 
@@ -518,7 +522,7 @@
 			margin: 0 0 1em 0;
 		}
 	}
-	
+
 	@media (max-width: 480px) {
 		h3 {
 			font-size: 1.3em;
@@ -542,11 +546,53 @@
 
 		figure figcaption {
 			top: 70%;
-			font-size: 0.8em
+			font-size: 0.8em;
 		}
 
 		.box a h2 {
 			font-size: 1.5em;
+		}
+
+		.poesy {
+			color: #726a86;
+			animation: typing 1s steps(30, end), blink-caret 0.2s step-end 1;
+			animation-fill-mode: both;
+			animation-delay: 0.2s;
+		}
+
+		.pl1 {
+			color: #7f7596;
+			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 1;
+			animation-fill-mode: both;
+			animation-delay: 1s;
+		}
+
+		.pl2 {
+			color: #7f7596ea;
+			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 1;
+			animation-fill-mode: both;
+			animation-delay: 1.3s;
+		}
+
+		.pl3 {
+			color: #7f7596cb;
+			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 2;
+			animation-fill-mode: both;
+			animation-delay: 1.8s;
+		}
+
+		.pl4 {
+			color: #7f75969a;
+			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 2;
+			animation-fill-mode: both;
+			animation-delay: 2.2s;
+		}
+
+		.pl5 {
+			color: #7f75967c;
+			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 2;
+			animation-fill-mode: both;
+			animation-delay: 2.8s;
 		}
 	}
 </style>

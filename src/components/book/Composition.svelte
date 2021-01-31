@@ -1,11 +1,11 @@
 <script lang="ts">
-    import type { BookmarkRepositoryBase } from '../../bookshelf/hands/bookmark/repository/BookmarkRepositoryBase';
+    import type BookmarkHandBase from '../../bookshelf/hands/bookmark/bookmarkHandBase';
     import Icon from '../Icon.svelte';
 
 	export let dir = 'docs';
     export let composition: composition;
     export let book: book;
-    export let bookmarks: BookmarkRepositoryBase;
+    export let bookmarks: BookmarkHandBase;
 </script>
 
 <style>
@@ -45,8 +45,13 @@
 		border: 2px solid var(--flash);
 	} */
 
+    .annotation__container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
 	.annotation {
-		text-align: right;
+		text-align: var(--annotation-align);
 		margin-bottom: 2em;
 		font-style: italic;
 	}
@@ -64,6 +69,11 @@
         padding-left: 44%;
         padding-top: 1em;
     }
+
+    .ending-composition::before {
+        content: var(--ending-content);
+        color: var(--ending-color);
+    }
 </style>
 
 <section data-id={composition.slug}>
@@ -72,7 +82,7 @@
         <!-- svelte-ignore a11y-missing-content -->
         <a href="{dir}#{composition.slug}" class="anchor" aria-hidden></a>
 
-        {@html composition.title}
+        {@html composition.title} 
         
         <small>
             <span
@@ -90,8 +100,10 @@
     </h5>
 
     {#if composition.annotation != ""}
-        <div class="annotation">
-            {@html composition.annotation}
+        <div class="annotation__container">
+            <div class="annotation">
+                {@html composition.annotation}
+            </div>
         </div>
     {/if}
 
@@ -103,6 +115,7 @@
         </div>
     {/if}
                 
-    <div class="ending-composition">* * *</div>
+    <!-- <div class="ending-composition">* * *</div> -->
+    <div class="ending-composition"></div>
 
 </section>

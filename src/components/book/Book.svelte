@@ -1,14 +1,19 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { afterUpdate, onDestroy, onMount } from 'svelte';
 	import TableOfContents from './TableOfContents.svelte'; // TODO rename
 	import Composition from './Composition.svelte'; // TODO rename
 	import Icon from '../Icon.svelte';
 	import LocalStorageBookmarkRepository from '../../bookshelf/hands/bookmark/repository/LocalStorageBookmarkRepository';
 	import LocalStorageBookmarkHand from '../../bookshelf/hands/bookmark/LocalStorageBookmarkHand';
-
+	import { stores } from "@sapper/app";
+		
 	export let dir = 'docs';
 	export let book: book;
 
+	const { page } = stores();
+	const getFragment = () => window.location.hash.slice(1);
+
+	let current = null;
 	let active_section;
 	let container;
 	let aside;
@@ -16,36 +21,18 @@
 	let bookmarks = new LocalStorageBookmarkHand(new LocalStorageBookmarkRepository);
 	let bookmarkCurrentPack;
 
-	export const getFragment = () => window.location.hash.slice(1);
+	let positions;
+	let anchors;
+	let last_id;
 
-	onMount(() => {
-
-		bookmarkCurrentPack = bookmarks.getPackByBookSlug(bookmarks.getBookmarkStorage(), book.slug);
-
-		const anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
-		const secBookmarks = container.querySelectorAll('small span');
-		const endings = container.querySelectorAll('div.ending-composition');
-		
-		[].map.call(secBookmarks, bm => {
-			if (bookmarks.hasBookmark(bookmarkCurrentPack, bm.getAttribute('bookmark-slug'))) {
-				bm.classList.add('active');
-			}
-		})
-
-		let temp = [].map.call(endings, ending => {
-			setEndingToCenter(ending);
-		})
-
-		let positions;
-		const onresize = () => {
+	let onresize = () => {
 			const { top } = container.getBoundingClientRect();
 			positions = [].map.call(anchors, anchor => {
 				return anchor.getBoundingClientRect().top - top;
 			});
 		}
 
-		let last_id = getFragment();
-		const onscroll = () => {
+		let onscroll = () => {
 			const { top } = container.getBoundingClientRect();
 			let i = anchors.length;
 			while (i--) {
@@ -61,6 +48,10 @@
 			}
 		};
 
+	onMount(async () => {
+		anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
+		last_id = getFragment();
+
 		window.addEventListener('scroll', onscroll, true);
 		window.addEventListener('resize', onresize, true);
 
@@ -73,6 +64,19 @@
 		onresize();
 		onscroll();
 
+		bookmarkCurrentPack = bookmarks.getPackByBookSlug(bookmarks.getBookmarkStorage(), book.slug);
+		const secBookmarks = container.querySelectorAll('small span');
+		[].map.call(secBookmarks, bm => {
+			if (bookmarks.hasBookmark(bookmarkCurrentPack, bm.getAttribute('bookmark-slug'))) {
+				bm.classList.add('active');
+			}
+		})
+
+		const endings = container.querySelectorAll('div.ending-composition');
+		let temp = [].map.call(endings, ending => {
+			setEndingToCenter(ending);
+		})
+
 		return () => {
 			window.removeEventListener('scroll', onscroll, true);
 			window.removeEventListener('resize', onresize, true);
@@ -80,17 +84,42 @@
 		};
 	});
 
-    function setEndingToCenter(ending: HTMLElement) {
-        let composition = ending.parentElement;
-		let maxLen = 0;
-		composition.childNodes.forEach( (el, i, arr) => {
+    let setEndingToCenter = async (ending: HTMLElement) => {
+		let sum = 0;
+		let count = 0;
+		ending.parentElement.childNodes.forEach( (el, i, arr) => {
 			// избегаем аннотаций и подписей, выбираем середину
-			if (el.textContent.length > maxLen && (i <arr.length - 3 && i > 5)) {
-				maxLen = el.textContent.length;
+			if (i < arr.length - 3 && i > 5) {
+				sum += el.textContent.length;
+				count++;
 			}
 		});
-        ending.style.paddingLeft = maxLen / 2 - ending.textContent.length - 2  + "rem";
-    }
+		let avgHalf = (sum / count ) / 2;
+
+		if (avgHalf <= 5) {
+			avgHalf += 2; 
+		} else if (avgHalf <= 10) {
+			avgHalf += 4; 
+		} else if (avgHalf <= 15) {
+			avgHalf += 6; 
+		} else if (avgHalf <= 20) {
+			avgHalf += 8; 
+		} else {
+			avgHalf += 10; 
+		}
+		ending.style.paddingLeft = avgHalf + ending.textContent.length + "rem";
+	}
+	
+	// для переключения дом дерева разных книг
+	afterUpdate(() => {
+		if (current != $page.path) {
+			current = $page.path;
+
+			anchors = container.querySelectorAll('[id]:not([data-scrollignore])');
+			onresize();
+			onscroll();
+		}
+	});
 </script>
 
 <style>
@@ -100,6 +129,19 @@
 		--bookmark-non-active: hsl(204, 100%, 50%);
 		--border: 10px 0 0px 0px #ffffff, 11px 0 0px 0px #d2b4b4, 14px 0 0px 0px #ffffff, 16px 0 0px 0px #d2b4b4;
 		--a-color: var(--prime); 
+		--annotation-align: right;
+		--ending-content: "* * *";
+		--ending-color: #eee;
+	}
+
+	.theme--book__second {
+		--secwidth: 95%;
+		--bookmark-non-active: hsl(204, 100%, 50%);
+		--border: 10px 0 0px 0px #ffffff, 11px 0 0px 0px #d2b4b4, 14px 0 0px 0px #ffffff, 16px 0 0px 0px #d2b4b4;
+		--a-color: var(--prime); 
+		--annotation-align: left;
+		--ending-content: "✷ ✷ ✷";
+		--ending-color: #eee;
 	}
 
 	aside {
@@ -426,7 +468,7 @@
 	}
 </style>
 
-<div bind:this={container} class="content listify theme--book__first">
+<div bind:this={container} class="content listify {book.theme}">
 	{#each book.sections as section}
 		<section data-id={section.slug}>
 			<h2>
