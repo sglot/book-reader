@@ -521,6 +521,10 @@
 			max-width: 600px;
 			margin: 0 0 1em 0;
 		}
+
+		.box :global(a) {
+			padding: 1em;
+		}
 	}
 
 	@media (max-width: 480px) {
@@ -555,44 +559,44 @@
 
 		.poesy {
 			color: #726a86;
-			animation: typing 1s steps(30, end), blink-caret 0.2s step-end 1;
+			animation: typing 2s steps(30, end), blink-caret 0.15s step-end 10;
 			animation-fill-mode: both;
 			animation-delay: 0.2s;
 		}
 
 		.pl1 {
 			color: #7f7596;
-			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 1;
-			animation-fill-mode: both;
-			animation-delay: 1s;
-		}
-
-		.pl2 {
-			color: #7f7596ea;
-			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 1;
-			animation-fill-mode: both;
-			animation-delay: 1.3s;
-		}
-
-		.pl3 {
-			color: #7f7596cb;
-			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 2;
-			animation-fill-mode: both;
-			animation-delay: 1.8s;
-		}
-
-		.pl4 {
-			color: #7f75969a;
-			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 2;
+			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 3;
 			animation-fill-mode: both;
 			animation-delay: 2.2s;
 		}
 
-		.pl5 {
-			color: #7f75967c;
-			animation: typing 1.5s steps(30, end), blink-caret 0.1s step-end 2;
+		.pl2 {
+			color: #7f7596ea;
+			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 1;
+			animation-fill-mode: both;
+			animation-delay: 2.5s;
+		}
+
+		.pl3 {
+			color: #7f7596cb;
+			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 2;
 			animation-fill-mode: both;
 			animation-delay: 2.8s;
+		}
+
+		.pl4 {
+			color: #7f75969a;
+			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 2;
+			animation-fill-mode: both;
+			animation-delay: 3.5s;
+		}
+
+		.pl5 {
+			color: #7f75967c;
+			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 2;
+			animation-fill-mode: both;
+			animation-delay: 4s;
 		}
 	}
 </style>

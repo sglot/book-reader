@@ -76,7 +76,7 @@
 		font-size: 0.8em;
 		min-height: 10vh;
 		border-top: 1px solid #bdbdbd;
-		padding: 1em 0;
+		padding: 1em var(--side-nav);
 	}
 
 	.footer-col {
@@ -85,9 +85,10 @@
 		padding: 1em;
 	}
 
-	@media (max-width: 320px) { 
+	@media (max-width: 480px) { 
 		footer {
 			flex-flow: column;
+			text-align: center;
 		}
 	}
 </style>

@@ -115,7 +115,6 @@
         </div>
     {/if}
                 
-    <!-- <div class="ending-composition">* * *</div> -->
     <div class="ending-composition"></div>
 
 </section>

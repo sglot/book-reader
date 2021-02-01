@@ -107,6 +107,7 @@
 		} else {
 			avgHalf += 10; 
 		}
+		avgHalf = show_contents ? avgHalf : avgHalf - 2;
 		ending.style.paddingLeft = avgHalf + ending.textContent.length + "rem";
 	}
 	
@@ -131,7 +132,7 @@
 		--a-color: var(--prime); 
 		--annotation-align: right;
 		--ending-content: "* * *";
-		--ending-color: #eee;
+		--ending-color: #a58585;
 	}
 
 	.theme--book__second {
@@ -141,7 +142,7 @@
 		--a-color: var(--prime); 
 		--annotation-align: left;
 		--ending-content: "✷ ✷ ✷";
-		--ending-color: #eee;
+		--ending-color: #a58585;
 	}
 
 	aside {
@@ -195,7 +196,7 @@
 		width: 100%;
 		height: 100%;
 		padding: 4em 1.6rem 2em 3.2rem;
-		bottom: 2.2em;
+		bottom: 2.4em;
 	}
 	.content {
 		width: 100%;

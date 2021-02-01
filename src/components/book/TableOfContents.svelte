@@ -7,7 +7,6 @@
 	export let prevent_sidebar_scroll = false;
 	export let dir;
 	let ul;
-	let contentNumer = 0;
 
 	afterUpdate(() => {
 		// bit of a hack — prevent sidebar scrolling if
@@ -87,6 +86,10 @@
 </ul>
 
 <style>
+	ul {
+		margin: 0 0 6em 0;
+	}
+	
 	.reference-toc li {
 		display: block;
 		line-height: 1.2;
@@ -135,6 +138,15 @@
 		.subsection:hover,
 		.active {
 			color: white;
+		}
+	}
+
+	@media (max-width: 420px) {
+		.subsection {
+			font-size: 1.3rem;
+		}
+		.section {
+			font-size: 1.3rem;
 		}
 	}
 </style>
