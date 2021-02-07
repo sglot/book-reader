@@ -1,5 +1,5 @@
 <script>
-	import { afterUpdate } from "svelte";
+	import { afterUpdate, beforeUpdate } from "svelte";
 	import Icon from "../Icon.svelte";
 	export let sections = [];
 	export let active_section = null;
@@ -9,35 +9,71 @@
 	let ul;
 
 	afterUpdate(() => {
-		// bit of a hack — prevent sidebar scrolling if
-		// TOC is open on mobile, or scroll came from within sidebar
-		if (
-			prevent_sidebar_scroll ||
-			(show_contents && window.innerWidth < 832)
-		)
-			return;
-
-		const active = ul.querySelector(".active");
-
-		if (active) {
-			const { top, bottom } = active.getBoundingClientRect();
-			const min = 200;
-			const max = window.innerHeight - 200;
-			if (top > max) {
-				ul.parentNode.scrollBy({
-					top: top - max,
-					left: 0,
-					behavior: "smooth",
-				});
-			} else if (bottom < min) {
-				ul.parentNode.scrollBy({
-					top: bottom - min,
-					left: 0,
-					behavior: "smooth",
-				});
-			}
+		if (show_contents && window.innerWidth < 832) {
+			setTimeout(() => {
+				mobileScroll();
+			}, 500);
+		} else {
+			simpleScroll();
 		}
 	});
+
+	const mobileScroll = () => {
+		const active = ul.querySelector(".active");
+		if (!active) {
+			return;
+		}
+
+		const { top } = active.getBoundingClientRect();
+		const min = 200;
+		const max = window.innerHeight - 200;
+
+		// общая прокрутка при скролле
+		if (top < min) {
+			ul.parentNode.scrollBy({
+				top: top - min,
+				left: 0,
+				behavior: "smooth",
+			});
+
+			return;
+		}
+
+		// прокрутка с начала страницы на стих в середине
+		if (top > max) {
+			ul.parentNode.scrollBy({
+				top: top - max,
+				left: 0,
+				behavior: "smooth",
+			});
+		}
+	};
+
+	const simpleScroll = () => {
+		const active = ul.querySelector(".active");
+		if (!active) {
+			return;
+		}
+
+		const { top, bottom } = active.getBoundingClientRect();
+		const min = 200;
+		const max = window.innerHeight - 200;
+
+		if (top > max) {
+			ul.parentNode.scrollBy({
+				top: top - max,
+				left: 0,
+				behavior: "smooth",
+			});
+		} else if (bottom < min) {
+			ul.parentNode.scrollBy({
+				top: bottom - min,
+				left: 0,
+				behavior: "smooth",
+			});
+		}
+	};
+
 </script>
 
 <ul
@@ -63,7 +99,6 @@
 			</a>
 
 			{#each section.compositions as subsection, j}
-			
 				<!-- see <script> below: on:click='scrollTo(event, subsection.slug)' -->
 				<a
 					class="subsection"
@@ -73,12 +108,12 @@
 				>
 					{@html subsection.title}
 
-					
-						<div class="icon-container">
-							{#if subsection.slug == active_section}<Icon name="arrow-right" />{/if}
-							<span style="color: #a58585">{j+1}</span>
-						</div>
-					
+					<div class="icon-container">
+						{#if subsection.slug == active_section}<Icon
+								name="arrow-right"
+							/>{/if}
+						<span>{j + 1}</span>
+					</div>
 				</a>
 			{/each}
 		</li>
@@ -89,7 +124,7 @@
 	ul {
 		margin: 0 0 6em 0;
 	}
-	
+
 	.reference-toc li {
 		display: block;
 		line-height: 1.2;
@@ -116,10 +151,14 @@
 		font-family: var(--font);
 		padding: 0 0 0.6em 0;
 	}
+	span {
+		color: rgb(172, 172, 172);
+	}
 	.section:hover,
 	.subsection:hover,
-	.active {
-		color: var(--flash);
+	.active,
+	.active > :global(span) {
+		color: var(--prime);
 	}
 	.subsection[data-level="4"] {
 		padding-left: 1.2rem;

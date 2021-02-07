@@ -24,9 +24,11 @@
 	let positions;
 	let anchors;
 	let last_id;
+	let compDelimiterPos = 80;
 
 	let onresize = () => {
 			const { top } = container.getBoundingClientRect();
+			compDelimiterPos = window.innerWidth < 832 ? 80 : 160;
 			positions = [].map.call(anchors, anchor => {
 				return anchor.getBoundingClientRect().top - top;
 			});
@@ -36,7 +38,7 @@
 			const { top } = container.getBoundingClientRect();
 			let i = anchors.length;
 			while (i--) {
-				if (positions[i] + top < 40) {
+				if (positions[i] + top < compDelimiterPos) {
 					const anchor = anchors[i];
 					const { id } = anchor;
 					if (id !== last_id) {
@@ -204,6 +206,13 @@
 		padding: var(--top-offset) var(--side-nav);
 		tab-size: 2;
 		-moz-tab-size: 2;
+	}
+
+	@media (min-width: 1280px) {
+		section {
+			width: 80%;
+			margin: 0 auto;
+		}
 	}
 	@media (min-width: 832px) { /* can't use vars in @media :( */
 		aside {

@@ -150,7 +150,7 @@
 		</div>
 	</div>
 
-	<section class="blurb" style="margin: 3em 0;">
+	<section class="blurb" style="margin-top: 3em;">
 		<div class="box" style="
 			background: var(--prime); 
 			grid-area: one; 
@@ -351,7 +351,7 @@
 
 	.phrase1 {
 		color: #7f75967c;
-		animation: typing 3s steps(30, end), blink-caret 0.5s step-end 5;
+		animation: typing 2.5s steps(30, end), blink-caret 0.5s step-end 5;
 		animation-fill-mode: both;
 		animation-delay: 8s;
 	}
@@ -414,12 +414,13 @@
 		padding: 3em;
 	}
 
-	.box :global(h2) {
+	.box h2 {
 		padding: 0;
 		margin: 0 0 0.5em 0;
-		font-size: var(--h2);
+		font-size: 1.6em;
 		color: white;
 		text-align: left;
+		text-decoration: underline;
 	}
 	.blurb :global(p) {
 		text-indent: unset;
@@ -564,39 +565,9 @@
 			animation-delay: 0.2s;
 		}
 
-		.pl1 {
-			color: #7f7596;
-			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 3;
-			animation-fill-mode: both;
-			animation-delay: 2.2s;
-		}
-
-		.pl2 {
-			color: #7f7596ea;
-			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 1;
-			animation-fill-mode: both;
-			animation-delay: 2.5s;
-		}
-
-		.pl3 {
-			color: #7f7596cb;
-			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 2;
-			animation-fill-mode: both;
-			animation-delay: 2.8s;
-		}
-
-		.pl4 {
-			color: #7f75969a;
-			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 2;
-			animation-fill-mode: both;
-			animation-delay: 3.5s;
-		}
-
-		.pl5 {
-			color: #7f75967c;
-			animation: typing 2s steps(30, end), blink-caret 0.1s step-end 2;
-			animation-fill-mode: both;
-			animation-delay: 4s;
+		.pl1, .pl2, .pl3, .pl4, .pl5 {
+			animation: none;
+			width: 100%;
 		}
 	}
 </style>

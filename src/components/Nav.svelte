@@ -168,6 +168,8 @@
 		border-bottom: 1px solid #eee;
 		border-radius: 0 0 var(--border-r) var(--border-r);
 		align-self: start;
+		position: absolute;
+		right: var(--side-nav);
 	}
 	ul.open :global(li) {
 		display: block;
