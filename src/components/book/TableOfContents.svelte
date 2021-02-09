@@ -8,26 +8,25 @@
 	export let dir;
 	let ul;
 
+	const min = 200;
+	let params;
+
 	afterUpdate(() => {
 		if (show_contents && window.innerWidth < 832) {
 			setTimeout(() => {
 				mobileScroll();
 			}, 500);
 		} else {
-			simpleScroll();
+			desktopScroll();
 		}
 	});
 
 	const mobileScroll = () => {
-		const active = ul.querySelector(".active");
-		if (!active) {
+		if (!(params = getActiveParams())) {
 			return;
 		}
 
-		const { top } = active.getBoundingClientRect();
-		const min = 200;
-		const max = window.innerHeight - 200;
-
+		const { top, max } = params;
 		// общая прокрутка при скролле
 		if (top < min) {
 			ul.parentNode.scrollBy({
@@ -49,15 +48,24 @@
 		}
 	};
 
-	const simpleScroll = () => {
+	const getActiveParams = () => {
 		const active = ul.querySelector(".active");
 		if (!active) {
-			return;
+			return false;
 		}
 
 		const { top, bottom } = active.getBoundingClientRect();
-		const min = 200;
-		const max = window.innerHeight - 200;
+		const max = window.innerHeight - min;
+
+		return { top, bottom, max };
+	};
+
+	const desktopScroll = () => {
+		if (!(params = getActiveParams())) {
+			return;
+		}
+
+		const { top, bottom, max } = params;
 
 		if (top > max) {
 			ul.parentNode.scrollBy({
@@ -73,7 +81,6 @@
 			});
 		}
 	};
-
 </script>
 
 <ul
