@@ -1,86 +1,70 @@
 <script>
-	import { afterUpdate, beforeUpdate } from "svelte";
+	import { afterUpdate } from "svelte";
 	import Icon from "../Icon.svelte";
 	export let sections = [];
 	export let active_section = null;
 	export let show_contents;
 	export let prevent_sidebar_scroll = false;
 	export let dir;
+
 	let ul;
 
 	const min = 200;
-	let params;
+	const padding = min / 2;
 
 	afterUpdate(() => {
-		if (show_contents && window.innerWidth < 832) {
+		// bit of a hack — prevent sidebar scrolling if
+		// scroll came from within sidebar
+		if (prevent_sidebar_scroll) return;
+		
+		if ( window.innerWidth > 831) {
+			desktopScroll();
+		} else if (show_contents) {
+			// waiting for the TOC to open
 			setTimeout(() => {
 				mobileScroll();
 			}, 500);
-		} else {
-			desktopScroll();
 		}
 	});
-
-	const mobileScroll = () => {
-		if (!(params = getActiveParams())) {
-			return;
-		}
-
-		const { top, max } = params;
-		// общая прокрутка при скролле
-		if (top < min) {
-			ul.parentNode.scrollBy({
-				top: top - min,
-				left: 0,
-				behavior: "smooth",
-			});
-
-			return;
-		}
-
-		// прокрутка с начала страницы на стих в середине
-		if (top > max) {
-			ul.parentNode.scrollBy({
-				top: top - max,
-				left: 0,
-				behavior: "smooth",
-			});
-		}
-	};
-
-	const getActiveParams = () => {
-		const active = ul.querySelector(".active");
-		if (!active) {
-			return false;
-		}
-
-		const { top, bottom } = active.getBoundingClientRect();
-		const max = window.innerHeight - min;
-
-		return { top, bottom, max };
-	};
-
+	
 	const desktopScroll = () => {
-		if (!(params = getActiveParams())) {
-			return;
-		}
-
-		const { top, bottom, max } = params;
-
+		const {top, bottom, max} = getActiveDimensions();
+		if (!top) return;
+		
 		if (top > max) {
-			ul.parentNode.scrollBy({
-				top: top - max,
-				left: 0,
-				behavior: "smooth",
-			});
+			scrollBy(top - max);
 		} else if (bottom < min) {
-			ul.parentNode.scrollBy({
-				top: bottom - min,
-				left: 0,
-				behavior: "smooth",
-			});
+			scrollBy(bottom - min);
 		}
 	};
+	
+	const mobileScroll = () => {
+		const {top, max} = getActiveDimensions();
+		if (!top) return;
+		
+		if (top + padding < min) {
+			scrollBy(top - min);
+		} else if (top - padding > max) {
+			scrollBy(top - max);
+		}
+	};
+			
+	const getActiveDimensions = () => {
+		const active = ul.querySelector(".active") 
+		if (!active) return false;
+		
+		const { top, bottom } = active.getBoundingClientRect();
+
+		return { top, bottom, max: window.innerHeight - min};
+	};
+	
+	const scrollBy = (top) => {
+		ul.parentNode.scrollBy({
+			top: top,
+			left: 0,
+			behavior: "smooth"
+		});
+	}
 </script>
 
 <ul
