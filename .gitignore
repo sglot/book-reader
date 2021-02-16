@@ -1,7 +1,10 @@
 /node_modules/
-/ui/public/build/
-
 .DS_Store
 .idea/
 
 /bookshelf/books/data/texts/
+
+/src/node_modules/@sapper/
+yarn-error.log
+/__sapper__/
+/src/bookshelf/books/data/
